@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 11:07:15 by fbesson           #+#    #+#             */
-/*   Updated: 2023/08/31 11:09:14 by fbesson          ###   ########.fr       */
+/*   Created: 2022/12/05 15:23:33 by fbesson           #+#    #+#             */
+/*   Updated: 2022/12/06 17:32:26 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "libft.h"
 
-int	main(void) //test libft + printf + makefile
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	char *result = ft_itoa(42);
-	ft_printf("%s\n", result);
-	return (0);
+	if (!new)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

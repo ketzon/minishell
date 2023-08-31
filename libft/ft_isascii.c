@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fbesson@student.42.fr <marvin@42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 11:07:15 by fbesson           #+#    #+#             */
-/*   Updated: 2023/08/31 11:09:14 by fbesson          ###   ########.fr       */
+/*   Created: 2022/11/16 20:07:36 by fbesson@stude     #+#    #+#             */
+/*   Updated: 2022/11/22 22:47:58 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "libft.h"
 
-int	main(void) //test libft + printf + makefile
+int	ft_isascii(int c)
 {
-	char *result = ft_itoa(42);
-	ft_printf("%s\n", result);
-	return (0);
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
+		return (0);
 }

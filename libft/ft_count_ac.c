@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_count_ac.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 11:07:15 by fbesson           #+#    #+#             */
-/*   Updated: 2023/08/31 11:09:14 by fbesson          ###   ########.fr       */
+/*   Created: 2023/04/05 12:57:19 by fbesson           #+#    #+#             */
+/*   Updated: 2023/04/05 13:02:07 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "libft.h"
 
-int	main(void) //test libft + printf + makefile
+int	ft_count_ac(char **av)
 {
-	char *result = ft_itoa(42);
-	ft_printf("%s\n", result);
-	return (0);
+	int	count;
+
+	count = 0;
+	while (av && av[count])
+		count++;
+	return (count);
 }

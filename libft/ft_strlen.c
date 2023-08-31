@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fbesson@student.42.fr <marvin@42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 11:07:15 by fbesson           #+#    #+#             */
-/*   Updated: 2023/08/31 11:09:14 by fbesson          ###   ########.fr       */
+/*   Created: 2022/11/16 20:09:41 by fbesson@stude     #+#    #+#             */
+/*   Updated: 2022/11/17 17:21:25 by fbesson@stude    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "libft.h"
 
-int	main(void) //test libft + printf + makefile
+size_t	ft_strlen(const char *str)
 {
-	char *result = ft_itoa(42);
-	ft_printf("%s\n", result);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

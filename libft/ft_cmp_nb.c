@@ -1,20 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_cmp_nb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 11:07:15 by fbesson           #+#    #+#             */
-/*   Updated: 2023/08/31 11:09:14 by fbesson          ###   ########.fr       */
+/*   Created: 2023/03/24 14:46:54 by fbesson           #+#    #+#             */
+/*   Updated: 2023/03/24 14:53:34 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "libft.h"
 
-int	main(void) //test libft + printf + makefile
+int	ft_cmp_nb(char *a, char *b)
 {
-	char *result = ft_itoa(42);
-	ft_printf("%s\n", result);
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (a[i] == '+')
+		i++;
+	if (b[j] == '+')
+		j++;
+	while (a[i] || b[j])
+	{
+		if (a[i] == b[j])
+		{
+			i++;
+			j++;
+		}
+		else
+			return (1);
+	}
 	return (0);
 }

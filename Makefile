@@ -1,14 +1,44 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/22 12:15:05 by fbesson           #+#    #+#              #
-#    Updated: 2023/08/22 12:16:36 by fbesson          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+BIN = bin
+FLAGS = -Wall -Wextra -Werror -g
+LIBFT_DIR = ./libft
+LIBFT = $(LIBFT_DIR)/libft.a
+SRCS = main.c
 
+MANDATORY = minishell
+OBJ_BOTH = $(foreach src,$(SRCS),$(BIN)/$(src:.c=.o))
 
-make: je sais plus tape une ligne de code, gl pour le projet, je vais mettre la meme intensite que dans les eternals
+NAME = $(MANDATORY)
+
+ECHO = echo
+RED = \033[31m
+GRE = \033[32m
+GRA = \033[37m
+BLU = \033[34m
+EOC = \033[0m
+
+all: $(NAME)
+
+bin/%.o: %.c
+	@$(ECHO) "$(BLU)● Compiling $^ 🔧$(EOC)"
+	@mkdir -p $(BIN)
+	@gcc $(FLAGS) -c $^ -o $@
+
+$(LIBFT):
+	@$(ECHO) "$(GRE)● Adding libft to Minishell ⚙️ $(EOC)"
+	@make -C $(LIBFT_DIR) -s
+
+$(NAME): $(OBJ_BOTH) $(LIBFT)
+	@$(ECHO) "$(GRE)● Minishell ready ⚙️ $(EOC)"
+	@gcc $(FLAGS) $(LIBFT) $^ -o $@
+
+clean:
+	@$(ECHO) "$(RED)● Removing /$(BIN) 📁$(EOC)"
+	@rm -rf $(BIN)
+	@make -C $(LIBFT_DIR) clean -s
+
+fclean: clean
+	@$(ECHO) "$(RED)● Removing binary ⚙️ $(EOC)"
+	@rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean -s
+
+re: fclean all

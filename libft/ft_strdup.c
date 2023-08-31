@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fbesson@student.42.fr <marvin@42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 11:07:15 by fbesson           #+#    #+#             */
-/*   Updated: 2023/08/31 11:09:14 by fbesson          ###   ########.fr       */
+/*   Created: 2022/11/16 20:09:28 by fbesson@stude     #+#    #+#             */
+/*   Updated: 2022/11/19 17:24:14 by fbesson@stude    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "libft.h"
 
-int	main(void) //test libft + printf + makefile
+char	*ft_strdup(const char *src)
 {
-	char *result = ft_itoa(42);
-	ft_printf("%s\n", result);
-	return (0);
+	size_t	i;
+	char	*tab;
+
+	i = 0;
+	tab = malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (!tab)
+		return (NULL);
+	while (src[i])
+	{
+		tab[i] = src[i];
+		i++;
+	}
+	tab[i] = '\0';
+	return (tab);
 }
