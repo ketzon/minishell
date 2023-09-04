@@ -29,7 +29,7 @@ $(LIBFT):
 
 $(NAME): $(OBJ_BOTH) $(LIBFT)
 	@$(ECHO) "$(GRE)● Minishell ready ⚙️ $(EOC)"
-	@gcc $(FLAGS) $(LIBFT) $^ -o $@
+	@gcc $(FLAGS) $(LIBFT) $^ -o $@ -lreadline
 
 clean:
 	@$(ECHO) "$(RED)● Removing /$(BIN) 📁$(EOC)"
