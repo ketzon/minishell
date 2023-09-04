@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/04 15:52:22 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:14:48 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ int ft_skip_white_spaces(char *str)
     return (i);
 }
 
-void signal_handling(int signal)
+void sigint_handling(int signal)
 {
-    (void)signal;
+    ft_putchar('\n');
     rl_on_new_line();
+    rl_replace_line("", 0);
+    rl_redisplay();
+    (void)signal;
 }
 
 int main(int argc, char **argv, char **envp)
@@ -49,10 +52,10 @@ int main(int argc, char **argv, char **envp)
     (void)argv;
     
     env_path = get_env_path(envp);
-    signal(SIGINT, signal_handling);
     (void)env_path;
     while (1)
     {
+        signal(SIGINT, sigint_handling);
         input = readline("$minishell : ");
         if (!*(input + ft_skip_white_spaces(input)))
             continue;
