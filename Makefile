@@ -2,7 +2,7 @@ BIN = bin
 FLAGS = -Wall -Wextra -Werror -g -Iincludes
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
-SRCS = main.c
+SRCS = main.c signals.c env.c utils.c
 
 MANDATORY = minishell
 OBJ_BOTH = $(foreach src,$(SRCS),$(BIN)/$(src:.c=.o))
