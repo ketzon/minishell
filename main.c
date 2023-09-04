@@ -6,12 +6,13 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/04 16:14:48 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:11:39 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* PERMET DE RECUPERER LA VARIABLE PATH DEPUIS L'ENVP */
 char    *get_env_path(char **envp)
 {
     if (!envp || !*envp)
@@ -25,6 +26,7 @@ char    *get_env_path(char **envp)
     return (NULL);
 }
 
+/* SAUTE LES ESPACES DANS UNE STRING ET RENVOIE DE COMBIEN IL A AVANCE */
 int ft_skip_white_spaces(char *str)
 {
     int i;
@@ -35,6 +37,7 @@ int ft_skip_white_spaces(char *str)
     return (i);
 }
 
+/* FONCTION QUI GERE LE SIGNAL CTRL + C*/
 void sigint_handling(int signal)
 {
     ft_putchar('\n');
@@ -55,16 +58,14 @@ int main(int argc, char **argv, char **envp)
     (void)env_path;
     while (1)
     {
-        signal(SIGINT, sigint_handling);
+        signal(SIGINT, sigint_handling); // GESTION DU SIGNAL CTRL + C, renvoie a la fonction signal_handling.
+        signal(SIGQUIT, SIG_IGN); // GESTION DU SIGNAL CTRL + '\' , SIG_IGN lui dit d'ignorer le signal.
         input = readline("$minishell : ");
+        if (input == NULL) // READLINE RENVOI NULL DANS LE CAS DE CTRL + D , PERMET DE QUITTER PROPREMENT.
+            break;
         if (!*(input + ft_skip_white_spaces(input)))
             continue;
         add_history(input);
-        
-        //printf("%s\n", input);
-        //if (!input || !is_line_empty(input))
-        //    continue;
-        //printf("Input ok\n");
         
     }
 }
