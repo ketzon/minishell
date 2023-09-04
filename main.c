@@ -6,11 +6,11 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/04 17:46:33 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:13:08 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "minishell.h"
 
 int main(int argc, char **argv, char **envp)
 {
@@ -26,11 +26,11 @@ int main(int argc, char **argv, char **envp)
         signals_handling();
         line = readline("$minishell : ");
         if (line == NULL) // READLINE RENVOI NULL DANS LE CAS DE CTRL + D , PERMET DE QUITTER PROPREMENT.
-            break;
+            break ;
         if (!*(line + ft_skip_white_spaces(line)))
         {
             free(line);
-            continue;
+            continue ;
         }
         add_history(line);
         free(line);
