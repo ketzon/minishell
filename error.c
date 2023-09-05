@@ -1,0 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/05 10:40:40 by fbesson           #+#    #+#             */
+/*   Updated: 2023/09/05 10:55:42 by fbesson          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+int	ft_error(int error)
+{
+	ft_putstr_fd("minishell: ", 2);
+	if (error == 2)
+			ft_putstr_fd("syntax error: unable to locate closing quotation\n", 2);
+	return (0);
+}

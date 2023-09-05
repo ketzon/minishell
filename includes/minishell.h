@@ -23,4 +23,14 @@ char    *get_env_path(char **envp);
 
 int ft_skip_white_spaces(char *str);
 
+/* QUOTES */
+
+int	handle_quotes(int i, char *str, char del);
+int	find_matching_quote(char *line, int i, int *num_del, int del);
+int	count_quotes(char *line);
+
+/* ERROR */
+
+int	ft_error(int error);
+
 #endif
