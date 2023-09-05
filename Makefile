@@ -3,11 +3,11 @@ FLAGS = -Wall -Wextra -Werror -g -Iincludes
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 SRCS_DIR = srcs
-SRCS = $(wildcard $(SRCS_DIR)/*.c)  # Tous les fichiers .c dans le dossier srcs
+SRCS = $(SRCS_DIR)/main.c $(SRCS_DIR)/signals.c $(SRCS_DIR)/env.c $(SRCS_DIR)/utils.c $(SRCS_DIR)/quotes.c $(SRCS_DIR)/error.c
 
 MANDATORY = minishell
 OBJ_DIR = $(BIN)
-OBJ_BOTH = $(addprefix $(OBJ_DIR)/,$(notdir $(SRCS:.c=.o)))
+OBJ_BOTH = $(patsubst $(SRCS_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 NAME = $(MANDATORY)
 
