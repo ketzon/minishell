@@ -2,10 +2,12 @@ BIN = bin
 FLAGS = -Wall -Wextra -Werror -g -Iincludes
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
-SRCS = main.c
+SRCS_DIR = srcs
+SRCS = $(SRCS_DIR)/main.c $(SRCS_DIR)/signals.c $(SRCS_DIR)/env.c $(SRCS_DIR)/utils.c $(SRCS_DIR)/quotes.c $(SRCS_DIR)/error.c
 
 MANDATORY = minishell
-OBJ_BOTH = $(foreach src,$(SRCS),$(BIN)/$(src:.c=.o))
+OBJ_DIR = $(BIN)
+OBJ_BOTH = $(patsubst $(SRCS_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 NAME = $(MANDATORY)
 
@@ -18,10 +20,10 @@ EOC = \033[0m
 
 all: $(NAME)
 
-bin/%.o: %.c
-	@$(ECHO) "$(BLU)● Compiling $^ 🔧$(EOC)"
-	@mkdir -p $(BIN)
-	@gcc $(FLAGS) -c $^ -o $@
+$(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
+	@$(ECHO) "$(BLU)● Compiling $< 🔧$(EOC)"
+	@mkdir -p $(OBJ_DIR)
+	@gcc $(FLAGS) -c $< -o $@
 
 $(LIBFT):
 	@$(ECHO) "$(GRE)● Adding libft to Minishell ⚙️ $(EOC)"
