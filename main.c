@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/05 11:10:36 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/05 11:13:52 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv, char **envp)
             continue ;
         }
 		if (!count_quotes(line)) //check si les parentheses match
-			return (ft_error(2));
+			return (free(line), ft_error(2));//si les quotes match pas, return error sortie 2 et print msg
         add_history(line);
         free(line);
     }
