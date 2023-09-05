@@ -2,10 +2,13 @@ BIN = bin
 FLAGS = -Wall -Wextra -Werror -g -Iincludes
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
-SRCS = main.c signals.c env.c utils.c
+
+SRCS_DIR = srcs/
+SRCS = main.c signals.c env.c utils.c quotes.c error.c
+SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))
 
 MANDATORY = minishell
-OBJ_BOTH = $(foreach src,$(SRCS),$(BIN)/$(src:.c=.o))
+OBJ_BOTH = $(foreach src,$(SRCS_FILES),$(BIN)/$(src:.c=.o))
 
 NAME = $(MANDATORY)
 
@@ -20,7 +23,7 @@ all: $(NAME)
 
 bin/%.o: %.c
 	@$(ECHO) "$(BLU)● Compiling $^ 🔧$(EOC)"
-	@mkdir -p $(BIN)
+	@mkdir -p $(BIN)/srcs
 	@gcc $(FLAGS) -c $^ -o $@
 
 $(LIBFT):

@@ -6,11 +6,11 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:22:16 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/04 17:30:03 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:01:28 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "../includes/minishell.h"
 
 /* INTERPRETE LES DIFFERENTS SIGNAUX */
 void    signals_handling(void)
@@ -22,9 +22,9 @@ void    signals_handling(void)
 /* FONCTION QUI GERE LE SIGNAL CTRL + C*/
 void sigint_handling(int signal)
 {
-    ft_putchar('\n');
-    rl_on_new_line();
-    rl_replace_line("", 0);
-    rl_redisplay();
+    ft_putchar('\n');//affiche un retour a la ligne
+    rl_on_new_line();//curseur deplace sur une new ligne
+    rl_replace_line("", 0);//remplace la commande en cour par une chaine vide
+    rl_redisplay();//affiche le prompt
     (void)signal;
 }
