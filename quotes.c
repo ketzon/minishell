@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote.c                                            :+:      :+:    :+:   */
+/*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:26:07 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/05 10:26:32 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/05 11:11:55 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	handle_quotes(int i, char *str, char del)
-{
-	int	j;
-
-	j = 0;
-	if (str && str[i + j] == del)
-	{
-		j++;
-		while (str[i + j] != del && str[i + j])
-			j++;
-	}
-	return (j);
-}
 
 int	find_matching_quote(char *line, int i, int *num_del, int del)
 {
