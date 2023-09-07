@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/07 11:01:15 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:17:52 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,9 @@ t_lexer *new_node(char *input, t_token token, int index)
     new->token = token;
     new->word = input;
     return (new);
+}
+
+int	whitespace(char c)
+{
+	return (c == ' ' || c == " " || c == '\t');
 }

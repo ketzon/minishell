@@ -25,7 +25,10 @@ typedef enum e_token
 
 typedef struct s_env
 {
+	int processing_error;
+	int	parsing_error;
 	char **env_vars;
+
 }	t_env;
 typedef struct s_data
 {
@@ -46,7 +49,7 @@ typedef struct s_lexer
 /* SIGNALS */
 
 void    signals_handling(void);
-void sigint_handling(int signal);
+void	sigint_handling(int signal);
 
 /* ENV */
 

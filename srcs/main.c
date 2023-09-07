@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/07 15:42:29 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/07 15:54:41 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 int main(int ac, char **av, char **envp)
 {
     /* char    *line; */
-	char	**env_arr;
+	char	**env_array;
     /* t_data  data; */
-	/* t_env	*env; */
+	t_env	*env;
     
-	env_arr = create_env_arr(envp, ac, av);
+	env_array = create_env_arr(envp, ac, av);
+	env = init_env(env_array); 
+
     /* data.env_paths = get_env_path(envp); */
 	int i;
-	while (env_arr[i])
+	while (env_array[i])
 	{
-		printf("%s\n", env_arr[i]);
+		printf("%s\n", env_array[i]);
 		i++;
 	}
     /* while (1) */
