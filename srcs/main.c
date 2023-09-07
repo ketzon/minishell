@@ -6,35 +6,43 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/07 11:00:19 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:42:29 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int main(int argc, char **argv, char **envp)
+int main(int ac, char **av, char **envp)
 {
-    char    *line;
-    t_data  data;
-    (void)argc;
-    (void)argv;
+    /* char    *line; */
+	char	**env_arr;
+    /* t_data  data; */
+	/* t_env	*env; */
     
-    data.env_paths = get_env_path(envp);
-    while (1)
-    {
-        signals_handling();
-        line = readline("$minishell : ");
-        if (line == NULL) // READLINE RENVOI NULL DANS LE CAS DE CTRL + D , PERMET DE QUITTER PROPREMENT.
-            break ;
-        if (!*(line + ft_skip_white_spaces(line)))
-        {
-            free(line);
-            continue ;
-        }
-		if (!count_quotes(line)) //check si les parentheses match
-			return (free(line), ft_error(2));//si les quotes match pas, return error sortie 2 et print msg
-        add_history(line);
-        lexer(&data, line);
-        free(line);
-    }
+	env_arr = create_env_arr(envp, ac, av);
+    /* data.env_paths = get_env_path(envp); */
+	int i;
+	while (env_arr[i])
+	{
+		printf("%s\n", env_arr[i]);
+		i++;
+	}
+    /* while (1) */
+    /* { */
+    /*     signals_handling(); */
+    /*     line = readline("$minishell : "); */
+    /*     if (line == NULL) */
+    /*         break ; */
+    /*     if (!*(line + ft_skip_white_spaces(line))) */
+    /*     { */
+    /*         free(line); */
+    /*         continue ; */
+    /*     } */
+		/* if (!count_quotes(line)) */ 
+			/* return (free(line), ft_error(2)); */
+    /*     add_history(line); */
+    /*     lexer(&data, line); */
+    /*     free(line); */
+	return (0);
+    /* } */
 }

@@ -11,6 +11,7 @@
 
 //# define BUFFER_SIZE 42
 
+typedef void t_unused;
 typedef struct s_lexer t_lexer;
 
 typedef enum e_token
@@ -22,6 +23,10 @@ typedef enum e_token
     PIPE = 5
 }   t_token;
 
+typedef struct s_env
+{
+	char **env_vars;
+}	t_env;
 typedef struct s_data
 {
     char        *env_paths;
@@ -46,6 +51,9 @@ void sigint_handling(int signal);
 /* ENV */
 
 char    *get_env_path(char **envp);
+char	*malloc_each_line(char *line);
+char	**create_malloc_line(char *line);
+char	**create_env_arr(char **envp, int ac, char **av);
 
 /* UTILS */
 
