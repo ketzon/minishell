@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/05 17:01:08 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:00:19 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 int main(int argc, char **argv, char **envp)
 {
-    char    *env_path;
     char    *line;
+    t_data  data;
     (void)argc;
     (void)argv;
     
-    env_path = get_env_path(envp);
-	(void)env_path;
+    data.env_paths = get_env_path(envp);
     while (1)
     {
         signals_handling();
@@ -35,6 +34,7 @@ int main(int argc, char **argv, char **envp)
 		if (!count_quotes(line)) //check si les parentheses match
 			return (free(line), ft_error(2));//si les quotes match pas, return error sortie 2 et print msg
         add_history(line);
+        lexer(&data, line);
         free(line);
     }
 }
