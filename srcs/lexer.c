@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 10:52:58 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/07 11:03:14 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:48:28 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,31 @@ int     add_word(char *input, int i, t_lexer **head)
 {
     int j;
 
-    j = i;
-    while (input[j] && input[j] != ' ')
-        j++;
-    stack_add_bottom(head, new_node(ft_substr(input, i, (j - i)), 0, i));
-    return (j - i);
+    j = 0;
+    while (input[i + j] && !is_token(input[i + j]))
+    {
+        j += quotes_handling(input, i + j, 34);
+        j += quotes_handling(input, i + j, 39);
+        if (input[i + j] == ' ' || input[i + j] == '\0')
+            break;
+        else
+            j++;
+    }
+    stack_add_bottom(head, new_node(ft_substr(input, i, j), 0, i));
+    return (j);
+}
+
+int quotes_handling(char *str, int start, char quote)
+{
+    int i;
+
+    i = 0;
+    if (str[start] != quote)
+        return (0);
+    i++;
+    while (str[start + i] && str[start + i] != quote)
+        i++;
+    return (i);
 }
 
 t_lexer   *fill_lexer_struct(char *input)

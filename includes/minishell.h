@@ -57,6 +57,7 @@ t_lexer *new_node(char *input, t_token token, int index);
 
 int	find_matching_quote(char *line, int i, int *num_del, int del);
 int	count_quotes(char *line);
+int quotes_handling(char *str, int start, char quote);
 
 /* LEXER */
 
