@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 10:52:58 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/07 16:48:28 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:04:09 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int    add_token(char *input, int i, t_lexer **head)
         j = 1;
         token = PIPE;
     }
-    stack_add_bottom(head, new_node(NULL, token, i));
+    stack_add_bottom(head, new_node(NULL, token));
     return (j);
 }
 
@@ -79,7 +79,7 @@ int     add_word(char *input, int i, t_lexer **head)
         else
             j++;
     }
-    stack_add_bottom(head, new_node(ft_substr(input, i, j), 0, i));
+    stack_add_bottom(head, new_node(ft_substr(input, i, j), WORD));
     return (j);
 }
 
@@ -114,21 +114,22 @@ t_lexer   *fill_lexer_struct(char *input)
     return (head);
 }
 
-void    lexer(t_data *data, char *argv)
+void    lexer(t_data *data)
 {
     char    *input;
     t_lexer *tmp;
     
     data->lexer_head = NULL;
-    input = argv;
+    input = data->line;
     data->lexer_head = fill_lexer_struct(input);
+    
     tmp = data->lexer_head;
     while (tmp)
     {
          if (tmp->word)
-             printf("%s\n", tmp->word);
-         else if (tmp->token)
-             printf("%d\n", tmp->token);
+             printf("%s, type = %d\n", tmp->word, tmp->token);
+         else
+             printf("%d, type = %d\n", tmp->token, tmp->token);
          tmp = tmp->next;
     }
 }
