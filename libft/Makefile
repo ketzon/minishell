@@ -16,7 +16,7 @@ NAME = libft.a
 OK_COLOR = \033[0;32m
 NO_COLOR = \033[m
 
-CC = cc
+CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra -g -w
 
@@ -36,20 +36,20 @@ OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(BONUS:.c=.o)
  
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@ar -rcs $(NAME) $(OBJS) 
+	ar -rcs $(NAME) $(OBJS) 
 
 bonus: $(OBJS) $(OBJS_BONUS)
-	@ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS)
+	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS)
 
 clean:
-	@/bin/rm -f $(OBJS) $(OBJS_BONUS) 
+	/bin/rm -f $(OBJS) $(OBJS_BONUS) 
 
 fclean: clean
-	@/bin/rm -f $(NAME) 
+	/bin/rm -f $(NAME) 
 
 re: fclean all

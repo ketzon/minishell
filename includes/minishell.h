@@ -13,6 +13,9 @@
 
 typedef void t_unused;
 typedef struct s_lexer t_lexer;
+typedef struct s_env t_env;
+typedef struct s_var t_var;
+typedef struct s_data t_data;
 
 typedef enum e_token
 {
@@ -26,8 +29,7 @@ typedef enum e_token
 typedef struct s_env
 {
 	char **env_vars;
-	t_var *first_node;
-
+	struct s_var *first_node;
 }	t_env;
 
 typedef struct s_var
@@ -63,10 +65,22 @@ void	sigint_handling(int signal);
 
 /* ENV */
 
+char	**create_env_arr(char **envp);
+t_env	*init_env(char **env_array);
+t_var	*init_env_var(char *name, char *infos, int id);
+void	create_env_list(t_env *env, char **env_arr);
 char    *get_env_path(char **envp);
 char	*malloc_each_line(char *line);
 char	**create_malloc_line(char *line);
-char	**create_env_arr(char **envp, int ac, char **av);
+void	create_list(t_env *env, t_var *node);
+void	connect_node(t_var *curr_node, t_var *next_node);
+char	*get_line_infos(char *line);
+char	*extract_content(char *line, int start, int end);
+char	*get_line_name(char *line);
+
+/* FREE */ 
+
+void	free_env_array(char **env_arr);
 
 /* UTILS */
 
@@ -78,6 +92,11 @@ t_lexer *new_node(char *input, t_token token, int index);
 
 int	find_matching_quote(char *line, int i, int *num_del, int del);
 int	count_quotes(char *line);
+
+/* IS */
+
+int	is_null(char *str);
+int	is_value_null(char *str);
 
 /* LEXER */
 

@@ -6,31 +6,34 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/13 12:36:40 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/13 15:57:04 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_env	*g_env;
+/* t_env	*g_env; */
 
 int main(int ac, char **av, char **envp)
 {
+	(void)ac;
+	(void)av;
     /* char    *line; */
 	char	**env_array;
     /* t_data  data; */
 	t_env	*env;
     
-	env_array = create_env_arr(envp, ac, av);
+	env_array = create_env_arr(envp);
 	env = init_env(env_array); 
+	(void)env;
 
     /* data.env_paths = get_env_path(envp); */
-	int i;
-	while (env_array[i])
-	{
-		printf("%s\n", env_array[i]);
-		i++;
-	}
+	/* int i; */
+	/* while (env_array[i]) */
+	/* { */
+	/* 	printf("%s\n", env_array[i]); */
+		/* i++; */
+	/* } */
     /* while (1) */
     /* { */
     /*     signals_handling(); */

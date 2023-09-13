@@ -8,11 +8,11 @@
 BIN	Makefile	/^BIN = bin$/;"	m
 BLU	Makefile	/^BLU = \\033[34m$/;"	m
 BONUS	libft/Makefile	/^BONUS = ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \\$/;"	m
-CC	libft/Makefile	/^CC = cc$/;"	m
+CC	libft/Makefile	/^CC = gcc$/;"	m
 CFLAGS	libft/Makefile	/^CFLAGS = -Wall -Werror -Wextra -g -w$/;"	m
 ECHO	Makefile	/^ECHO = echo$/;"	m
 EOC	Makefile	/^EOC = \\033[0m$/;"	m
-FLAGS	Makefile	/^FLAGS = -Wall -Wextra -Werror -g -Iincludes$/;"	m
+FLAGS	Makefile	/^FLAGS = -Wall -Werror -Wextra  -g -Iincludes$/;"	m
 GRA	Makefile	/^GRA = \\033[37m$/;"	m
 GRE	Makefile	/^GRE = \\033[32m$/;"	m
 GREATER	includes/minishell.h	/^    GREATER = 1,$/;"	e	enum:e_token
@@ -40,7 +40,7 @@ PIPE	includes/minishell.h	/^    PIPE = 5$/;"	e	enum:e_token
 PRINTF_H	includes/printf.h	15;"	d
 PRINTF_H	libft/printf.h	15;"	d
 RED	Makefile	/^RED = \\033[31m$/;"	m
-SRCS	Makefile	/^SRCS = main.c signals.c env.c utils.c quotes.c error.c lexer.c$/;"	m
+SRCS	Makefile	/^SRCS = main.c signals.c env.c utils.c quotes.c error.c lexer.c free.c init.c is.c malloc_env.c \\$/;"	m
 SRCS	libft/Makefile	/^SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \\$/;"	m
 SRCS_DIR	Makefile	/^SRCS_DIR = srcs\/$/;"	m
 SRCS_FILES	Makefile	/^SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))$/;"	m
@@ -51,18 +51,17 @@ connect_node	srcs/chained.c	/^void	connect_node(t_var *curr_node, t_var *next_no
 content	includes/libft.h	/^	void			*content;$/;"	m	struct:s_list
 content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
 count_quotes	srcs/quotes.c	/^int	count_quotes(char *line)$/;"	f
-create_env_arr	malloc_env.c	/^char	**create_env_arr(char **envp, int ac, char **av)$/;"	f
 create_env_arr	srcs/malloc_env.c	/^char	**create_env_arr(char **envp, int ac, char **av)$/;"	f
+create_env_list	srcs/create_env_list.c	/^void	create_env_list(t_env *env, char **env_arr)$/;"	f
 create_list	srcs/chained.c	/^void	create_list(t_env *env, t_var *node)$/;"	f
 digit_count	libft/ft_itoa.c	/^static int	digit_count(long n)$/;"	f	file:
 e_token	includes/minishell.h	/^typedef enum e_token$/;"	g
 env_paths	includes/minishell.h	/^    char        *env_paths;$/;"	m	struct:s_data
 env_vars	includes/minishell.h	/^	char **env_vars;$/;"	m	struct:s_env
-extract_content	create_env_list.c	/^char	*extract_content(char *line, int start, int end)$/;"	f
 extract_content	srcs/create_env_list.c	/^char	*extract_content(char *line, int start, int end)$/;"	f
 fill_lexer_struct	srcs/lexer.c	/^t_lexer   *fill_lexer_struct(char *input)$/;"	f
 find_matching_quote	srcs/quotes.c	/^int	find_matching_quote(char *line, int i, int *num_del, int del)$/;"	f
-first_node	includes/minishell.h	/^	t_var *first_node;$/;"	m	struct:s_env
+first_node	includes/minishell.h	/^	struct s_var *first_node;$/;"	m	struct:s_env	typeref:struct:s_env::s_var
 free_env_array	srcs/free.c	/^void	free_env_array(char **env_arr)$/;"	f
 ft_atoi	libft/ft_atoi.c	/^int	ft_atoi(const char *str)$/;"	f
 ft_bzero	libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
@@ -121,12 +120,8 @@ ft_strtrim	libft/ft_strtrim.c	/^char	*ft_strtrim(const char *s1, const char *set
 ft_substr	libft/ft_substr.c	/^char	*ft_substr(char const *str, unsigned int start, size_t n)$/;"	f
 ft_tolower	libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
 ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
-g_env	srcs/main.c	/^t_env	*g_env;$/;"	v
-get_env_path	malloc_env.c	/^char    *get_env_path(char **envp)$/;"	f
 get_env_path	srcs/malloc_env.c	/^char    *get_env_path(char **envp)$/;"	f
-get_line_infos	create_env_list.c	/^char	*get_line_infos(char *line)$/;"	f
 get_line_infos	srcs/create_env_list.c	/^char	*get_line_infos(char *line)$/;"	f
-get_line_name	create_env_list.c	/^char	*get_line_name(char *line)$/;"	f
 get_line_name	srcs/create_env_list.c	/^char	*get_line_name(char *line)$/;"	f
 i	includes/minishell.h	/^    int         i;$/;"	m	struct:s_lexer
 id	includes/minishell.h	/^	int id;$/;"	m	struct:s_var
@@ -139,10 +134,8 @@ is_token	srcs/lexer.c	/^bool    is_token(char c)$/;"	f
 is_value_null	srcs/is.c	/^int	is_value_null(char *str)$/;"	f
 lexer	srcs/lexer.c	/^void    lexer(t_data *data, char *argv)$/;"	f
 lexer_head	includes/minishell.h	/^    t_lexer     *lexer_head;$/;"	m	struct:s_data
-line_count	malloc_env.c	/^int	line_count(char **envp)$/;"	f
 line_count	srcs/malloc_env.c	/^int	line_count(char **envp)$/;"	f
 main	srcs/main.c	/^int main(int ac, char **av, char **envp)$/;"	f
-malloc_each_line	malloc_env.c	/^char	*malloc_each_line(char *line)$/;"	f
 malloc_each_line	srcs/malloc_env.c	/^char	*malloc_each_line(char *line)$/;"	f
 name	includes/minishell.h	/^	char *name;$/;"	m	struct:s_var
 new_node	srcs/utils.c	/^t_lexer *new_node(char *input, t_token token, int index)$/;"	f
@@ -161,7 +154,9 @@ s_var	includes/minishell.h	/^typedef struct s_var$/;"	s
 sigint_handling	srcs/signals.c	/^void sigint_handling(int signal)$/;"	f
 signals_handling	srcs/signals.c	/^void    signals_handling(void)$/;"	f
 stack_add_bottom	srcs/utils.c	/^void    stack_add_bottom(t_lexer **head, t_lexer *new)$/;"	f
+t_data	includes/minishell.h	/^typedef struct s_data t_data;$/;"	t	typeref:struct:s_data
 t_data	includes/minishell.h	/^}   t_data;$/;"	t	typeref:struct:s_data
+t_env	includes/minishell.h	/^typedef struct s_env t_env;$/;"	t	typeref:struct:s_env
 t_env	includes/minishell.h	/^}	t_env;$/;"	t	typeref:struct:s_env
 t_lexer	includes/minishell.h	/^typedef struct s_lexer t_lexer;$/;"	t	typeref:struct:s_lexer
 t_lexer	includes/minishell.h	/^}   t_lexer;$/;"	t	typeref:struct:s_lexer
@@ -169,9 +164,9 @@ t_list	includes/libft.h	/^}		t_list;$/;"	t	typeref:struct:s_list
 t_list	libft/libft.h	/^}		t_list;$/;"	t	typeref:struct:s_list
 t_token	includes/minishell.h	/^}   t_token;$/;"	t	typeref:enum:e_token
 t_unused	includes/minishell.h	/^typedef void t_unused;$/;"	t
+t_var	includes/minishell.h	/^typedef struct s_var t_var;$/;"	t	typeref:struct:s_var
 t_var	includes/minishell.h	/^}	t_var;$/;"	t	typeref:struct:s_var
 token	includes/minishell.h	/^    t_token     token;$/;"	m	struct:s_lexer
-whitespace	srcs/utils.c	/^int	whitespace(char c)$/;"	f
 word	includes/minishell.h	/^    char        *word;$/;"	m	struct:s_lexer
 words_count	libft/ft_split.c	/^static size_t	words_count(char const *str, char c)$/;"	f	file:
 words_lenght	libft/ft_split.c	/^static size_t	words_lenght(char const *str, char c)$/;"	f	file:

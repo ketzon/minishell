@@ -6,11 +6,11 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:10:12 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/13 12:54:36 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/13 16:23:26 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	connect_node(t_var *curr_node, t_var *next_node)
 {
@@ -38,7 +38,7 @@ void	create_list(t_env *env, t_var *node)
 			index++;
 			ptr = ptr->next;
 		}
-		var->index = index;
+		ptr->index = index;
 		connect_node(ptr, node);
 	}
 }

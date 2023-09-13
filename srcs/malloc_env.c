@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   malloc_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:46:06 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/07 15:39:10 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/13 15:56:25 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ char	*malloc_each_line(char *line)
 	return (line_malloc);
 }
 
-char	**create_env_arr(char **envp, int ac, char **av)
+char	**create_env_arr(char **envp)
 {
-	(t_unused)ac;
-	(t_unused)av;
 	int len;
 	int	index;
 	char **arr;
