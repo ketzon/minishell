@@ -6,11 +6,13 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/07 15:54:41 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/13 12:36:40 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+t_env	*g_env;
 
 int main(int ac, char **av, char **envp)
 {

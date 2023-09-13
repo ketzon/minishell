@@ -25,11 +25,21 @@ typedef enum e_token
 
 typedef struct s_env
 {
-	int processing_error;
-	int	parsing_error;
 	char **env_vars;
+	t_var *first_node;
 
 }	t_env;
+
+typedef struct s_var
+{
+	int index;
+	int id;
+	char *name;
+	char *infos;
+	struct s_var *prev;
+	struct s_var *next;
+}	t_var;
+
 typedef struct s_data
 {
     char        *env_paths;

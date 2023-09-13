@@ -1,0 +1,25 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+add_token	lexer.c	/^int    add_token(char *input, int i, t_lexer **head)$/;"	f
+add_word	lexer.c	/^int     add_word(char *input, int i, t_lexer **head)$/;"	f
+count_quotes	quotes.c	/^int	count_quotes(char *line)$/;"	f
+fill_lexer_struct	lexer.c	/^t_lexer   *fill_lexer_struct(char *input)$/;"	f
+find_matching_quote	quotes.c	/^int	find_matching_quote(char *line, int i, int *num_del, int del)$/;"	f
+ft_error	error.c	/^int	ft_error(int error)$/;"	f
+ft_skip_white_spaces	utils.c	/^int ft_skip_white_spaces(char *str)$/;"	f
+init_env	init.c	/^t_env	*init_env(char **env_array)$/;"	f
+init_env_var	init.c	/^t_var	*init_env_var(char *name, char *infos, int id)$/;"	f
+is_null	is.c	/^int	is_null(char *str)$/;"	f
+is_token	lexer.c	/^bool    is_token(char c)$/;"	f
+is_value_null	is.c	/^int	is_value_null(char *str)$/;"	f
+lexer	lexer.c	/^void    lexer(t_data *data, char *argv)$/;"	f
+main	main.c	/^int main(int ac, char **av, char **envp)$/;"	f
+new_node	utils.c	/^t_lexer *new_node(char *input, t_token token, int index)$/;"	f
+sigint_handling	signals.c	/^void sigint_handling(int signal)$/;"	f
+signals_handling	signals.c	/^void    signals_handling(void)$/;"	f
+stack_add_bottom	utils.c	/^void    stack_add_bottom(t_lexer **head, t_lexer *new)$/;"	f
+whitespace	utils.c	/^int	whitespace(char c)$/;"	f
