@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/14 12:43:07 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/14 13:58:47 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,12 @@ int main(int ac, char **av, char **envp)
 	env = init_env(env_array); 
 	(void)env;
     /* data.env_paths = get_env_path(envp); */
-	t_env *begin = env;
 	while (env->first_node)
 	{
-		printf("%s\n Name:", env->first_node->name);
+		printf("Name : %s\n", env->first_node->name);
+		printf("%s\n", "------------------------------------------------");
+		printf("Infos : %s\n", env->first_node->infos);
 		env->first_node = env->first_node->next;
-	}
-	env = begin;
-	while (env->first_node)
-	{
-			printf("%s\n Infos:", env->first_node->infos);
-			env->first_node = env->first_node->next;
 	}
     /* while (1) */
     /* { */

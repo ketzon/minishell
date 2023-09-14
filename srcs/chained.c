@@ -6,7 +6,7 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:10:12 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/13 16:23:26 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/14 13:43:51 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	create_list(t_env *env, t_var *node)
 			index++;
 			ptr = ptr->next;
 		}
-		ptr->index = index;
+		node->index = index;
 		connect_node(ptr, node);
 	}
 }
