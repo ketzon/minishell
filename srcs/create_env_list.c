@@ -6,7 +6,7 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:45:12 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/14 11:07:30 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/14 12:33:04 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*extract_content(char *line, int start, int end)
 		int	index;	
 		int len;
 		char	*content;
+
+		index = 0;
 		len = end - start + 1;
 		content = malloc(sizeof(char) * (len + 1));
 		while (index < len)
@@ -35,10 +37,11 @@ char	*get_line_name(char *line)
 		int	end;
 		char *name;
 		start = 0;
+		index = 0;
 		end = 0;
 		if (!line)
 				return (NULL);
-		while (line[index] != '\0')
+		while (line[index] != 0)
 		{
 				if (line[index] == '=')
 				{
