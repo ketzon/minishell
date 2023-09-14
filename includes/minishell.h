@@ -77,6 +77,7 @@ void	connect_node(t_var *curr_node, t_var *next_node);
 char	*get_line_infos(char *line);
 char	*extract_content(char *line, int start, int end);
 char	*get_line_name(char *line);
+char	*extract_content(char *line, int start, int end);
 
 /* FREE */ 
 
@@ -84,6 +85,7 @@ void	free_env_array(char **env_arr);
 
 /* UTILS */
 
+int	ws(char c);
 int ft_skip_white_spaces(char *str);
 void    stack_add_bottom(t_lexer **head, t_lexer *new);
 t_lexer *new_node(char *input, t_token token, int index);

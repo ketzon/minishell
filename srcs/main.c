@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/13 15:57:04 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/14 10:45:11 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int main(int ac, char **av, char **envp)
 	(void)env;
 
     /* data.env_paths = get_env_path(envp); */
-	/* int i; */
-	/* while (env_array[i]) */
-	/* { */
-	/* 	printf("%s\n", env_array[i]); */
-		/* i++; */
-	/* } */
+	int i;
+	while (env_array[i])
+	{
+		printf("%s\n", env_array[i]);
+		i++;
+	}
     /* while (1) */
     /* { */
     /*     signals_handling(); */

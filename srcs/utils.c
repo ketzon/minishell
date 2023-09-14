@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/13 14:31:31 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/14 11:07:48 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ t_lexer *new_node(char *input, t_token token, int index)
     return (new);
 }
 
-/* int	whitespace(char c) */
-/* { */
-	/* return (c == ' ' || c == " " || c == '\t'); */
-/* } */
+int	ws(char c)
+{
+	if (c == ' ' || c == '\n' || c == '\t')
+		return (1);
+	return (0);
+}

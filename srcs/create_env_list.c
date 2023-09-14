@@ -6,7 +6,7 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:45:12 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/13 16:54:08 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/14 11:07:30 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ char	*get_line_infos(char *line)
 		if (!line)
 				return (NULL);
 		index = 0;
-		while (line[index] != '\0')
+		while (line[index] && !(ws(line[index + 1])))
 		{
 				if (line[index] == '=')
 				{
 						start = ++index;
 						end = ft_strlen(line);
-						infos = extract_content(infos, start, end);
+						infos = extract_content(line, start, end);
 						if (is_value_null(infos))
 								return (free(infos), NULL);
 						return (infos);
