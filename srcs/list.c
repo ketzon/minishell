@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_env_list.c                                  :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:45:12 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/14 13:07:35 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/15 15:08:23 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	create_env_list(t_env *env, char **env_arr)
 		t_var	*list;
 
 		id = 1;
+		index = 0;
 		while (env_arr[index] != NULL)
 		{
 				name = get_line_name(env_arr[index]);
