@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/15 13:07:03 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:52:57 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,13 @@ void    reset_loop(t_data *data)
         free(data->line);
 }
 
-int main(int argc, char **argv, char **envp)
+int main(int , char **, char **envp)
 {
     t_data  data;
-    (void)argc;
-    (void)argv;
     
     data.env_paths = get_env_path(envp);
-    
-    while (1)
-    {
+    while (1) 
+	{
         signals_handling();
         data.line = readline(PROMPT);
         if (parse_input(&data) == true)
@@ -57,4 +54,32 @@ int main(int argc, char **argv, char **envp)
             printf("Invalid input\n");
         reset_loop(&data);
     }
+	env_array = create_env_arr(envp);
+	env = init_env(env_array); 
+    /* data.env_paths = get_env_path(envp); */
+	while (env->first_node)
+	{
+		printf("Name : %s\n", env->first_node->name);
+		printf("Infos : %s\n", env->first_node->infos);
+		printf("%s\n", "------------------------------------------------");
+		env->first_node = env->first_node->next;
+	}
+    /* while (1) */
+    /* { */
+    /*     signals_handling(); */
+    /*     line = readline("$minishell : "); */
+    /*     if (line == NULL) */
+    /*         break ; */
+    /*     if (!*(line + ft_skip_white_spaces(line))) */
+    /*     { */
+    /*         free(line); */
+    /*         continue ; */
+    /*     } */
+		/* if (!count_quotes(line)) */ 
+			/* return (free(line), ft_error(2)); */
+    /*     add_history(line); */
+    /*     lexer(&data, line); */
+    /*     free(line); */
+	return (0);
+    /* } */
 }
