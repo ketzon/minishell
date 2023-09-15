@@ -6,7 +6,7 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:10:12 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/14 13:43:51 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/15 11:15:25 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	connect_node(t_var *curr_node, t_var *next_node)
 
 void	create_list(t_env *env, t_var *node)
 {
-	t_var *ptr;
+	t_var *curr;
 	int index;
 
 	index = 0;
@@ -31,14 +31,14 @@ void	create_list(t_env *env, t_var *node)
 	}
 	else
 	{
-		ptr = env->first_node;
+		curr = env->first_node;
 		index++;
-		while (ptr->next)
+		while (curr->next)
 		{
 			index++;
-			ptr = ptr->next;
+			curr = curr->next;
 		}
 		node->index = index;
-		connect_node(ptr, node);
+		connect_node(curr, node);
 	}
 }
