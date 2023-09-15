@@ -6,23 +6,13 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*   Updated: 2023/09/07 17:17:52 by fbesson          ###   ########.fr       */
-=======
-/*   Updated: 2023/09/13 16:43:30 by fgonzale         ###   ########.fr       */
->>>>>>> 625c228ab7c7d3ae1c08a44ffe9f6c08e64396bb
+/*   Updated: 2023/09/15 13:07:55 by fgonzale         ###   ########.fr       */
 /*                                                                            */
+/* ************************************************************************** */
+
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-=======
-/*   Updated: 2023/09/05 17:03:30 by fbesson          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "minishell.h"
->>>>>>> 5684930f30fb02b89ff62a932172219cabebd101
 
 /* SAUTE LES ESPACES DANS UNE STRING ET RENVOIE DE COMBIEN IL A AVANCE */
 int ft_skip_white_spaces(char *str)
