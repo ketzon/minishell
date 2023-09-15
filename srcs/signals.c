@@ -6,19 +6,11 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:22:16 by fgonzale          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/09/05 17:01:28 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/15 13:09:47 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-=======
-/*   Updated: 2023/09/05 17:03:26 by fbesson          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "minishell.h"
->>>>>>> 5684930f30fb02b89ff62a932172219cabebd101
 
 /* INTERPRETE LES DIFFERENTS SIGNAUX */
 void    signals_handling(void)
