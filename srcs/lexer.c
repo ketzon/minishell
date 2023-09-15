@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 10:52:58 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/13 17:04:09 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/15 12:30:08 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,19 +117,19 @@ t_lexer   *fill_lexer_struct(char *input)
 void    lexer(t_data *data)
 {
     char    *input;
-    t_lexer *tmp;
+    // t_lexer *tmp;
     
     data->lexer_head = NULL;
     input = data->line;
     data->lexer_head = fill_lexer_struct(input);
     
-    tmp = data->lexer_head;
-    while (tmp)
-    {
-         if (tmp->word)
-             printf("%s, type = %d\n", tmp->word, tmp->token);
-         else
-             printf("%d, type = %d\n", tmp->token, tmp->token);
-         tmp = tmp->next;
-    }
+    //tmp = data->lexer_head;
+    // while (tmp)
+    // {
+    //      if (tmp->word)
+    //          printf("%s, type = %d\n", tmp->word, tmp->token);
+    //      else
+    //          printf("%d, type = %d\n", tmp->token, tmp->token);
+    //      tmp = tmp->next;
+    // }
 }

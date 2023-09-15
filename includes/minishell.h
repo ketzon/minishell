@@ -21,7 +21,8 @@ typedef enum e_token
     LESS = 3,
     LESS_DOUBLE = 4,
     PIPE = 5,
-    WORD = 6
+    WORD = 6,
+    VAR = 7
 }   t_token;
 
 typedef struct s_data
@@ -73,6 +74,10 @@ t_lexer   *fill_lexer_struct(char *input);
 int     add_word(char *input, int i, t_lexer **head);
 int     add_token(char *input, int i, t_lexer **head);
 bool    is_token(char c);
+
+/* VARIABLE CHECK*/
+
+int variable_check(t_data *data);
 
 /* ERROR */
 

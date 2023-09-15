@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/13 17:14:52 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:56:49 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ bool    parse_input(t_data *data)
         return (ft_error(2), false);
     add_history(data->line);
     lexer(data);
+    if (!variable_check(data))
+        return (false);
     //CHECK IF VARIABLES(data->lexer_head);
     return (true);
 }
