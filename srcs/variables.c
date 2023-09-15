@@ -6,11 +6,18 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:49:54 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/15 13:17:54 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/15 13:56:40 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static int  check_consecutive_tokens(t_lexer *node)
+{
+    if (node->token == PIPE && node->previous && (node->previous->token == GREATER || node->previous->token == GREATER_DOUBLE))
+        return (1);
+    return (0);
+}
 
 static void is_there_variable (t_lexer *node)
 {
@@ -38,7 +45,8 @@ int variable_check(t_data *data)
     while (temp)
     {
        is_there_variable(temp);
-       //check_consecutive_tokens(temp);
+       if (check_consecutive_tokens(temp))
+        return (printf("Error consecutives tokens\n"), 0);
        temp = temp->next;
     }
     
