@@ -6,13 +6,11 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:49:54 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/15 12:36:24 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/15 13:11:10 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static void
 
 static void is_there_variable (t_lexer *node)
 {
