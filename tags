@@ -15,10 +15,14 @@ EOC	Makefile	/^EOC = \\033[0m$/;"	m
 FLAGS	Makefile	/^FLAGS = -Wall -Wextra -Werror -g -Iincludes$/;"	m
 GRA	Makefile	/^GRA = \\033[37m$/;"	m
 GRE	Makefile	/^GRE = \\033[32m$/;"	m
+GREATER	includes/minishell.h	/^    GREATER = 1,$/;"	e	enum:e_token
+GREATER_DOUBLE	includes/minishell.h	/^    GREATER_DOUBLE = 2,$/;"	e	enum:e_token
 HEX_BASE	includes/libft.h	15;"	d
 HEX_BASE	includes/printf.h	16;"	d
 HEX_BASE	libft/libft.h	16;"	d
 HEX_BASE	libft/printf.h	16;"	d
+LESS	includes/minishell.h	/^    LESS = 3,$/;"	e	enum:e_token
+LESS_DOUBLE	includes/minishell.h	/^    LESS_DOUBLE = 4,$/;"	e	enum:e_token
 LIBFT	Makefile	/^LIBFT = $(LIBFT_DIR)\/libft.a$/;"	m
 LIBFT_DIR	Makefile	/^LIBFT_DIR = .\/libft$/;"	m
 LIBFT_H	includes/libft.h	14;"	d
@@ -30,23 +34,35 @@ NAME	libft/Makefile	/^NAME = libft.a$/;"	m
 NO_COLOR	libft/Makefile	/^NO_COLOR = \\033[m$/;"	m
 OBJS	libft/Makefile	/^OBJS = $(SRCS:.c=.o) $/;"	m
 OBJS_BONUS	libft/Makefile	/^OBJS_BONUS = $(BONUS:.c=.o)$/;"	m
-OBJ_BOTH	Makefile	/^OBJ_BOTH = $(foreach src,$(SRCS),$(BIN)\/$(src:.c=.o))$/;"	m
+OBJ_BOTH	Makefile	/^OBJ_BOTH = $(foreach src,$(SRCS_FILES),$(BIN)\/$(src:.c=.o))$/;"	m
 OK_COLOR	libft/Makefile	/^OK_COLOR = \\033[0;32m$/;"	m
+PIPE	includes/minishell.h	/^    PIPE = 5$/;"	e	enum:e_token
 PRINTF_H	includes/printf.h	15;"	d
 PRINTF_H	libft/printf.h	15;"	d
 RED	Makefile	/^RED = \\033[31m$/;"	m
-SRCS	Makefile	/^SRCS = main.c signals.c env.c utils.c$/;"	m
+SRCS	Makefile	/^SRCS = main.c signals.c env.c utils.c quotes.c error.c lexer.c$/;"	m
 SRCS	libft/Makefile	/^SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \\$/;"	m
+SRCS_DIR	Makefile	/^SRCS_DIR = srcs\/$/;"	m
+SRCS_FILES	Makefile	/^SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))$/;"	m
+add_token	srcs/lexer.c	/^int    add_token(char *input, int i, t_lexer **head)$/;"	f
+add_word	srcs/lexer.c	/^int     add_word(char *input, int i, t_lexer **head)$/;"	f
 clean	libft/ft_split.c	/^static void	clean(char **array, unsigned int nb)$/;"	f	file:
 content	includes/libft.h	/^	void			*content;$/;"	m	struct:s_list
 content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
+count_quotes	srcs/quotes.c	/^int	count_quotes(char *line)$/;"	f
 digit_count	libft/ft_itoa.c	/^static int	digit_count(long n)$/;"	f	file:
+e_token	includes/minishell.h	/^typedef enum e_token$/;"	g
+env_paths	includes/minishell.h	/^    char        *env_paths;$/;"	m	struct:s_data
+env_vars	includes/minishell.h	/^	char **env_vars;$/;"	m	struct:s_env
+fill_lexer_struct	srcs/lexer.c	/^t_lexer   *fill_lexer_struct(char *input)$/;"	f
+find_matching_quote	srcs/quotes.c	/^int	find_matching_quote(char *line, int i, int *num_del, int del)$/;"	f
 ft_atoi	libft/ft_atoi.c	/^int	ft_atoi(const char *str)$/;"	f
 ft_bzero	libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
 ft_calloc	libft/ft_calloc.c	/^void	*ft_calloc(size_t nelements, size_t bytes)$/;"	f
 ft_cmp_nb	libft/ft_cmp_nb.c	/^int	ft_cmp_nb(char *a, char *b)$/;"	f
 ft_conversions	libft/printf.c	/^int	ft_conversions(const char c, va_list *args)$/;"	f
 ft_count_ac	libft/ft_count_ac.c	/^int	ft_count_ac(char **av)$/;"	f
+ft_error	srcs/error.c	/^int	ft_error(int error)$/;"	f
 ft_isalnum	libft/ft_isalnum.c	/^int	ft_isalnum(int c)$/;"	f
 ft_isalpha	libft/ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	f
 ft_isascii	libft/ft_isascii.c	/^int	ft_isascii(int c)$/;"	f
@@ -80,7 +96,7 @@ ft_putptr	libft/put.c	/^int	ft_putptr(va_list *args)$/;"	f
 ft_putstr	libft/put.c	/^int	ft_putstr(const char *str)$/;"	f
 ft_putstr_fd	libft/ft_putstr_fd.c	/^void	ft_putstr_fd(char *str, int fd)$/;"	f
 ft_set_str	libft/ft_strtrim.c	/^static int	ft_set_str(const char c, const char *set)$/;"	f	file:
-ft_skip_white_spaces	utils.c	/^int ft_skip_white_spaces(char *str)$/;"	f
+ft_skip_white_spaces	srcs/utils.c	/^int ft_skip_white_spaces(char *str)$/;"	f
 ft_split	libft/ft_split.c	/^char	**ft_split(char const *str, char c)$/;"	f
 ft_strchr	libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f
 ft_strdup	libft/ft_strdup.c	/^char	*ft_strdup(const char *src)$/;"	f
@@ -97,15 +113,33 @@ ft_strtrim	libft/ft_strtrim.c	/^char	*ft_strtrim(const char *s1, const char *set
 ft_substr	libft/ft_substr.c	/^char	*ft_substr(char const *str, unsigned int start, size_t n)$/;"	f
 ft_tolower	libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
 ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
-get_env_path	env.c	/^char    *get_env_path(char **envp)$/;"	f
-main	main.c	/^int main(int argc, char **argv, char **envp)$/;"	f
+get_env_path	srcs/env.c	/^char    *get_env_path(char **envp)$/;"	f
+i	includes/minishell.h	/^    int         i;$/;"	m	struct:s_lexer
+is_token	srcs/lexer.c	/^bool    is_token(char c)$/;"	f
+lexer	srcs/lexer.c	/^void    lexer(t_data *data, char *argv)$/;"	f
+lexer_head	includes/minishell.h	/^    t_lexer     *lexer_head;$/;"	m	struct:s_data
+main	srcs/main.c	/^int main(int argc, char **argv, char **envp)$/;"	f
+new_node	srcs/utils.c	/^t_lexer *new_node(char *input, t_token token, int index)$/;"	f
 next	includes/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
+next	includes/minishell.h	/^    t_lexer     *next;$/;"	m	struct:s_lexer
 next	libft/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
+previous	includes/minishell.h	/^    t_lexer     *previous;$/;"	m	struct:s_lexer
+s_data	includes/minishell.h	/^typedef struct s_data$/;"	s
+s_env	includes/minishell.h	/^typedef struct s_env$/;"	s
+s_lexer	includes/minishell.h	/^typedef struct s_lexer$/;"	s
 s_list	includes/libft.h	/^typedef struct s_list$/;"	s
 s_list	libft/libft.h	/^typedef struct s_list$/;"	s
-sigint_handling	signals.c	/^void sigint_handling(int signal)$/;"	f
-signals_handling	signals.c	/^void    signals_handling(void)$/;"	f
+sigint_handling	srcs/signals.c	/^void sigint_handling(int signal)$/;"	f
+signals_handling	srcs/signals.c	/^void    signals_handling(void)$/;"	f
+stack_add_bottom	srcs/utils.c	/^void    stack_add_bottom(t_lexer **head, t_lexer *new)$/;"	f
+t_data	includes/minishell.h	/^}   t_data;$/;"	t	typeref:struct:s_data
+t_env	includes/minishell.h	/^typedef struct s_env t_env;$/;"	t	typeref:struct:s_env
+t_lexer	includes/minishell.h	/^typedef struct s_lexer t_lexer;$/;"	t	typeref:struct:s_lexer
+t_lexer	includes/minishell.h	/^}   t_lexer;$/;"	t	typeref:struct:s_lexer
 t_list	includes/libft.h	/^}		t_list;$/;"	t	typeref:struct:s_list
 t_list	libft/libft.h	/^}		t_list;$/;"	t	typeref:struct:s_list
+t_token	includes/minishell.h	/^}   t_token;$/;"	t	typeref:enum:e_token
+token	includes/minishell.h	/^    t_token     token;$/;"	m	struct:s_lexer
+word	includes/minishell.h	/^    char        *word;$/;"	m	struct:s_lexer
 words_count	libft/ft_split.c	/^static size_t	words_count(char const *str, char c)$/;"	f	file:
 words_lenght	libft/ft_split.c	/^static size_t	words_lenght(char const *str, char c)$/;"	f	file:
