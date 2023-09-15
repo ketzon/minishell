@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:26:07 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/05 17:01:41 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:54:30 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	find_matching_quote(char *line, int i, int *num_del, int del)
 	return (j - i);
 }
 
-int	count_quotes(char *line)
+bool closed_quotes(char *line)
 {
 	int	i;
 	int	s;
@@ -43,7 +43,9 @@ int	count_quotes(char *line)
 		if (line[i])
 			i++;
 	}
-	if ((d > 0 && d % 2 != 0) || (s > 0 && s % 2 != 0))
-		return (0);
-	return (1);
+	if (d > 0 && d % 2 != 0)
+		return (printf("minishell: unexpected EOF while looking for matching : \"\n"), false);
+	if (s > 0 && s % 2 != 0)
+		return (printf("minishell: unexpected EOF while looking for matching : \'\n"), false);
+	return (true);
 }

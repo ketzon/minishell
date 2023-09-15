@@ -5,7 +5,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 <<<<<<< HEAD
 
 SRCS_DIR = srcs/
-SRCS = main.c signals.c env.c utils.c quotes.c error.c lexer.c
+SRCS = main.c signals.c env.c utils.c quotes.c error.c lexer.c variables.c
 SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))
 
 MANDATORY = minishell
