@@ -5,8 +5,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 SRCS_DIR = srcs/
 
-SRCS = main.c signals.c utils.c quotes.c error.c lexer.c free.c init.c is.c malloc_env.c \
-chained.c create_env_list.c \
+SRCS = main.c signals.c utils.c quotes.c error.c lexer.c free.c init.c is.c env.c \
+chained.c list.c \
 
 SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))
 
