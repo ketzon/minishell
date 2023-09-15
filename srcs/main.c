@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/15 14:55:57 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/15 15:20:35 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ bool    parse_input(t_data *data)
     lexer(data);
     if (!variable_check(data))
         return (false);
-    //CHECK IF VARIABLES(data->lexer_head);
     return (true);
 }
 
@@ -57,9 +56,9 @@ int main(int , char **, char **envp)
             printf("Invalid input\n");
         reset_loop(&data);
     }
+    
 	env_array = create_env_arr(envp);
 	env = init_env(env_array); 
-    /* data.env_paths = get_env_path(envp); */
 	while (env->first_node)
 	{
 		printf("Name : %s\n", env->first_node->name);
@@ -67,22 +66,6 @@ int main(int , char **, char **envp)
 		printf("%s\n", "------------------------------------------------");
 		env->first_node = env->first_node->next;
 	}
-    /* while (1) */
-    /* { */
-    /*     signals_handling(); */
-    /*     line = readline("$minishell : "); */
-    /*     if (line == NULL) */
-    /*         break ; */
-    /*     if (!*(line + ft_skip_white_spaces(line))) */
-    /*     { */
-    /*         free(line); */
-    /*         continue ; */
-    /*     } */
-		/* if (!count_quotes(line)) */ 
-			/* return (free(line), ft_error(2)); */
-    /*     add_history(line); */
-    /*     lexer(&data, line); */
-    /*     free(line); */
+   
 	return (0);
-    /* } */
 }
