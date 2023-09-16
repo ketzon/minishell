@@ -6,7 +6,7 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:55:07 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/16 12:28:13 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/16 12:55:52 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ t_env	*init_env(char **env_array)
 	if (env == NULL)
 		return (NULL);
 	env->env_path = get_env_path(env_array);
-	env->env_vars = NULL;
 	create_env_list(env, env_array);
-	free_env_array(env_array);
-	/* g_env = env; */
+	/* free_env_array(env_array); */
 	return (env);
 }
 
