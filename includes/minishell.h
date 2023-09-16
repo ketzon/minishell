@@ -32,6 +32,7 @@ typedef enum e_token
 typedef struct s_env
 {
 	char **env_vars;
+	char *env_path;
 	struct s_var *first_node;
 }	t_env;
 
