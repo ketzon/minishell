@@ -9,6 +9,7 @@
 # include <stdbool.h>
 # include <signal.h>
 
+# define NOT_FIND  1
 # define PROMPT "\001\e[45m\002>>> \001\e[0m\e[33m\002 Minishell>$ \001\e[0m\002"
 //# define BUFFER_SIZE 42
 
@@ -28,6 +29,12 @@ typedef enum e_token
     WORD = 6,
     VAR = 7
 }   t_token;
+
+typedef struct s_builtin
+{
+	char	*name;
+	int		(*func)(t_data *data);
+}	t_builtin;
 
 typedef struct s_env
 {
@@ -49,7 +56,6 @@ typedef struct s_var
 typedef struct s_data
 {
     char        *line;
-    char        *env_paths;
     t_lexer     *lexer_head;
 }   t_data;
 
@@ -71,6 +77,10 @@ void    reset_loop(t_data *data);
 
 void    signals_handling(void);
 void	sigint_handling(int signal);
+
+/* BUILTIN */
+
+int	execute_builtin(t_data *data);
 
 /* ENV */
 
@@ -94,6 +104,7 @@ void	free_env_array(char **env_arr);
 
 /* UTILS */
 
+int	ft_strcmp(char *s1, char *s2);
 int	ws(char c);
 int ft_skip_white_spaces(char *str);
 void    stack_add_bottom(t_lexer **head, t_lexer *new);
