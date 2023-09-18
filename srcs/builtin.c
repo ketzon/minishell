@@ -6,16 +6,31 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 12:31:38 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/18 14:25:33 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/18 16:46:35 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 
+/* int	builtin_env(t_data *data) */
+/* { */
+/* 	int i; */
+/* 	char **env_vars; */
+
+/* 	env_vars = data->env->env_vars; */
+/* 	i = 0; */
+/* 	while (env_vars && env_vars[i]) */
+/* 	{ */
+/* 			printf("%s\n", env_vars[i]); */
+/* 			i++; */
+/* 	} */
+/* 	return (0); */
+/* } */
 int	builtin_echo(t_data *data)
 {
-	t_lexer *current = data->lexer_head->next;
+	t_lexer *current;
+	current = data->lexer_head->next;
 
 	while (current)
 	{
@@ -31,13 +46,15 @@ int	builtin_echo(t_data *data)
 t_builtin builtins[] = 
 {
 		{"echo", builtin_echo},
+		/* {"env", builtin_env}, */
 		{NULL, NULL}
 };
 
 int	execute_builtin(t_data *data)
 {
 	int i;
-	char *command_name = data->lexer_head->word;
+	char *command_name;
+	command_name = data->lexer_head->word;
 
 	i = 0;
 	while (builtins[i].name)
