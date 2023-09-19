@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 10:52:58 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/18 10:31:54 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/19 13:58:01 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +34,40 @@ bool    is_token(char c)
 int    add_token(char *input, int i, t_lexer **head)
 {
     t_token token;
+    char    *str;
     int j;
 
     if (input[i] == '>' && input[i + 1] == '>')
     {
         j = 2;
+        str = ">>";
         token = GREATER_DOUBLE;
     }
     else if (input[i] == '>')
     {
         j = 1;
+        str = ">";
         token = GREATER;
     }
     else if (input[i] == '<' && input[i + 1] == '<')
     {
         j = 2;
+        str = "<<";
         token = LESS_DOUBLE;
     }
     else if (input[i] == '<')
     {
         j = 1;
+        str = "<";
         token = LESS;
     }
     else if (input[i] == '|')
     {
         j = 1;
+        str = "|";
         token = PIPE;
     }
-    stack_add_bottom(head, new_node(NULL, token));
+    stack_add_bottom(head, new_node(str, token));
     return (j);
 }
 

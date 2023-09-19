@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:49:54 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/15 13:11:10 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/19 13:58:38 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ static void is_there_variable (t_lexer *node)
     while (node->word[i])
     {
         if (node->word[i] == '$')
+        {
             node->token = VAR;
+            break ;
+        }
         i++;
     }
 }
@@ -34,11 +37,12 @@ int variable_check(t_data *data)
     temp = data->lexer_head;
     
     if (temp->token == PIPE)
-        return (printf("syntax error near unexpected token |"), 0);
+        return (printf("syntax error near unexpected token '|'\n"), 0);
     while (temp)
     {
-       is_there_variable(temp);
-       //check_consecutive_tokens(temp);
+       flag_variables(temp);
+       if (check_invalid_tokens(temp) == true)
+            return (0);
        temp = temp->next;
     }
     
