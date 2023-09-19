@@ -6,12 +6,17 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 12:31:38 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/19 11:13:38 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/19 13:31:22 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+
+/* int	builtin_unset(t_data *data) */
+/* { */
+/* 	(void)data; */
+/* } */
 
 int	builtin_env(t_data *data)
 {
@@ -87,6 +92,9 @@ t_builtin builtins[] =
 		{"env", builtin_env},
 		{"pwd", builtin_pwd},
 		{"exit", builtin_exit},
+		/* {"unset", builtin_unset}, */
+		/* {"export", builtin_export}, */
+		/* {"cd", builtin_cd}, */
 		{NULL, NULL}
 };
 

@@ -6,19 +6,17 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:55:07 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/19 09:34:19 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/19 12:42:09 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_env	*init_env(t_data data, char **env_array)
+t_env	*init_env(char **env_array)
 {
 	t_env	*env;
 
 	env = malloc(sizeof(t_env));
-	data.env = env_array;
-	(void)data;
 	if (env == NULL)
 		return (NULL);
 	env->env_path = get_env_path(env_array);

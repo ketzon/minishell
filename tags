@@ -52,6 +52,7 @@ add_token	srcs/lexer.c	/^int    add_token(char *input, int i, t_lexer **head)$/;
 add_word	srcs/lexer.c	/^int     add_word(char *input, int i, t_lexer **head)$/;"	f
 builtin_echo	srcs/builtin.c	/^int	builtin_echo(t_data *data)$/;"	f
 builtin_env	srcs/builtin.c	/^int	builtin_env(t_data *data)$/;"	f
+builtin_exit	srcs/builtin.c	/^int builtin_exit(t_data *data)$/;"	f
 builtin_pwd	srcs/builtin.c	/^int	builtin_pwd(t_data *data)$/;"	f
 builtins	srcs/builtin.c	/^t_builtin builtins[] = $/;"	v
 clean	libft/ft_split.c	/^static void	clean(char **array, unsigned int nb)$/;"	f	file:
@@ -65,6 +66,7 @@ create_list	srcs/chained.c	/^void	create_list(t_env *env, t_var *node)$/;"	f
 digit_count	libft/ft_itoa.c	/^static int	digit_count(long n)$/;"	f	file:
 e_token	includes/minishell.h	/^typedef enum e_token$/;"	g
 env	includes/minishell.h	/^	char		**env;$/;"	m	struct:s_data
+env_head	includes/minishell.h	/^    t_env     	*env_head;;$/;"	m	struct:s_data
 env_path	includes/minishell.h	/^	char *env_path;$/;"	m	struct:s_env
 env_vars	includes/minishell.h	/^	char **env_vars;$/;"	m	struct:s_env
 execute_builtin	srcs/builtin.c	/^int	execute_builtin(t_data *data)$/;"	f
@@ -138,7 +140,7 @@ get_line_name	srcs/list.c	/^char	*get_line_name(char *line)$/;"	f
 id	includes/minishell.h	/^	int id;$/;"	m	struct:s_var
 index	includes/minishell.h	/^	int index;$/;"	m	struct:s_var
 infos	includes/minishell.h	/^	char *infos;$/;"	m	struct:s_var
-init_env	srcs/init.c	/^t_env	*init_env(t_data data, char **env_array)$/;"	f
+init_env	srcs/init.c	/^t_env	*init_env(char **env_array)$/;"	f
 init_env_var	srcs/init.c	/^t_var	*init_env_var(char *name, char *infos, int id)$/;"	f
 is_null	srcs/is.c	/^int	is_null(char *str)$/;"	f
 is_there_variable	srcs/variables.c	/^static void is_there_variable (t_lexer *node)$/;"	f	file:
