@@ -56,6 +56,7 @@ typedef struct s_var
 typedef struct s_data
 {
     char        *line;
+	char		**env;
     t_lexer     *lexer_head;
 }   t_data;
 

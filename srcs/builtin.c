@@ -6,27 +6,45 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 12:31:38 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/18 16:46:35 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/19 10:18:14 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 
-/* int	builtin_env(t_data *data) */
-/* { */
-/* 	int i; */
-/* 	char **env_vars; */
+int	builtin_env(t_data *data)
+{
+	int i;
+	char **env_vars;
 
-/* 	env_vars = data->env->env_vars; */
-/* 	i = 0; */
-/* 	while (env_vars && env_vars[i]) */
-/* 	{ */
-/* 			printf("%s\n", env_vars[i]); */
-/* 			i++; */
-/* 	} */
-/* 	return (0); */
-/* } */
+	env_vars = data->env;
+	i = 0;
+	while (env_vars && env_vars[i])
+	{
+			printf("%s\n", env_vars[i]);
+			i++;
+	}
+	return (0);
+}
+
+int	builtin_pwd(t_data *data)
+{
+	(void)data;
+	char buffer[5000];
+
+	if (getcwd(buffer, sizeof(buffer)) != NULL)
+	{
+		printf ("%s\n", buffer);
+		return (0);
+	}
+	else
+	{
+		printf("%s\n", "Pwd: failed to get the current working directory");
+		return (1);
+	}
+}
+
 int	builtin_echo(t_data *data)
 {
 	t_lexer *current;
@@ -46,7 +64,8 @@ int	builtin_echo(t_data *data)
 t_builtin builtins[] = 
 {
 		{"echo", builtin_echo},
-		/* {"env", builtin_env}, */
+		{"env", builtin_env},
+		{"pwd", builtin_pwd},
 		{NULL, NULL}
 };
 

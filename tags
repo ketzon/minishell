@@ -31,6 +31,7 @@ MANDATORY	Makefile	/^MANDATORY = minishell$/;"	m
 MINISHELL_H	includes/minishell.h	2;"	d
 NAME	Makefile	/^NAME = $(MANDATORY)$/;"	m
 NAME	libft/Makefile	/^NAME = libft.a$/;"	m
+NOT_FIND	includes/minishell.h	12;"	d
 NO_COLOR	libft/Makefile	/^NO_COLOR = \\033[m$/;"	m
 OBJS	libft/Makefile	/^OBJS = $(SRCS:.c=.o) $/;"	m
 OBJS_BONUS	libft/Makefile	/^OBJS_BONUS = $(BONUS:.c=.o)$/;"	m
@@ -39,7 +40,7 @@ OK_COLOR	libft/Makefile	/^OK_COLOR = \\033[0;32m$/;"	m
 PIPE	includes/minishell.h	/^    PIPE = 5,$/;"	e	enum:e_token
 PRINTF_H	includes/printf.h	15;"	d
 PRINTF_H	libft/printf.h	15;"	d
-PROMPT	includes/minishell.h	12;"	d
+PROMPT	includes/minishell.h	13;"	d
 RED	Makefile	/^RED = \\033[31m$/;"	m
 SRCS	Makefile	/^SRCS = main.c signals.c utils.c quotes.c error.c lexer.c free.c init.c is.c env.c \\$/;"	m
 SRCS	libft/Makefile	/^SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \\$/;"	m
@@ -49,6 +50,10 @@ VAR	includes/minishell.h	/^    VAR = 7$/;"	e	enum:e_token
 WORD	includes/minishell.h	/^    WORD = 6,$/;"	e	enum:e_token
 add_token	srcs/lexer.c	/^int    add_token(char *input, int i, t_lexer **head)$/;"	f
 add_word	srcs/lexer.c	/^int     add_word(char *input, int i, t_lexer **head)$/;"	f
+builtin_echo	srcs/builtin.c	/^int	builtin_echo(t_data *data)$/;"	f
+builtin_env	srcs/builtin.c	/^int	builtin_env(t_data *data)$/;"	f
+builtin_pwd	srcs/builtin.c	/^int	builtin_pwd(t_data *data)$/;"	f
+builtins	srcs/builtin.c	/^t_builtin builtins[] = $/;"	v
 clean	libft/ft_split.c	/^static void	clean(char **array, unsigned int nb)$/;"	f	file:
 closed_quotes	srcs/quotes.c	/^bool closed_quotes(char *line)$/;"	f
 connect_node	srcs/chained.c	/^void	connect_node(t_var *curr_node, t_var *next_node)$/;"	f
@@ -59,8 +64,10 @@ create_env_list	srcs/list.c	/^void	create_env_list(t_env *env, char **env_arr)$/
 create_list	srcs/chained.c	/^void	create_list(t_env *env, t_var *node)$/;"	f
 digit_count	libft/ft_itoa.c	/^static int	digit_count(long n)$/;"	f	file:
 e_token	includes/minishell.h	/^typedef enum e_token$/;"	g
-env_paths	includes/minishell.h	/^    char        *env_paths;$/;"	m	struct:s_data
+env	includes/minishell.h	/^	char		**env;$/;"	m	struct:s_data
+env_path	includes/minishell.h	/^	char *env_path;$/;"	m	struct:s_env
 env_vars	includes/minishell.h	/^	char **env_vars;$/;"	m	struct:s_env
+execute_builtin	srcs/builtin.c	/^int	execute_builtin(t_data *data)$/;"	f
 extract_content	srcs/list.c	/^char	*extract_content(char *line, int start, int end)$/;"	f
 fill_lexer_struct	srcs/lexer.c	/^t_lexer   *fill_lexer_struct(char *input)$/;"	f
 find_matching_quote	srcs/quotes.c	/^int	find_matching_quote(char *line, int i, int *num_del, int del)$/;"	f
@@ -109,6 +116,7 @@ ft_set_str	libft/ft_strtrim.c	/^static int	ft_set_str(const char c, const char *
 ft_skip_white_spaces	srcs/utils.c	/^int ft_skip_white_spaces(char *str)$/;"	f
 ft_split	libft/ft_split.c	/^char	**ft_split(char const *str, char c)$/;"	f
 ft_strchr	libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f
+ft_strcmp	srcs/utils.c	/^int	ft_strcmp(char *s1, char *s2)$/;"	f
 ft_strdup	libft/ft_strdup.c	/^char	*ft_strdup(const char *src)$/;"	f
 ft_striteri	libft/ft_striteri.c	/^void	ft_striteri(char *str, void (*fonction)(unsigned int, char*))$/;"	f
 ft_strjoin	libft/ft_strjoin.c	/^char	*ft_strjoin(const char *s1, const char *s2)$/;"	f
@@ -123,13 +131,14 @@ ft_strtrim	libft/ft_strtrim.c	/^char	*ft_strtrim(const char *s1, const char *set
 ft_substr	libft/ft_substr.c	/^char	*ft_substr(char const *str, unsigned int start, size_t n)$/;"	f
 ft_tolower	libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
 ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
+func	includes/minishell.h	/^	int		(*func)(t_data *data);$/;"	m	struct:s_builtin
 get_env_path	srcs/env.c	/^char    *get_env_path(char **envp)$/;"	f
 get_line_infos	srcs/list.c	/^char	*get_line_infos(char *line)$/;"	f
 get_line_name	srcs/list.c	/^char	*get_line_name(char *line)$/;"	f
 id	includes/minishell.h	/^	int id;$/;"	m	struct:s_var
 index	includes/minishell.h	/^	int index;$/;"	m	struct:s_var
 infos	includes/minishell.h	/^	char *infos;$/;"	m	struct:s_var
-init_env	srcs/init.c	/^t_env	*init_env(char **env_array)$/;"	f
+init_env	srcs/init.c	/^t_env	*init_env(t_data data, char **env_array)$/;"	f
 init_env_var	srcs/init.c	/^t_var	*init_env_var(char *name, char *infos, int id)$/;"	f
 is_null	srcs/is.c	/^int	is_null(char *str)$/;"	f
 is_there_variable	srcs/variables.c	/^static void is_there_variable (t_lexer *node)$/;"	f	file:
@@ -141,6 +150,7 @@ line	includes/minishell.h	/^    char        *line;$/;"	m	struct:s_data
 line_count	srcs/env.c	/^int	line_count(char **envp)$/;"	f
 main	srcs/main.c	/^int main(int , char **, char **envp)$/;"	f
 malloc_each_line	srcs/env.c	/^char	*malloc_each_line(char *line)$/;"	f
+name	includes/minishell.h	/^	char	*name;$/;"	m	struct:s_builtin
 name	includes/minishell.h	/^	char *name;$/;"	m	struct:s_var
 new_node	srcs/utils.c	/^t_lexer *new_node(char *input, t_token token)$/;"	f
 next	includes/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
@@ -152,6 +162,7 @@ prev	includes/minishell.h	/^	struct s_var *prev;$/;"	m	struct:s_var	typeref:stru
 previous	includes/minishell.h	/^    t_lexer     *previous;$/;"	m	struct:s_lexer
 quotes_handling	srcs/lexer.c	/^int quotes_handling(char *str, int start, char quote)$/;"	f
 reset_loop	srcs/main.c	/^void    reset_loop(t_data *data)$/;"	f
+s_builtin	includes/minishell.h	/^typedef struct s_builtin$/;"	s
 s_data	includes/minishell.h	/^typedef struct s_data$/;"	s
 s_env	includes/minishell.h	/^typedef struct s_env$/;"	s
 s_lexer	includes/minishell.h	/^typedef struct s_lexer$/;"	s
@@ -161,6 +172,7 @@ s_var	includes/minishell.h	/^typedef struct s_var$/;"	s
 sigint_handling	srcs/signals.c	/^void sigint_handling(int signal)$/;"	f
 signals_handling	srcs/signals.c	/^void    signals_handling(void)$/;"	f
 stack_add_bottom	srcs/utils.c	/^void    stack_add_bottom(t_lexer **head, t_lexer *new)$/;"	f
+t_builtin	includes/minishell.h	/^}	t_builtin;$/;"	t	typeref:struct:s_builtin
 t_data	includes/minishell.h	/^typedef struct s_data t_data;$/;"	t	typeref:struct:s_data
 t_data	includes/minishell.h	/^}   t_data;$/;"	t	typeref:struct:s_data
 t_env	includes/minishell.h	/^typedef struct s_env t_env;$/;"	t	typeref:struct:s_env

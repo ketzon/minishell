@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/18 16:32:14 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/19 09:55:37 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int main(int , char **, char **envp)
 	char **env_array;
 
 	env_array = create_env_arr(envp);
+	data.env = env_array;
 	env = init_env(env_array);
 	(void)env;
     while (1) 
