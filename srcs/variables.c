@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:49:54 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/19 14:10:46 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:25:07 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int variable_check(t_data *data)
         return (printf("syntax error near unexpected token '|'\n"), 0);
     while (temp)
     {
-       flag_variables(temp);
+       flag_variables(temp); // NEED CHECK HEREDOC
        if (check_invalid_tokens(temp) == true)
             return (0);
        temp = temp->next;
