@@ -58,6 +58,7 @@ typedef struct s_data
     char        *line;
 	char		**env;
     t_lexer     *lexer_head;
+    t_env     	*env_head;;
 }   t_data;
 
 typedef struct s_lexer
@@ -86,7 +87,7 @@ int	execute_builtin(t_data *data);
 /* ENV */
 
 char	**create_env_arr(char **envp);
-t_env	*init_env(char **env_array);
+t_env	*init_env(t_data data, char **env_array);
 t_var	*init_env_var(char *name, char *infos, int id);
 void	create_env_list(t_env *env, char **env_arr);
 char    *get_env_path(char **envp);

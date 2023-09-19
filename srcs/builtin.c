@@ -6,7 +6,7 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 12:31:38 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/19 10:18:14 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/19 11:13:38 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,26 @@ int	builtin_pwd(t_data *data)
 	}
 }
 
+int builtin_exit(t_data *data)
+{
+	int exit_value;
+    t_lexer *current;
+    current = data->lexer_head->next;
+
+    if (!current)
+    {
+        printf("exit\n");
+        exit(0);
+    }
+    else
+    {
+        exit_value = ft_atoi(current->word);
+        printf("exit\n");
+        exit(exit_value);
+    }
+    return (0);
+}
+
 int	builtin_echo(t_data *data)
 {
 	t_lexer *current;
@@ -66,6 +86,7 @@ t_builtin builtins[] =
 		{"echo", builtin_echo},
 		{"env", builtin_env},
 		{"pwd", builtin_pwd},
+		{"exit", builtin_exit},
 		{NULL, NULL}
 };
 
