@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/19 13:57:51 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:34:46 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ bool    parse_input(t_data *data)
     lexer(data);
     if (!variable_check(data))
         return (false);
+    variable_expander(data);
     return (true);
 }
 
@@ -47,6 +48,7 @@ int main(int , char **, char **envp)
 	env_array = create_env_arr(envp);
 	data.env = env_array;
 	env = init_env(env_array);
+    data.env_head = env;
 	(void)env;
     while (1) 
 	{

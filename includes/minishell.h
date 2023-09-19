@@ -134,6 +134,7 @@ bool    is_token(char c);
 /* VARIABLE CHECK*/
 
 int variable_check(t_data *data);
+void    variable_expander(t_data *data);
 
 /* ERROR */
 
