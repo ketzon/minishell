@@ -17,13 +17,13 @@ typedef struct s_lexer t_lexer;
 
 typedef enum e_token
 {
-    GREATER = 1,
-    GREATER_DOUBLE = 2,
-    LESS = 3,
-    LESS_DOUBLE = 4,
-    PIPE = 5,
-    WORD = 6,
-    VAR = 7
+    WORD = 1,
+    VAR = 2,
+    PIPE = 3,
+    LESS = 4,
+    LESS_DOUBLE = 5,
+    GREATER = 6,
+    GREATER_DOUBLE = 7
 }   t_token;
 
 typedef struct s_env
