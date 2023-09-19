@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:36:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/19 18:46:22 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/19 20:01:10 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void    replace_var(t_data *data, t_lexer *node)
             node->word = var_value;
             break ;
         }
+        i++;
     }
 }
 
