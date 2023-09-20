@@ -2,6 +2,7 @@
 # define MINISHELL_H
 
 # include "libft.h"
+# include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <readline/readline.h>
@@ -83,6 +84,12 @@ void	sigint_handling(int signal);
 /* BUILTIN */
 
 int	execute_builtin(t_data *data);
+int	builtin_cd(t_data *data);
+int	builtin_echo(t_data *data);
+int	builtin_env(t_data *data);
+int builtin_exit(t_data *data);
+int builtin_pwd(t_data *data);
+int builtin_unset(t_data *data);
 
 /* ENV */
 
