@@ -90,6 +90,7 @@ int	builtin_env(t_data *data);
 int builtin_exit(t_data *data);
 int builtin_pwd(t_data *data);
 int builtin_unset(t_data *data);
+int	builtin_export(t_data *data);
 
 /* ENV */
 
@@ -114,6 +115,7 @@ void	free_env_array(char **env_arr);
 /* UTILS */
 
 int	ft_strcmp(char *s1, char *s2);
+char *ft_strcpy(char *dest, const char *src);
 int	ws(char c);
 int ft_skip_white_spaces(char *str);
 void    stack_add_bottom(t_lexer **head, t_lexer *new);

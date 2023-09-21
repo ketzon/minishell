@@ -6,7 +6,7 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 12:31:38 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/20 13:47:04 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/20 15:14:49 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_builtin builtins[] =
 		{"pwd", builtin_pwd},
 		{"exit", builtin_exit},
 		{"unset", builtin_unset},
-		/* {"export", builtin_export}, */
+		{"export", builtin_export},
 		{"cd", builtin_cd},
 		{NULL, NULL}
 };

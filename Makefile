@@ -4,7 +4,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_DIR = ./libft
 BUILTIN_DIR = builtin/
 SRCS_DIR = srcs/
-BUILTIN = env.c cd.c echo.c builtin.c pwd.c exit.c unset.c \
+BUILTIN = env.c cd.c echo.c builtin.c pwd.c exit.c unset.c export.c \
 
 SRCS = main.c signals.c srcs_utils.c quotes.c error.c lexer.c free.c init.c is.c env.c \
 chained.c list.c variables.c \
