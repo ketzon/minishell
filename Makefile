@@ -2,16 +2,19 @@ BIN = bin
 FLAGS = -Wall -Werror -Wextra  -g
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_DIR = ./libft
+ENV_DIR = env/
 BUILTIN_DIR = builtin/
 SRCS_DIR = srcs/
+ENV = chained.c env.c init.c is.c list.c \
+
 BUILTIN = env.c cd.c echo.c builtin.c pwd.c exit.c unset.c export.c \
 
-SRCS = main.c signals.c srcs_utils.c quotes.c error.c lexer.c free.c init.c is.c env.c \
-chained.c list.c variables.c \
+SRCS = main.c signals.c srcs_utils.c quotes.c error.c lexer.c free.c variables.c \
 
+ENV_FILES = $(addprefix $(ENV_DIR), $(ENV))
 SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))
 BUILTIN_FILES = $(addprefix $(BUILTIN_DIR), $(BUILTIN))
-ALL_FILES = $(SRCS_FILES) $(BUILTIN_FILES)
+ALL_FILES = $(SRCS_FILES) $(BUILTIN_FILES) $(ENV_FILES)
 
 MANDATORY = minishell
 ALL_OBJ = $(foreach src,$(ALL_FILES),$(BIN)/$(src:.c=.o))

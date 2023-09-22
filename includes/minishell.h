@@ -41,6 +41,7 @@ typedef struct s_env
 {
 	char **env_vars;
 	char *env_path;
+	char *home_path;
 	struct s_var *first_node;
 }	t_env;
 
@@ -99,6 +100,7 @@ t_env	*init_env(char **env_array);
 t_var	*init_env_var(char *name, char *infos, int id);
 void	create_env_list(t_env *env, char **env_arr);
 char    *get_env_path(char **envp);
+char    *get_home_path(char **envp);
 char	*malloc_each_line(char *line);
 char	**create_malloc_line(char *line);
 void	create_list(t_env *env, t_var *node);

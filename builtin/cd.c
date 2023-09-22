@@ -6,7 +6,7 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:52:33 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/20 11:52:35 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/22 16:18:30 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	builtin_cd(t_data *data)
 	current = data->lexer_head->next;
 	if (current == NULL) 
 	{
-		path = data->env_head->env_path;
+		path = data->env_head->home_path;
 		if (path == NULL)
 		{
 			printf("cd: HOME environment variable not set\n");
