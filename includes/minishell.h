@@ -133,8 +133,22 @@ bool    is_token(char c);
 
 /* VARIABLE CHECK*/
 
-int variable_check(t_data *data);
+int     variable_check(t_data *data);
 void    variable_expander(t_data *data);
+
+/* EXPANDER UTILS */
+
+void    quotes_check(int *single_quote, int *double_quote, char c);
+bool    var_in_quotes(char *word, int i);
+int     var_word_len(char *str);
+bool    var_exist(t_data *data, char *var_name);
+char     *get_var_value(t_data *data, char *var_name);
+
+/* EXPANDER REPLACE*/
+
+int    replace_value(t_lexer *node, char *var_value, int index);
+int     delete_var_name(t_lexer *node, int index);
+char    *delete_var_name_and_replace(t_lexer *node, char *var_value, int index);
 
 /* ERROR */
 

@@ -6,54 +6,66 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:36:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/19 20:01:10 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:54:51 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int var_word_len(char *str)
+static char    *extract_var_from_string(char *word)
 {
-    int i;
+    int     i;
+    char    *var_name;
+    int     var_name_len;
 
     i = 0;
-    while (str[i] && str[i] != ' ')
+    while (word[i] && word[i] != '$')
         i++;
-    return (i);
+    i++;
+    var_name_len = var_word_len(&word[i]);
+    var_name = ft_substr(word, i, var_name_len);
+    if (!var_name)
+        return (NULL);
+    return (var_name);
 }
 
 static char    *find_matching_var(t_data *data, char *word)
 {
-    t_var   *env_tmp;
-    env_tmp = data->env_head->first_node;
+    char    *var_extracted;
+    char    *var_value;
     
-    while (env_tmp)
-    {
-        if (ft_strncmp(env_tmp->name, word, var_word_len(word)) == 0)
-            return (ft_strdup(env_tmp->infos));
-        env_tmp = env_tmp->next;
-    }
-    return ("");
+    var_extracted = extract_var_from_string(word);
+    if (var_extracted && var_exist(data, var_extracted) == true)
+        var_value = get_var_value(data, var_extracted);
+    else
+        var_value = NULL;
+    printf("OG INPUT = %s | VAR NAME = %s | VAR_VALUE = %s\n", word, var_extracted, var_value);
+    free(var_extracted);
+    return (var_value);
 }
 
 static void    replace_var(t_data *data, t_lexer *node)
 {
     int i;
     char    *var_value;
+    int     single_quote;
+    int     double_quote;
     
-
+    single_quote = 0;
+    double_quote = 0;
     i = 0;
     while (node->word[i])
     {
-        if (node->word[i] == '$')
+        quotes_check(&single_quote, &double_quote, node->word[i]);
+        if (node->word[i] == '$' && single_quote == 0 && !ws(node->word[i + 1]) && var_in_quotes(node->word, i) == false)
         {
-            i++;
             var_value = find_matching_var(data, &node->word[i]);
-            node->word = var_value;
-            break ;
+            replace_value(node, var_value, i);
         }
-        i++;
+        else
+            i++;
     }
+    printf("NEW STRING = %s\n", node->word);
 }
 
 void    variable_expander(t_data *data)
@@ -66,7 +78,7 @@ void    variable_expander(t_data *data)
         if (tmp->token == VAR)
         {
             replace_var(data, tmp);
-            printf("%s\n", tmp->word);
+            //printf("%s\n", tmp->word);
         }
         tmp = tmp->next;
     } 
