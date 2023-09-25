@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/19 15:25:02 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:14:10 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,11 @@ void    reset_loop(t_data *data)
 int main(int , char **, char **envp)
 {
     t_data  data;
-	t_env	*env;
 	char **env_array;
 
 	env_array = create_env_arr(envp);
 	data.env = env_array;
-	env = init_env(env_array);
-    data.env_head = env;
-	(void)env;
+	data.env_head = init_env(env_array);
     while (1) 
 	{
         signals_handling();

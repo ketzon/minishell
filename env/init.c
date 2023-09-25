@@ -6,7 +6,7 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:55:07 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/19 12:42:09 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/22 16:40:03 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_env	*init_env(char **env_array)
 	if (env == NULL)
 		return (NULL);
 	env->env_path = get_env_path(env_array);
+	env->home_path = get_home_path(env_array);
 	create_env_list(env, env_array);
 	/* free_env_array(env_array); */
 	return (env);

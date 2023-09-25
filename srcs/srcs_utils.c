@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   srcs_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/19 13:58:29 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:14:37 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@ int ft_skip_white_spaces(char *str)
     while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\t' || str[i] == '\r'))
         i++;
     return (i);
+}
+
+char *ft_strcpy(char *dest, const char *src)
+{
+		char *start = dest;
+
+		while (*src)
+		{
+				*dest = *src;
+				dest++;
+				src++;
+		}
+		*dest = '\0';
+		return start;
 }
 
 void    stack_add_bottom(t_lexer **head, t_lexer *new)

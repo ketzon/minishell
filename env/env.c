@@ -6,24 +6,36 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:46:06 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/16 12:30:58 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/22 15:47:21 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-/* PERMET DE RECUPERER LA VARIABLE PATH DEPUIS LE POINTER ENV */
 char    *get_env_path(char **envp)
 {
-    if (!envp || !*envp)//si env est vide
+    if (!envp || !*envp)
         return (NULL);
-    while (*envp)//parcour le pointeur env dans le but de trouver le path
+    while (*envp)
     {
         if (ft_strncmp(*envp, "PATH", 4) == 0)
             return (*envp + 5);
         envp++;
     }
-    return (NULL);//si pas de path return NULL
+    return (NULL);
+}
+
+char    *get_home_path(char **envp)
+{
+    if (!envp || !*envp)
+        return (NULL);
+    while (*envp)
+    {
+        if (ft_strncmp(*envp, "HOME", 5) == 0)
+            return (*envp + 6);
+        envp++;
+    }
+    return (NULL);
 }
 
 int	line_count(char **envp)

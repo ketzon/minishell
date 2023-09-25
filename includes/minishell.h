@@ -2,6 +2,7 @@
 # define MINISHELL_H
 
 # include "libft.h"
+# include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <readline/readline.h>
@@ -40,6 +41,7 @@ typedef struct s_env
 {
 	char **env_vars;
 	char *env_path;
+	char *home_path;
 	struct s_var *first_node;
 }	t_env;
 
@@ -83,6 +85,13 @@ void	sigint_handling(int signal);
 /* BUILTIN */
 
 int	execute_builtin(t_data *data);
+int	builtin_cd(t_data *data);
+int	builtin_echo(t_data *data);
+int	builtin_env(t_data *data);
+int builtin_exit(t_data *data);
+int builtin_pwd(t_data *data);
+int builtin_unset(t_data *data);
+int	builtin_export(t_data *data);
 
 /* ENV */
 
@@ -91,6 +100,7 @@ t_env	*init_env(char **env_array);
 t_var	*init_env_var(char *name, char *infos, int id);
 void	create_env_list(t_env *env, char **env_arr);
 char    *get_env_path(char **envp);
+char    *get_home_path(char **envp);
 char	*malloc_each_line(char *line);
 char	**create_malloc_line(char *line);
 void	create_list(t_env *env, t_var *node);
@@ -107,6 +117,7 @@ void	free_env_array(char **env_arr);
 /* UTILS */
 
 int	ft_strcmp(char *s1, char *s2);
+char *ft_strcpy(char *dest, const char *src);
 int	ws(char c);
 int ft_skip_white_spaces(char *str);
 void    stack_add_bottom(t_lexer **head, t_lexer *new);
