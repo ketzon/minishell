@@ -2,20 +2,29 @@ BIN = bin
 FLAGS = -Wall -Werror -Wextra  -g
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_DIR = ./libft
+LEXER_DIR = lexer/
 ENV_DIR = env/
+EXPANDER_DIR = expander/
 BUILTIN_DIR = builtin/
 SRCS_DIR = srcs/
-ENV = chained.c env.c init.c is.c list.c \
 
-SRCS = main.c signals.c srcs_utils.c quotes.c error.c lexer.c free.c \
-variables.c var_expander.c var_expander_utils.c var_replace.c\
+SRCS = main.c signals.c srcs_utils.c error.c free.c \
+
+EXPANDER = var_expander.c var_expander_utils.c variables.c var_replace.c \
+
+LEXER = lexer.c quotes.c \
+
+ENV = chained.c env.c init.c is.c list.c \
 
 BUILTIN = env.c cd.c echo.c builtin.c pwd.c exit.c unset.c export.c \
 
+EXPANDER_FILES = $(addprefix $(EXPANDER_DIR), $(EXPANDER))
+LEXER_FILES = $(addprefix $(LEXER_DIR), $(LEXER))
 ENV_FILES = $(addprefix $(ENV_DIR), $(ENV))
 SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))
 BUILTIN_FILES = $(addprefix $(BUILTIN_DIR), $(BUILTIN))
-ALL_FILES = $(SRCS_FILES) $(BUILTIN_FILES) $(ENV_FILES)
+
+ALL_FILES = $(SRCS_FILES) $(BUILTIN_FILES) $(ENV_FILES) $(LEXER_FILES) $(EXPANDER_FILES)
 
 MANDATORY = minishell
 ALL_OBJ = $(foreach src,$(ALL_FILES),$(BIN)/$(src:.c=.o))

@@ -5,7 +5,7 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 .DEFAUT_GOAL	libft/Makefile	/^.DEFAUT_GOAL = all$/;"	m
-ALL_FILES	Makefile	/^ALL_FILES = $(SRCS_FILES) $(BUILTIN_FILES) $(ENV_FILES)$/;"	m
+ALL_FILES	Makefile	/^ALL_FILES = $(SRCS_FILES) $(BUILTIN_FILES) $(ENV_FILES) $(LEXER_FILES) $(EXPANDER_FILES)$/;"	m
 ALL_OBJ	Makefile	/^ALL_OBJ = $(foreach src,$(ALL_FILES),$(BIN)\/$(src:.c=.o))$/;"	m
 BIN	Makefile	/^BIN = bin$/;"	m
 BLU	Makefile	/^BLU = \\033[34m$/;"	m
@@ -20,6 +20,9 @@ ENV	Makefile	/^ENV = chained.c env.c init.c is.c list.c \\$/;"	m
 ENV_DIR	Makefile	/^ENV_DIR = env\/$/;"	m
 ENV_FILES	Makefile	/^ENV_FILES = $(addprefix $(ENV_DIR), $(ENV))$/;"	m
 EOC	Makefile	/^EOC = \\033[0m$/;"	m
+EXPANDER	Makefile	/^EXPANDER = var_expander.c var_expander_utils.c variables.c var_replace.c \\$/;"	m
+EXPANDER_DIR	Makefile	/^EXPANDER_DIR = expander\/$/;"	m
+EXPANDER_FILES	Makefile	/^EXPANDER_FILES = $(addprefix $(EXPANDER_DIR), $(EXPANDER))$/;"	m
 FLAGS	Makefile	/^FLAGS = -Wall -Werror -Wextra  -g$/;"	m
 GRA	Makefile	/^GRA = \\033[37m$/;"	m
 GRE	Makefile	/^GRE = \\033[32m$/;"	m
@@ -31,6 +34,9 @@ HEX_BASE	libft/libft.h	16;"	d
 HEX_BASE	libft/printf.h	16;"	d
 LESS	includes/minishell.h	/^    LESS = 4,$/;"	e	enum:e_token
 LESS_DOUBLE	includes/minishell.h	/^    LESS_DOUBLE = 5,$/;"	e	enum:e_token
+LEXER	Makefile	/^LEXER = lexer.c quotes.c \\$/;"	m
+LEXER_DIR	Makefile	/^LEXER_DIR = lexer\/$/;"	m
+LEXER_FILES	Makefile	/^LEXER_FILES = $(addprefix $(LEXER_DIR), $(LEXER))$/;"	m
 LIBFT	Makefile	/^LIBFT = $(LIBFT_DIR)\/libft.a$/;"	m
 LIBFT_DIR	Makefile	/^LIBFT_DIR = .\/libft$/;"	m
 LIBFT_H	includes/libft.h	14;"	d
@@ -49,15 +55,15 @@ PRINTF_H	includes/printf.h	15;"	d
 PRINTF_H	libft/printf.h	15;"	d
 PROMPT	includes/minishell.h	14;"	d
 RED	Makefile	/^RED = \\033[31m$/;"	m
-SRCS	Makefile	/^SRCS = main.c signals.c srcs_utils.c quotes.c error.c lexer.c free.c \\$/;"	m
+SRCS	Makefile	/^SRCS = main.c signals.c srcs_utils.c error.c free.c \\$/;"	m
 SRCS	libft/Makefile	/^SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \\$/;"	m
 SRCS_DIR	Makefile	/^SRCS_DIR = srcs\/$/;"	m
 SRCS_FILES	Makefile	/^SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))$/;"	m
 VAR	includes/minishell.h	/^    VAR = 2,$/;"	e	enum:e_token
 WORD	includes/minishell.h	/^    WORD = 1,$/;"	e	enum:e_token
 add_new_env_var	builtin/export.c	/^void add_new_env_var(t_data *data, char *key, char *value)$/;"	f
-add_token	srcs/lexer.c	/^int    add_token(char *input, int i, t_lexer **head)$/;"	f
-add_word	srcs/lexer.c	/^int     add_word(char *input, int i, t_lexer **head)$/;"	f
+add_token	lexer/lexer.c	/^int    add_token(char *input, int i, t_lexer **head)$/;"	f
+add_word	lexer/lexer.c	/^int     add_word(char *input, int i, t_lexer **head)$/;"	f
 builtin_cd	builtin/cd.c	/^int	builtin_cd(t_data *data)$/;"	f
 builtin_echo	builtin/echo.c	/^int	builtin_echo(t_data *data)$/;"	f
 builtin_env	builtin/env.c	/^int	builtin_env(t_data *data)$/;"	f
@@ -69,7 +75,7 @@ builtins	builtin/builtin.c	/^t_builtin builtins[] = $/;"	v
 check_invalid_consecutive_tokens	srcs/variables.c	/^static bool  check_invalid_consecutive_tokens(t_lexer *node)$/;"	f	file:
 check_invalid_tokens	srcs/variables.c	/^static bool check_invalid_tokens(t_lexer *node)$/;"	f	file:
 clean	libft/ft_split.c	/^static void	clean(char **array, unsigned int nb)$/;"	f	file:
-closed_quotes	srcs/quotes.c	/^bool closed_quotes(char *line)$/;"	f
+closed_quotes	lexer/quotes.c	/^bool closed_quotes(char *line)$/;"	f
 connect_node	env/chained.c	/^void	connect_node(t_var *curr_node, t_var *next_node)$/;"	f
 content	includes/libft.h	/^	void			*content;$/;"	m	struct:s_list
 content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
@@ -87,8 +93,8 @@ env_vars	includes/minishell.h	/^	char **env_vars;$/;"	m	struct:s_env
 execute_builtin	builtin/builtin.c	/^int	execute_builtin(t_data *data)$/;"	f
 extract_content	env/list.c	/^char	*extract_content(char *line, int start, int end)$/;"	f
 extract_var_from_string	srcs/var_expander.c	/^static char    *extract_var_from_string(char *word)$/;"	f	file:
-fill_lexer_struct	srcs/lexer.c	/^t_lexer   *fill_lexer_struct(char *input)$/;"	f
-find_matching_quote	srcs/quotes.c	/^int	find_matching_quote(char *line, int i, int *num_del, int del)$/;"	f
+fill_lexer_struct	lexer/lexer.c	/^t_lexer   *fill_lexer_struct(char *input)$/;"	f
+find_matching_quote	lexer/quotes.c	/^int	find_matching_quote(char *line, int i, int *num_del, int del)$/;"	f
 find_matching_var	srcs/var_expander.c	/^static char    *find_matching_var(t_data *data, char *word)$/;"	f	file:
 first_node	includes/minishell.h	/^	struct s_var *first_node;$/;"	m	struct:s_env	typeref:struct:s_env::s_var
 flag_variables	srcs/variables.c	/^static void flag_variables (t_lexer *node)$/;"	f	file:
@@ -166,9 +172,9 @@ infos	includes/minishell.h	/^	char *infos;$/;"	m	struct:s_var
 init_env	env/init.c	/^t_env	*init_env(char **env_array)$/;"	f
 init_env_var	env/init.c	/^t_var	*init_env_var(char *name, char *infos, int id)$/;"	f
 is_null	env/is.c	/^int	is_null(char *str)$/;"	f
-is_token	srcs/lexer.c	/^bool    is_token(char c)$/;"	f
+is_token	lexer/lexer.c	/^bool    is_token(char c)$/;"	f
 is_value_null	env/is.c	/^int	is_value_null(char *str)$/;"	f
-lexer	srcs/lexer.c	/^void    lexer(t_data *data)$/;"	f
+lexer	lexer/lexer.c	/^void    lexer(t_data *data)$/;"	f
 lexer_head	includes/minishell.h	/^    t_lexer     *lexer_head;$/;"	m	struct:s_data
 line	includes/minishell.h	/^    char        *line;$/;"	m	struct:s_data
 line_count	env/env.c	/^int	line_count(char **envp)$/;"	f
@@ -185,7 +191,7 @@ parse_input	srcs/main.c	/^bool    parse_input(t_data *data)$/;"	f
 prev	includes/minishell.h	/^	struct s_var *prev;$/;"	m	struct:s_var	typeref:struct:s_var::s_var
 previous	includes/minishell.h	/^    t_lexer     *previous;$/;"	m	struct:s_lexer
 quotes_check	srcs/var_expander_utils.c	/^void    quotes_check(int *single_quote, int *double_quote, char c)$/;"	f
-quotes_handling	srcs/lexer.c	/^int quotes_handling(char *str, int start, char quote)$/;"	f
+quotes_handling	lexer/lexer.c	/^int quotes_handling(char *str, int start, char quote)$/;"	f
 replace_value	srcs/var_replace.c	/^int   replace_value(t_lexer *node, char *var_value, int index)$/;"	f
 replace_var	srcs/var_expander.c	/^static void    replace_var(t_data *data, t_lexer *node)$/;"	f	file:
 reset_loop	srcs/main.c	/^void    reset_loop(t_data *data)$/;"	f
