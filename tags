@@ -5,7 +5,7 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 .DEFAUT_GOAL	libft/Makefile	/^.DEFAUT_GOAL = all$/;"	m
-ALL_FILES	Makefile	/^ALL_FILES = $(SRCS_FILES) $(BUILTIN_FILES)$/;"	m
+ALL_FILES	Makefile	/^ALL_FILES = $(SRCS_FILES) $(BUILTIN_FILES) $(ENV_FILES)$/;"	m
 ALL_OBJ	Makefile	/^ALL_OBJ = $(foreach src,$(ALL_FILES),$(BIN)\/$(src:.c=.o))$/;"	m
 BIN	Makefile	/^BIN = bin$/;"	m
 BLU	Makefile	/^BLU = \\033[34m$/;"	m
@@ -16,6 +16,9 @@ BUILTIN_FILES	Makefile	/^BUILTIN_FILES = $(addprefix $(BUILTIN_DIR), $(BUILTIN))
 CC	libft/Makefile	/^CC = gcc$/;"	m
 CFLAGS	libft/Makefile	/^CFLAGS = -Wall -Werror -Wextra -g -w$/;"	m
 ECHO	Makefile	/^ECHO = echo$/;"	m
+ENV	Makefile	/^ENV = chained.c env.c init.c is.c list.c \\$/;"	m
+ENV_DIR	Makefile	/^ENV_DIR = env\/$/;"	m
+ENV_FILES	Makefile	/^ENV_FILES = $(addprefix $(ENV_DIR), $(ENV))$/;"	m
 EOC	Makefile	/^EOC = \\033[0m$/;"	m
 FLAGS	Makefile	/^FLAGS = -Wall -Werror -Wextra  -g$/;"	m
 GRA	Makefile	/^GRA = \\033[37m$/;"	m
@@ -46,7 +49,7 @@ PRINTF_H	includes/printf.h	15;"	d
 PRINTF_H	libft/printf.h	15;"	d
 PROMPT	includes/minishell.h	14;"	d
 RED	Makefile	/^RED = \\033[31m$/;"	m
-SRCS	Makefile	/^SRCS = main.c signals.c srcs_utils.c quotes.c error.c lexer.c free.c init.c is.c env.c \\$/;"	m
+SRCS	Makefile	/^SRCS = main.c signals.c srcs_utils.c quotes.c error.c lexer.c free.c variables.c \\$/;"	m
 SRCS	libft/Makefile	/^SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \\$/;"	m
 SRCS_DIR	Makefile	/^SRCS_DIR = srcs\/$/;"	m
 SRCS_FILES	Makefile	/^SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))$/;"	m
@@ -65,12 +68,12 @@ builtin_unset	builtin/unset.c	/^int	builtin_unset(t_data *data)$/;"	f
 builtins	builtin/builtin.c	/^t_builtin builtins[] = $/;"	v
 clean	libft/ft_split.c	/^static void	clean(char **array, unsigned int nb)$/;"	f	file:
 closed_quotes	srcs/quotes.c	/^bool closed_quotes(char *line)$/;"	f
-connect_node	srcs/chained.c	/^void	connect_node(t_var *curr_node, t_var *next_node)$/;"	f
+connect_node	env/chained.c	/^void	connect_node(t_var *curr_node, t_var *next_node)$/;"	f
 content	includes/libft.h	/^	void			*content;$/;"	m	struct:s_list
 content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
-create_env_arr	srcs/env.c	/^char	**create_env_arr(char **envp)$/;"	f
-create_env_list	srcs/list.c	/^void	create_env_list(t_env *env, char **env_arr)$/;"	f
-create_list	srcs/chained.c	/^void	create_list(t_env *env, t_var *node)$/;"	f
+create_env_arr	env/env.c	/^char	**create_env_arr(char **envp)$/;"	f
+create_env_list	env/list.c	/^void	create_env_list(t_env *env, char **env_arr)$/;"	f
+create_list	env/chained.c	/^void	create_list(t_env *env, t_var *node)$/;"	f
 digit_count	libft/ft_itoa.c	/^static int	digit_count(long n)$/;"	f	file:
 e_token	includes/minishell.h	/^typedef enum e_token$/;"	g
 env	includes/minishell.h	/^	char		**env;$/;"	m	struct:s_data
@@ -78,7 +81,7 @@ env_head	includes/minishell.h	/^    t_env     	*env_head;;$/;"	m	struct:s_data
 env_path	includes/minishell.h	/^	char *env_path;$/;"	m	struct:s_env
 env_vars	includes/minishell.h	/^	char **env_vars;$/;"	m	struct:s_env
 execute_builtin	builtin/builtin.c	/^int	execute_builtin(t_data *data)$/;"	f
-extract_content	srcs/list.c	/^char	*extract_content(char *line, int start, int end)$/;"	f
+extract_content	env/list.c	/^char	*extract_content(char *line, int start, int end)$/;"	f
 fill_lexer_struct	srcs/lexer.c	/^t_lexer   *fill_lexer_struct(char *input)$/;"	f
 find_matching_quote	srcs/quotes.c	/^int	find_matching_quote(char *line, int i, int *num_del, int del)$/;"	f
 first_node	includes/minishell.h	/^	struct s_var *first_node;$/;"	m	struct:s_env	typeref:struct:s_env::s_var
@@ -144,24 +147,26 @@ ft_substr	libft/ft_substr.c	/^char	*ft_substr(char const *str, unsigned int star
 ft_tolower	libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
 ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
 func	includes/minishell.h	/^	int		(*func)(t_data *data);$/;"	m	struct:s_builtin
-get_env_path	srcs/env.c	/^char    *get_env_path(char **envp)$/;"	f
-get_line_infos	srcs/list.c	/^char	*get_line_infos(char *line)$/;"	f
-get_line_name	srcs/list.c	/^char	*get_line_name(char *line)$/;"	f
+get_env_path	env/env.c	/^char    *get_env_path(char **envp)$/;"	f
+get_home_path	env/env.c	/^char    *get_home_path(char **envp)$/;"	f
+get_line_infos	env/list.c	/^char	*get_line_infos(char *line)$/;"	f
+get_line_name	env/list.c	/^char	*get_line_name(char *line)$/;"	f
+home_path	includes/minishell.h	/^	char *home_path;$/;"	m	struct:s_env
 id	includes/minishell.h	/^	int id;$/;"	m	struct:s_var
 index	includes/minishell.h	/^	int index;$/;"	m	struct:s_var
 infos	includes/minishell.h	/^	char *infos;$/;"	m	struct:s_var
-init_env	srcs/init.c	/^t_env	*init_env(char **env_array)$/;"	f
-init_env_var	srcs/init.c	/^t_var	*init_env_var(char *name, char *infos, int id)$/;"	f
-is_null	srcs/is.c	/^int	is_null(char *str)$/;"	f
+init_env	env/init.c	/^t_env	*init_env(char **env_array)$/;"	f
+init_env_var	env/init.c	/^t_var	*init_env_var(char *name, char *infos, int id)$/;"	f
+is_null	env/is.c	/^int	is_null(char *str)$/;"	f
 is_there_variable	srcs/variables.c	/^static void is_there_variable (t_lexer *node)$/;"	f	file:
 is_token	srcs/lexer.c	/^bool    is_token(char c)$/;"	f
-is_value_null	srcs/is.c	/^int	is_value_null(char *str)$/;"	f
+is_value_null	env/is.c	/^int	is_value_null(char *str)$/;"	f
 lexer	srcs/lexer.c	/^void    lexer(t_data *data)$/;"	f
 lexer_head	includes/minishell.h	/^    t_lexer     *lexer_head;$/;"	m	struct:s_data
 line	includes/minishell.h	/^    char        *line;$/;"	m	struct:s_data
-line_count	srcs/env.c	/^int	line_count(char **envp)$/;"	f
+line_count	env/env.c	/^int	line_count(char **envp)$/;"	f
 main	srcs/main.c	/^int main(int , char **, char **envp)$/;"	f
-malloc_each_line	srcs/env.c	/^char	*malloc_each_line(char *line)$/;"	f
+malloc_each_line	env/env.c	/^char	*malloc_each_line(char *line)$/;"	f
 name	includes/minishell.h	/^	char	*name;$/;"	m	struct:s_builtin
 name	includes/minishell.h	/^	char *name;$/;"	m	struct:s_var
 new_node	srcs/srcs_utils.c	/^t_lexer *new_node(char *input, t_token token)$/;"	f
