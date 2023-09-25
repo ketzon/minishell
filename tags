@@ -23,14 +23,14 @@ EOC	Makefile	/^EOC = \\033[0m$/;"	m
 FLAGS	Makefile	/^FLAGS = -Wall -Werror -Wextra  -g$/;"	m
 GRA	Makefile	/^GRA = \\033[37m$/;"	m
 GRE	Makefile	/^GRE = \\033[32m$/;"	m
-GREATER	includes/minishell.h	/^    GREATER = 1,$/;"	e	enum:e_token
-GREATER_DOUBLE	includes/minishell.h	/^    GREATER_DOUBLE = 2,$/;"	e	enum:e_token
+GREATER	includes/minishell.h	/^    GREATER = 6,$/;"	e	enum:e_token
+GREATER_DOUBLE	includes/minishell.h	/^    GREATER_DOUBLE = 7$/;"	e	enum:e_token
 HEX_BASE	includes/libft.h	15;"	d
 HEX_BASE	includes/printf.h	16;"	d
 HEX_BASE	libft/libft.h	16;"	d
 HEX_BASE	libft/printf.h	16;"	d
-LESS	includes/minishell.h	/^    LESS = 3,$/;"	e	enum:e_token
-LESS_DOUBLE	includes/minishell.h	/^    LESS_DOUBLE = 4,$/;"	e	enum:e_token
+LESS	includes/minishell.h	/^    LESS = 4,$/;"	e	enum:e_token
+LESS_DOUBLE	includes/minishell.h	/^    LESS_DOUBLE = 5,$/;"	e	enum:e_token
 LIBFT	Makefile	/^LIBFT = $(LIBFT_DIR)\/libft.a$/;"	m
 LIBFT_DIR	Makefile	/^LIBFT_DIR = .\/libft$/;"	m
 LIBFT_H	includes/libft.h	14;"	d
@@ -44,17 +44,17 @@ NO_COLOR	libft/Makefile	/^NO_COLOR = \\033[m$/;"	m
 OBJS	libft/Makefile	/^OBJS = $(SRCS:.c=.o) $/;"	m
 OBJS_BONUS	libft/Makefile	/^OBJS_BONUS = $(BONUS:.c=.o)$/;"	m
 OK_COLOR	libft/Makefile	/^OK_COLOR = \\033[0;32m$/;"	m
-PIPE	includes/minishell.h	/^    PIPE = 5,$/;"	e	enum:e_token
+PIPE	includes/minishell.h	/^    PIPE = 3,$/;"	e	enum:e_token
 PRINTF_H	includes/printf.h	15;"	d
 PRINTF_H	libft/printf.h	15;"	d
 PROMPT	includes/minishell.h	14;"	d
 RED	Makefile	/^RED = \\033[31m$/;"	m
-SRCS	Makefile	/^SRCS = main.c signals.c srcs_utils.c quotes.c error.c lexer.c free.c variables.c \\$/;"	m
+SRCS	Makefile	/^SRCS = main.c signals.c srcs_utils.c quotes.c error.c lexer.c free.c \\$/;"	m
 SRCS	libft/Makefile	/^SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \\$/;"	m
 SRCS_DIR	Makefile	/^SRCS_DIR = srcs\/$/;"	m
 SRCS_FILES	Makefile	/^SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))$/;"	m
-VAR	includes/minishell.h	/^    VAR = 7$/;"	e	enum:e_token
-WORD	includes/minishell.h	/^    WORD = 6,$/;"	e	enum:e_token
+VAR	includes/minishell.h	/^    VAR = 2,$/;"	e	enum:e_token
+WORD	includes/minishell.h	/^    WORD = 1,$/;"	e	enum:e_token
 add_new_env_var	builtin/export.c	/^void add_new_env_var(t_data *data, char *key, char *value)$/;"	f
 add_token	srcs/lexer.c	/^int    add_token(char *input, int i, t_lexer **head)$/;"	f
 add_word	srcs/lexer.c	/^int     add_word(char *input, int i, t_lexer **head)$/;"	f
@@ -66,6 +66,8 @@ builtin_export	builtin/export.c	/^int builtin_export(t_data *data)$/;"	f
 builtin_pwd	builtin/pwd.c	/^int	builtin_pwd(t_data *data)$/;"	f
 builtin_unset	builtin/unset.c	/^int	builtin_unset(t_data *data)$/;"	f
 builtins	builtin/builtin.c	/^t_builtin builtins[] = $/;"	v
+check_invalid_consecutive_tokens	srcs/variables.c	/^static bool  check_invalid_consecutive_tokens(t_lexer *node)$/;"	f	file:
+check_invalid_tokens	srcs/variables.c	/^static bool check_invalid_tokens(t_lexer *node)$/;"	f	file:
 clean	libft/ft_split.c	/^static void	clean(char **array, unsigned int nb)$/;"	f	file:
 closed_quotes	srcs/quotes.c	/^bool closed_quotes(char *line)$/;"	f
 connect_node	env/chained.c	/^void	connect_node(t_var *curr_node, t_var *next_node)$/;"	f
@@ -74,6 +76,8 @@ content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
 create_env_arr	env/env.c	/^char	**create_env_arr(char **envp)$/;"	f
 create_env_list	env/list.c	/^void	create_env_list(t_env *env, char **env_arr)$/;"	f
 create_list	env/chained.c	/^void	create_list(t_env *env, t_var *node)$/;"	f
+delete_var_name	srcs/var_replace.c	/^int     delete_var_name(t_lexer *node, int index)$/;"	f
+delete_var_name_and_replace	srcs/var_replace.c	/^char    *delete_var_name_and_replace(t_lexer *node, char *var_value, int index)$/;"	f
 digit_count	libft/ft_itoa.c	/^static int	digit_count(long n)$/;"	f	file:
 e_token	includes/minishell.h	/^typedef enum e_token$/;"	g
 env	includes/minishell.h	/^	char		**env;$/;"	m	struct:s_data
@@ -82,9 +86,12 @@ env_path	includes/minishell.h	/^	char *env_path;$/;"	m	struct:s_env
 env_vars	includes/minishell.h	/^	char **env_vars;$/;"	m	struct:s_env
 execute_builtin	builtin/builtin.c	/^int	execute_builtin(t_data *data)$/;"	f
 extract_content	env/list.c	/^char	*extract_content(char *line, int start, int end)$/;"	f
+extract_var_from_string	srcs/var_expander.c	/^static char    *extract_var_from_string(char *word)$/;"	f	file:
 fill_lexer_struct	srcs/lexer.c	/^t_lexer   *fill_lexer_struct(char *input)$/;"	f
 find_matching_quote	srcs/quotes.c	/^int	find_matching_quote(char *line, int i, int *num_del, int del)$/;"	f
+find_matching_var	srcs/var_expander.c	/^static char    *find_matching_var(t_data *data, char *word)$/;"	f	file:
 first_node	includes/minishell.h	/^	struct s_var *first_node;$/;"	m	struct:s_env	typeref:struct:s_env::s_var
+flag_variables	srcs/variables.c	/^static void flag_variables (t_lexer *node)$/;"	f	file:
 free_env_array	srcs/free.c	/^void	free_env_array(char **env_arr)$/;"	f
 ft_atoi	libft/ft_atoi.c	/^int	ft_atoi(const char *str)$/;"	f
 ft_bzero	libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
@@ -151,6 +158,7 @@ get_env_path	env/env.c	/^char    *get_env_path(char **envp)$/;"	f
 get_home_path	env/env.c	/^char    *get_home_path(char **envp)$/;"	f
 get_line_infos	env/list.c	/^char	*get_line_infos(char *line)$/;"	f
 get_line_name	env/list.c	/^char	*get_line_name(char *line)$/;"	f
+get_var_value	srcs/var_expander_utils.c	/^char     *get_var_value(t_data *data, char *var_name)$/;"	f
 home_path	includes/minishell.h	/^	char *home_path;$/;"	m	struct:s_env
 id	includes/minishell.h	/^	int id;$/;"	m	struct:s_var
 index	includes/minishell.h	/^	int index;$/;"	m	struct:s_var
@@ -158,7 +166,6 @@ infos	includes/minishell.h	/^	char *infos;$/;"	m	struct:s_var
 init_env	env/init.c	/^t_env	*init_env(char **env_array)$/;"	f
 init_env_var	env/init.c	/^t_var	*init_env_var(char *name, char *infos, int id)$/;"	f
 is_null	env/is.c	/^int	is_null(char *str)$/;"	f
-is_there_variable	srcs/variables.c	/^static void is_there_variable (t_lexer *node)$/;"	f	file:
 is_token	srcs/lexer.c	/^bool    is_token(char c)$/;"	f
 is_value_null	env/is.c	/^int	is_value_null(char *str)$/;"	f
 lexer	srcs/lexer.c	/^void    lexer(t_data *data)$/;"	f
@@ -177,7 +184,10 @@ next	libft/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_
 parse_input	srcs/main.c	/^bool    parse_input(t_data *data)$/;"	f
 prev	includes/minishell.h	/^	struct s_var *prev;$/;"	m	struct:s_var	typeref:struct:s_var::s_var
 previous	includes/minishell.h	/^    t_lexer     *previous;$/;"	m	struct:s_lexer
+quotes_check	srcs/var_expander_utils.c	/^void    quotes_check(int *single_quote, int *double_quote, char c)$/;"	f
 quotes_handling	srcs/lexer.c	/^int quotes_handling(char *str, int start, char quote)$/;"	f
+replace_value	srcs/var_replace.c	/^int   replace_value(t_lexer *node, char *var_value, int index)$/;"	f
+replace_var	srcs/var_expander.c	/^static void    replace_var(t_data *data, t_lexer *node)$/;"	f	file:
 reset_loop	srcs/main.c	/^void    reset_loop(t_data *data)$/;"	f
 s_builtin	includes/minishell.h	/^typedef struct s_builtin$/;"	s
 s_data	includes/minishell.h	/^typedef struct s_data$/;"	s
@@ -205,7 +215,11 @@ t_var	includes/minishell.h	/^typedef struct s_var t_var;$/;"	t	typeref:struct:s_
 t_var	includes/minishell.h	/^}	t_var;$/;"	t	typeref:struct:s_var
 token	includes/minishell.h	/^    t_token     token;$/;"	m	struct:s_lexer
 update_env_var	builtin/export.c	/^void update_env_var(t_data *data, char *key, char *value, int index)$/;"	f
+var_exist	srcs/var_expander_utils.c	/^bool    var_exist(t_data *data, char *var_name)$/;"	f
+var_in_quotes	srcs/var_expander_utils.c	/^bool    var_in_quotes(char *word, int i)$/;"	f
+var_word_len	srcs/var_expander_utils.c	/^int var_word_len(char *str)$/;"	f
 variable_check	srcs/variables.c	/^int variable_check(t_data *data)$/;"	f
+variable_expander	srcs/var_expander.c	/^void    variable_expander(t_data *data)$/;"	f
 word	includes/minishell.h	/^    char        *word;$/;"	m	struct:s_lexer
 words_count	libft/ft_split.c	/^static size_t	words_count(char const *str, char c)$/;"	f	file:
 words_lenght	libft/ft_split.c	/^static size_t	words_lenght(char const *str, char c)$/;"	f	file:

@@ -7,8 +7,8 @@ BUILTIN_DIR = builtin/
 SRCS_DIR = srcs/
 ENV = chained.c env.c init.c is.c list.c \
 
-SRCS = main.c signals.c utils.c quotes.c error.c lexer.c free.c init.c is.c env.c \
-chained.c list.c variables.c builtin.c builtin_utils.c var_expander.c var_expander_utils.c var_replace.c\
+SRCS = main.c signals.c srcs_utils.c quotes.c error.c lexer.c free.c \
+variables.c var_expander.c var_expander_utils.c var_replace.c\
 
 BUILTIN = env.c cd.c echo.c builtin.c pwd.c exit.c unset.c export.c \
 
