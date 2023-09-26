@@ -6,11 +6,19 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 15:26:40 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/25 13:55:05 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/26 13:23:44 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+bool    invalid_next_char(char c)
+{
+    if (c == ' ' || c == '\0')
+        return (true);
+    else
+        return (false);
+}
 
 bool    var_exist(t_data *data, char *var_name)
 {
@@ -68,11 +76,8 @@ bool    var_in_quotes(char *word, int i)
     return (false);
 }
 
-void    quotes_check(int *single_quote, int *double_quote, char c)
+void    quotes_check(int *single_quote, char c)
 {
-    if (c == '\"')
-        *double_quote = 1;
-    else if (c == '\'')
+    if (c == '\'')
         *single_quote = 1;
-    return ;
 }

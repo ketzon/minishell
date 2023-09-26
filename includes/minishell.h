@@ -149,11 +149,12 @@ void    variable_expander(t_data *data);
 
 /* EXPANDER UTILS */
 
-void    quotes_check(int *single_quote, int *double_quote, char c);
+void    quotes_check(int *single_quote, char c);
 bool    var_in_quotes(char *word, int i);
 int     var_word_len(char *str);
 bool    var_exist(t_data *data, char *var_name);
 char     *get_var_value(t_data *data, char *var_name);
+bool    invalid_next_char(char c);
 
 /* EXPANDER REPLACE*/
 
