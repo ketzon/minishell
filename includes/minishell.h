@@ -20,6 +20,13 @@ typedef struct s_env t_env;
 typedef struct s_var t_var;
 typedef struct s_data t_data;
 
+enum e_quoting_status 
+{
+		DEFAULT,
+		SQUOTE,
+		DQUOTE
+};
+
 typedef enum e_token
 {
     WORD = 1,
@@ -66,6 +73,11 @@ typedef struct s_data
 typedef struct s_lexer
 {
     char        *word;
+	char		*word_backup;
+	bool		var_exists;
+	int			type;
+	int			status;
+	bool		join;
     t_token     token;
     t_lexer     *previous;
     t_lexer     *next;
@@ -108,7 +120,6 @@ void	connect_node(t_var *curr_node, t_var *next_node);
 char	*get_line_infos(char *line);
 char	*extract_content(char *line, int start, int end);
 char	*get_line_name(char *line);
-char	*extract_content(char *line, int start, int end);
 
 /* FREE */ 
 
@@ -122,15 +133,19 @@ int	ws(char c);
 int ft_skip_white_spaces(char *str);
 void    stack_add_bottom(t_lexer **head, t_lexer *new);
 t_lexer *new_node(char *input, t_token token);
+int	count_len(char *str, int count, int i);
 
 /* QUOTES */
 
+int		handle_quotes(t_data *data);
+int	delete_quotes(t_lexer **node);
 int	    find_matching_quote(char *line, int i, int *num_del, int del);
 bool    closed_quotes(char *line);
 int     quotes_handling(char *str, int start, char quote);
 
 /* IS */
 
+bool is_quotes(char *str);
 int	is_null(char *str);
 int	is_value_null(char *str);
 
