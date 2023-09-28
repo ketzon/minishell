@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/28 10:35:25 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/28 18:57:36 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,29 @@ void    reset_loop(t_data *data)
 int main(int , char **, char **envp)
 {
     t_data  data;
+    t_cmd   command;
 	char **env_array;
 
 	env_array = create_env_arr(envp);
 	data.env = env_array;
 	data.env_head = init_env(env_array);
+    command.cmd = "ls";
+    command.args[0] = "-l";
     while (1) 
 	{
         signals_handling();
-        data.line = readline(PROMPT);
-        if (parse_input(&data) == true)
-		{
-			if (execute_builtin(&data) == NOT_FIND)
-			{
-				/* execute_external_command(data.line); */
-			}
-            printf("Valid input\n");
-		}
-        else
-            printf("Invalid input\n");
+        //data.line = readline(PROMPT);
+        // if (parse_input(&data) == true)
+		// {
+		// 	if (execute_builtin(&data) == NOT_FIND)
+		// 	{
+		// 		/* execute_external_command(data.line); */
+		// 	}
+        //     printf("Valid input\n");
+		// }
+        //else
+        //    printf("Invalid input\n");
+        execute(&command, &data);
         reset_loop(&data);
     }
 	return (0);

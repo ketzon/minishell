@@ -19,6 +19,15 @@ typedef struct s_lexer t_lexer;
 typedef struct s_env t_env;
 typedef struct s_var t_var;
 typedef struct s_data t_data;
+typedef struct s_cmd    t_cmd;
+
+typedef struct s_cmd
+{
+    char    *cmd;
+    char    **args;
+    t_cmd   *previous;
+    t_cmd   *next;
+}   t_cmd;
 
 enum e_quoting_status 
 {
