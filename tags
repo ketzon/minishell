@@ -85,6 +85,7 @@ connect_node	env/chained.c	/^void	connect_node(t_var *curr_node, t_var *next_nod
 content	includes/libft.h	/^	void			*content;$/;"	m	struct:s_list
 content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
 count_len	srcs/handle_quotes.c	/^int	count_len(char *str, int count, int i)$/;"	f
+create_commands	command/create_commands.c	/^void	create_commands(t_data *data, t_token *token)$/;"	f
 create_env_arr	env/env.c	/^char	**create_env_arr(char **envp)$/;"	f
 create_env_list	env/list.c	/^void	create_env_list(t_env *env, char **env_arr)$/;"	f
 create_list	env/chained.c	/^void	create_list(t_env *env, t_var *node)$/;"	f
@@ -200,6 +201,7 @@ next	includes/minishell.h	/^	struct s_var *next;$/;"	m	struct:s_var	typeref:stru
 next	includes/minishell.h	/^    t_lexer     *next;$/;"	m	struct:s_lexer
 next	libft/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
 parse_input	srcs/main.c	/^bool    parse_input(t_data *data)$/;"	f
+prep_no_arg_commands	command/create_commands.c	/^static void	prep_no_arg_commands(t_data *data)$/;"	f	file:
 prev	includes/minishell.h	/^	struct s_var *prev;$/;"	m	struct:s_var	typeref:struct:s_var::s_var
 previous	includes/minishell.h	/^    t_lexer     *previous;$/;"	m	struct:s_lexer
 quotes_check	expander/var_expander_utils.c	/^void    quotes_check(int *single_quote, int *double_quote, char c)$/;"	f

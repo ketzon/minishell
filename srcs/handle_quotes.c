@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:35:44 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/28 13:27:29 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/09/28 17:24:47 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	handle_quotes(t_data *data)
 			if (input->previous || !input->previous)
 			{
 					delete_quotes(&input);
-					printf("%s\n", "quotes_found");
 					printf("%s\n", input->word);	
 					break;
 			}
