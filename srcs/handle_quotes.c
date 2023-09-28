@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:35:44 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/28 17:24:47 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/09/28 18:23:03 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ int	handle_quotes(t_data *data)
 {
 	t_lexer *input;
 	input = data->lexer_head;
+	input->status = DEFAULT;
 	while(input)
 	{
 		if (is_quotes(input->word) == true)
 		{
-			if (input->previous || !input->previous)
+			if (input->previous == NULL || input->previous)
 			{
 					delete_quotes(&input);
 					printf("%s\n", input->word);	
