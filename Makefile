@@ -8,7 +8,7 @@ EXPANDER_DIR = expander/
 BUILTIN_DIR = builtin/
 SRCS_DIR = srcs/
 
-SRCS = main.c signals.c srcs_utils.c error.c free.c \
+SRCS = main.c signals.c srcs_utils.c error.c free.c handle_quotes.c delete_quotes.c\
 
 EXPANDER = var_expander.c var_expander_utils.c variables.c var_replace.c \
 
