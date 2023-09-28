@@ -186,6 +186,10 @@ int    replace_value(t_lexer *node, char *var_value, int index);
 int     delete_var_name(t_lexer *node, int index);
 char    *delete_var_name_and_replace(t_lexer *node, char *var_value, int index);
 
+/* CREATE COMMANDS*/
+
+void	create_commands(t_data *data);
+
 /* ERROR */
 
 int	ft_error(int error);
