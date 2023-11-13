@@ -14,22 +14,12 @@
 # define PROMPT "\001\e[45m\002>>> \001\e[0m\e[33m\002 Minishell>$ \001\e[0m\002"
 //# define BUFFER_SIZE 42
 
-typedef void t_unused;
 typedef struct s_lexer t_lexer;
-typedef struct s_env t_env;
 typedef struct s_var t_var;
 typedef struct s_data t_data;
-typedef struct s_cmd    t_cmd;
 
-typedef struct s_cmd
-{
-    char    *cmd;
-    char    **args;
-    t_cmd   *previous;
-    t_cmd   *next;
-}   t_cmd;
 
-enum e_quoting_status 
+enum e_quoting_status
 {
 		DEFAULT,
 		SQUOTE,
@@ -38,6 +28,7 @@ enum e_quoting_status
 
 typedef enum e_token
 {
+	END = 0,
     WORD = 1,
     VAR = 2,
     PIPE = 3,
@@ -52,14 +43,6 @@ typedef struct s_builtin
 	char	*name;
 	int		(*func)(t_data *data);
 }	t_builtin;
-
-typedef struct s_env
-{
-	char **env_vars;
-	char *env_path;
-	char *home_path;
-	struct s_var *first_node;
-}	t_env;
 
 typedef struct s_var
 {
@@ -76,7 +59,7 @@ typedef struct s_data
     char        *line;
 	char		**env;
     t_lexer     *lexer_head;
-    t_env     	*env_head;;
+    t_var     	*env_head;
 }   t_data;
 
 typedef struct s_lexer
@@ -105,34 +88,36 @@ void	sigint_handling(int signal);
 
 /* BUILTIN */
 
-int	execute_builtin(t_data *data);
-int	builtin_cd(t_data *data);
-int	builtin_echo(t_data *data);
-int	builtin_env(t_data *data);
-int builtin_exit(t_data *data);
-int builtin_pwd(t_data *data);
-int builtin_unset(t_data *data);
-int	builtin_export(t_data *data);
+// int	execute_builtin(t_data *data);
+// int	builtin_cd(t_data *data);
+// int	builtin_echo(t_data *data);
+// int	builtin_env(t_data *data);
+// int builtin_exit(t_data *data);
+// int builtin_pwd(t_data *data);
+// int builtin_unset(t_data *data);
+// int	builtin_export(t_data *data);
 
 /* ENV */
 
 char	**create_env_arr(char **envp);
-t_env	*init_env(char **env_array);
+t_var	*init_env(char **env_array);
 t_var	*init_env_var(char *name, char *infos, int id);
-void	create_env_list(t_env *env, char **env_arr);
+void	create_env_list(t_var **env_head, char **env_arr);
 char    *get_env_path(char **envp);
 char    *get_home_path(char **envp);
 char	*malloc_each_line(char *line);
 char	**create_malloc_line(char *line);
-void	create_list(t_env *env, t_var *node);
+void	create_list(t_var **env_head, t_var *node);
 void	connect_node(t_var *curr_node, t_var *next_node);
 char	*get_line_infos(char *line);
 char	*extract_content(char *line, int start, int end);
 char	*get_line_name(char *line);
 
-/* FREE */ 
+/* FREE */
 
+void	free_data(t_data *data);
 void	free_env_array(char **env_arr);
+void	free_env_struct(t_var *env_head);
 
 /* UTILS */
 
@@ -188,7 +173,7 @@ char    *delete_var_name_and_replace(t_lexer *node, char *var_value, int index);
 
 /* CREATE COMMANDS*/
 
-void	create_commands(t_data *data);
+//void	create_commands(t_data *data);
 
 /* ERROR */
 

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 15:26:40 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/26 13:23:44 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:34:02 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool    var_exist(t_data *data, char *var_name)
     size_t   var_name_len;
 
     var_name_len = ft_strlen(var_name);
-    env_tmp = data->env_head->first_node;
+    env_tmp = data->env_head;
     while (env_tmp)
     {
         if (ft_strncmp(env_tmp->name, var_name, var_name_len) == 0 && ft_strlen(env_tmp->name) == var_name_len)
@@ -39,8 +39,8 @@ bool    var_exist(t_data *data, char *var_name)
 char     *get_var_value(t_data *data, char *var_name)
 {
     t_var   *env_tmp;
-    
-    env_tmp = data->env_head->first_node;
+
+    env_tmp = data->env_head;
     while (env_tmp)
     {
         if (ft_strncmp(env_tmp->name, var_name, var_word_len(var_name)) == 0)

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:45:12 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/15 15:25:10 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:21:23 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*extract_content(char *line, int start, int end)
 {
-		int	index;	
+		int	index;
 		int len;
 		char	*content;
 
@@ -82,7 +82,7 @@ char	*get_line_infos(char *line)
 		return (NULL);
 }
 
-void	create_env_list(t_env *env, char **env_arr)
+void	create_env_list(t_var **env_head, char **env_arr)
 {
 		int	index;
 		int id;
@@ -97,7 +97,7 @@ void	create_env_list(t_env *env, char **env_arr)
 				name = get_line_name(env_arr[index]);
 				infos = get_line_infos(env_arr[index]);
 				list = init_env_var(name, infos, id);
-				create_list(env, list);
+				create_list(env_head, list);
 				index++;
 		}
 }

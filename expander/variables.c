@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:49:54 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/19 15:25:07 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:30:54 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int variable_check(t_data *data)
     t_lexer *temp;
 
     temp = data->lexer_head;
-    
+
     if (temp->token == PIPE)
         return (printf("syntax error near unexpected token '|'\n"), 0);
     while (temp)
@@ -69,15 +69,15 @@ int variable_check(t_data *data)
             return (0);
        temp = temp->next;
     }
-    
-    temp = data->lexer_head;
-    while (temp)
-    {
-        if (temp->word)
-            printf("%s, type = %d\n", temp->word, temp->token);
-        else
-            printf("%d, type = %d\n", temp->token, temp->token);
-        temp = temp->next;
-    }
+
+    // temp = data->lexer_head;
+    // while (temp->token != END)
+    // {
+    //     if (temp->word)
+    //         printf("%s, type = %d\n", temp->word, temp->token);
+    //     else
+    //         printf("%d, type = %d\n", temp->token, temp->token);
+    //     temp = temp->next;
+    // }
     return (1);
 }

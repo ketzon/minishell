@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chained.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:10:12 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/15 11:15:25 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/13 19:24:31 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ void	connect_node(t_var *curr_node, t_var *next_node)
 	next_node->prev = curr_node;
 }
 
-void	create_list(t_env *env, t_var *node)
+void	create_list(t_var **env_head, t_var *node)
 {
 	t_var *curr;
 	int index;
 
 	index = 0;
-	if (!(env->first_node))
+	if (*env_head == NULL)
 	{
-		env->first_node = node;
+		*env_head = node;
 		node->index = index;
 	}
 	else
 	{
-		curr = env->first_node;
+		curr = *env_head;
 		index++;
 		while (curr->next)
 		{

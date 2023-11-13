@@ -17,18 +17,18 @@ LEXER = lexer.c quotes.c \
 
 ENV = chained.c env.c init.c is.c list.c \
 
-BUILTIN = env.c cd.c echo.c builtin.c pwd.c exit.c unset.c export.c \
+BUILTIN = env.c echo.c builtin.c pwd.c exit.c unset.c export.c cd.c \
 
-COMMAND = create_commands.c \
+COMMAND =  \
 
 EXPANDER_FILES = $(addprefix $(EXPANDER_DIR), $(EXPANDER))
 LEXER_FILES = $(addprefix $(LEXER_DIR), $(LEXER))
 ENV_FILES = $(addprefix $(ENV_DIR), $(ENV))
 SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))
-BUILTIN_FILES = $(addprefix $(BUILTIN_DIR), $(BUILTIN))
+#BUILTIN_FILES = $(addprefix $(BUILTIN_DIR), $(BUILTIN))
 CMD_FILES = $(addprefix $(CMD_DIR), $(COMMAND))
 
-ALL_FILES = $(SRCS_FILES) $(BUILTIN_FILES) $(ENV_FILES) $(LEXER_FILES) $(EXPANDER_FILES) $(CMD_FILES)
+ALL_FILES = $(SRCS_FILES) $(ENV_FILES) $(LEXER_FILES) $(EXPANDER_FILES) $(CMD_FILES) #$(BUILTIN_FILES)
 
 MANDATORY = minishell
 ALL_OBJ = $(foreach src,$(ALL_FILES),$(BIN)/$(src:.c=.o))

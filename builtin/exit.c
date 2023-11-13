@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:06:03 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/20 12:06:14 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/13 18:35:41 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int builtin_exit(t_data *data)
 {
 	int exit_value;
     t_lexer *current;
-    current = data->lexer_head->next;
 
+	current = NULL;
+	if (data->lexer_head)
+    	current = data->lexer_head->next;
     if (!current)
     {
         printf("exit\n");
