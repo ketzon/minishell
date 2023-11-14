@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/28 10:35:25 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/13 17:10:44 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,9 @@ void    reset_loop(t_data *data)
 int main(int , char **, char **envp)
 {
     t_data  data;
-	char **env_array;
 
-	env_array = create_env_arr(envp);
-	data.env = env_array;
-	data.env_head = init_env(env_array);
+	data.env = create_env_arr(envp);
+	data.env_head = init_env(data.env);
     while (1) 
 	{
         signals_handling();
@@ -56,7 +54,7 @@ int main(int , char **, char **envp)
 		{
 			if (execute_builtin(&data) == NOT_FIND)
 			{
-				/* execute_external_command(data.line); */
+				execute_external_command(data.line);
 			}
             printf("Valid input\n");
 		}

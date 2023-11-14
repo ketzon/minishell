@@ -100,6 +100,7 @@ env_head	includes/minishell.h	/^    t_env     	*env_head;;$/;"	m	struct:s_data
 env_path	includes/minishell.h	/^	char *env_path;$/;"	m	struct:s_env
 env_vars	includes/minishell.h	/^	char **env_vars;$/;"	m	struct:s_env
 execute_builtin	builtin/builtin.c	/^int	execute_builtin(t_data *data)$/;"	f
+execute_external_command	execution/execute.c	/^int	execute_external_command(t_data *data)$/;"	f
 extract_content	env/list.c	/^char	*extract_content(char *line, int start, int end)$/;"	f
 extract_var_from_string	expander/var_expander.c	/^static char    *extract_var_from_string(char *word)$/;"	f	file:
 fill_lexer_struct	lexer/lexer.c	/^t_lexer   *fill_lexer_struct(char *input)$/;"	f
