@@ -28,14 +28,14 @@ enum e_quoting_status
 
 typedef enum e_token
 {
-	END = 0,
     WORD = 1,
     VAR = 2,
     PIPE = 3,
-    LESS = 4,
-    LESS_DOUBLE = 5,
-    GREATER = 6,
-    GREATER_DOUBLE = 7
+    INPUT = 4,
+    HEREDOC = 5,
+    OUTPUT = 6,
+    OUTAPPEND = 7,
+	END = 8
 }   t_token;
 
 typedef struct s_builtin
@@ -116,6 +116,7 @@ char	*get_line_name(char *line);
 /* FREE */
 
 void	free_data(t_data *data);
+void	free_reset_ptr(void	*ptr);
 void	free_env_array(char **env_arr);
 void	free_env_struct(t_var *env_head);
 

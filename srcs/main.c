@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/13 21:35:16 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/14 23:42:52 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,23 @@ bool    parse_input(t_data *data)
 {
 	if (data->line == NULL)
 	{
-		free_data(data);
+		free_data(data); // Remplacer par exit_builtin.
 		exit(0);
 	}
+	// Si que des espaces return 'true'.
+	// Si les quotes ne sont pas closed return false.
+	add_history(data->line);
+	lexer(data);
 	return (true);
 }
 
 void    reset_loop(t_data *data)
 {
-    if (data->line)
-        free(data->line);
+	if (data)
+	{
+    	if (data->line)
+        	free_reset_ptr(data->line);
+	}
 }
 
 int main(int , char **, char **envp)
