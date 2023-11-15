@@ -44,6 +44,30 @@ typedef struct s_builtin
 	int		(*func)(t_data *data);
 }	t_builtin;
 
+typedef struct s_io_fds
+{
+	char	*infile;
+	char	*outfile;
+	char	*heredoc_delimiter;
+	bool	heredoc_quotes;
+	int		fd_in;
+	int		fd_out;
+	int		stdin_backup;
+	int		stdout_backup;
+}	t_io_fds;
+
+typedef struct s_command
+{
+	char				*command;
+	char				*path;
+	char				**args;
+	bool				pipe_output;
+	int					*pipe_fd;
+	t_io_fds			*io_fds;
+	struct s_command	*next;
+	struct s_command	*prev;
+}	t_command;
+
 typedef struct s_var
 {
 	int index;
@@ -58,6 +82,7 @@ typedef struct s_data
 {
     char        *line;
 	char		**env;
+	t_command	*cmd;
     t_lexer     *lexer_head;
     t_var     	*env_head;
 }   t_data;
@@ -172,6 +197,9 @@ int     delete_var_name(t_lexer *node, int index);
 char    *delete_var_name_and_replace(t_lexer *node, char *var_value, int index);
 
 /* CREATE COMMANDS*/
+
+/* EXECUTE */
+int *execute(t_data *data);
 
 //void	create_commands(t_data *data);
 

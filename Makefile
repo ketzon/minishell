@@ -5,6 +5,7 @@ LIBFT_DIR = ./libft
 LEXER_DIR = lexer/
 ENV_DIR = env/
 EXPANDER_DIR = expander/
+ECEXUTION_DIR = execution/
 BUILTIN_DIR = builtin/
 SRCS_DIR = srcs/
 CMD_DIR = command/
@@ -12,6 +13,8 @@ CMD_DIR = command/
 SRCS = main.c signals.c srcs_utils.c error.c free.c handle_quotes.c delete_quotes.c\
 
 EXPANDER = var_expander.c var_expander_utils.c variables.c var_replace.c \
+
+EXECUTION = execute.c \
 
 LEXER = lexer.c quotes.c \
 

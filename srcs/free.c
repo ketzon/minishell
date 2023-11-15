@@ -6,13 +6,13 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:37:39 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/13 21:31:24 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/15 13:40:14 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	free_data(t_data *data)
+void	free_data(t_data *data, bool clear_history)
 {
 	if (data)
 	{
@@ -22,7 +22,8 @@ void	free_data(t_data *data)
 			free_env_array(data->env);
 		if (data->env_head)
 			free_env_struct(data->env_head);
-		rl_clear_history();
+		if (clear_history == true)
+			rl_clear_history();
 		//free	lexer_head;
 		//free	cmd_head;
 		//free	historique;
