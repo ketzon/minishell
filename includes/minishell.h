@@ -28,14 +28,15 @@ enum e_quoting_status
 
 typedef enum e_token
 {
-    WORD = 1,
-    VAR = 2,
-    PIPE = 3,
-    INPUT = 4,
-    HEREDOC = 5,
-    OUTPUT = 6,
-    OUTAPPEND = 7,
-	END = 8
+	SPACES = 1,
+    WORD = 2,
+    VAR = 3,
+    PIPE = 4,
+    INPUT = 5,
+    HEREDOC = 6,
+    OUTPUT = 7,
+    OUTAPPEND = 8,
+	END = 9
 }   t_token;
 
 typedef struct s_builtin
@@ -67,7 +68,6 @@ typedef struct s_lexer
     char        *word;
 	char		*word_backup;
 	bool		var_exists;
-	int			type;
 	int			status;
 	bool		join;
     t_token     token;
@@ -119,6 +119,7 @@ void	free_data(t_data *data);
 void	free_reset_ptr(void	*ptr);
 void	free_env_array(char **env_arr);
 void	free_env_struct(t_var *env_head);
+void	clear_lexer_head(t_lexer **lexer_head);
 
 /* UTILS */
 
@@ -145,6 +146,10 @@ int	is_null(char *str);
 int	is_value_null(char *str);
 
 /* LEXER */
+
+int	token_parse(t_data *data);
+char	*token_word(t_token token);
+int	is_sep(char *str, int i);
 
 void    lexer(t_data *data);
 t_lexer   *fill_lexer_struct(char *input);

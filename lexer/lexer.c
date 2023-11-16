@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 10:52:58 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/14 23:41:46 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/15 18:12:31 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int    add_token(char *input, int i, t_lexer **head)
 	if (input[i] == '\0')
 	{
 		j = 0;
-		str = "";
+		str = "\0";
 		token = END;
 	}
     if (input[i] == '>' && input[i + 1] == '>')

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/14 23:42:52 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:22:48 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,16 @@ bool    parse_input(t_data *data)
 		free_data(data); // Remplacer par exit_builtin.
 		exit(0);
 	}
+	// Verifier que la chaine n'est pas simplement vide.
 	// Si que des espaces return 'true'.
-	// Si les quotes ne sont pas closed return false.
+
 	add_history(data->line);
-	lexer(data);
+	if (token_parse(data) == 1)
+		return (false);
+	if (data->lexer_head->token == END)
+		return (false);
+	if (variable_check(data) == 1)
+		return (false);
 	return (true);
 }
 
@@ -31,7 +37,11 @@ void    reset_loop(t_data *data)
 	if (data)
 	{
     	if (data->line)
+		{
         	free_reset_ptr(data->line);
+		}
+		if (data->lexer_head)
+			clear_lexer_head(&data->lexer_head);
 	}
 }
 
@@ -41,6 +51,7 @@ int main(int , char **, char **envp)
 
 	data.env = create_env_arr(envp);
 	data.env_head = init_env(data.env);
+	data.lexer_head = NULL;
     while (1)
 	{
         signals_handling();

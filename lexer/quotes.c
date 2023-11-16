@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:26:07 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/13 16:54:30 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/15 00:17:35 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool closed_quotes(char *line)
 			i++;
 	}
 	if (d > 0 && d % 2 != 0)
-		return (printf("minishell: unexpected EOF while looking for matching : \"\n"), false);
+		return (printf("minishell: unexpected EOF while looking for matching : \" \n"), false);
 	if (s > 0 && s % 2 != 0)
 		return (printf("minishell: unexpected EOF while looking for matching : \'\n"), false);
 	return (true);

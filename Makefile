@@ -13,7 +13,7 @@ SRCS = main.c signals.c srcs_utils.c error.c free.c handle_quotes.c delete_quote
 
 EXPANDER = var_expander.c var_expander_utils.c variables.c var_replace.c \
 
-LEXER = lexer.c quotes.c \
+LEXER = lexer.c quotes.c token_parse.c \
 
 ENV = chained.c env.c init.c is.c list.c \
 
