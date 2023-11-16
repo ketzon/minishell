@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   variables.c                                        :+:      :+:    :+:   */
+/*   variables_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:49:54 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/16 19:00:15 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:58:17 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,5 @@ int variable_check(t_data *data)
             return (1);
        temp = temp->next;
     }
-
-	t_lexer	*tmp;
-	tmp =  data->lexer_head;
-	printf("-----------LEXER-------------\n");
-	while (tmp)
-	{
-		printf("%s | Token type = %s\n", tmp->word, token_word(tmp->token));
-		tmp = tmp->next;
-	}
-	printf("-----------------------------\n");
-	
     return (0);
 }

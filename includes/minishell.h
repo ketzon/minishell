@@ -147,6 +147,8 @@ int	is_value_null(char *str);
 
 /* LEXER */
 
+void	debugger_lexer(t_data *data);
+
 int	token_parse(t_data *data);
 char	*token_word(t_token token);
 int	is_sep(char *str, int i);

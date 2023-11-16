@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:29:16 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/16 18:58:31 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:58:33 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,6 @@ int	token_parse(t_data *data)
 			printf("unexpected EOF while looking for matching \'\n");
 		return (1);
 	}
-	// t_lexer	*tmp;
-	// tmp =  data->lexer_head;
-	// printf("-----------LEXER-------------\n");
-	// while (tmp)
-	// {
-	// 	printf("%s | Token type = %s\n", tmp->word, token_word(tmp->token));
-	// 	tmp = tmp->next;
-	// }
-	// printf("-----------------------------\n");
 	return (0);
 }
 

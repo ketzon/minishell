@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:36:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/26 13:25:41 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:58:23 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ static char    *find_matching_var(t_data *data, char *word)
 {
     char    *var_extracted;
     char    *var_value;
-    
+
     var_extracted = extract_var_from_string(word);
     if (var_extracted && var_exist(data, var_extracted) == true)
         var_value = get_var_value(data, var_extracted);
     else
         var_value = NULL;
-    printf("OG INPUT = %s | VAR NAME = %s | VAR_VALUE = %s\n", word, var_extracted, var_value);
+    //printf("OG INPUT = %s | VAR NAME = %s | VAR_VALUE = %s\n", word, var_extracted, var_value);
     free(var_extracted);
     return (var_value);
 }
@@ -49,7 +49,7 @@ static void    replace_var(t_data *data, t_lexer *node)
     int i;
     char    *var_value;
     int     single_quote;
-    
+
     single_quote = 0;
     i = 0;
     while (node->word[i])
@@ -63,7 +63,6 @@ static void    replace_var(t_data *data, t_lexer *node)
         else
             i++;
     }
-    printf("NEW STRING = %s\n", node->word);
 }
 
 void    variable_expander(t_data *data)
@@ -76,8 +75,7 @@ void    variable_expander(t_data *data)
         if (tmp->token == VAR)
         {
             replace_var(data, tmp);
-            //printf("%s\n", tmp->word);
         }
         tmp = tmp->next;
-    } 
+    }
 }

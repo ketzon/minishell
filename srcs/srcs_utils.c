@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/13 23:47:36 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:58:06 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,17 @@ int	ws(char c)
 	if (c == ' ' || c == '\n' || c == '\t')
 		return (1);
 	return (0);
+}
+
+void	debugger_lexer(t_data *data)
+{
+	t_lexer	*tmp;
+	tmp =  data->lexer_head;
+	printf("-----------LEXER-------------\n");
+	while (tmp)
+	{
+		printf("%s | Token type = %s\n", tmp->word, token_word(tmp->token));
+		tmp = tmp->next;
+	}
+	printf("-----------------------------\n");
 }
