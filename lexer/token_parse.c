@@ -6,11 +6,11 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:29:16 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/16 19:58:33 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/16 20:13:52 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"\
+#include "../includes/minishell.h"
 
 int	is_sep(char *str, int i)
 {
