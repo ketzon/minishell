@@ -68,7 +68,6 @@ typedef struct s_lexer
     char        *word;
 	char		*word_backup;
 	bool		var_exists;
-	int			status;
 	bool		join;
     t_token     token;
     t_lexer     *previous;

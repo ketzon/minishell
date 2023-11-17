@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:35:44 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/28 18:23:03 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/17 16:38:25 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,17 @@ int	count_len(char *str, int count, int i)
 
 int	handle_quotes(t_data *data)
 {
-	t_lexer *input;
-	input = data->lexer_head;
-	input->status = DEFAULT;
-	while(input)
+	t_lexer *tmp;
+
+	tmp = data->lexer_head;
+	while(tmp)
 	{
-		if (is_quotes(input->word) == true)
+		if (is_quotes(tmp->word) == true)
 		{
-			if (input->previous == NULL || input->previous)
-			{
-					delete_quotes(&input);
-					printf("%s\n", input->word);	
-					break;
-			}
+			if (tmp->previous == NULL || (tmp->previous && tmp->previous->token != HEREDOC))
+				delete_quotes(&tmp);
 		}
-		input = input->next;
+		tmp = tmp->next;
 	}
 	return (0);
 }
