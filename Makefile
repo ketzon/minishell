@@ -19,7 +19,7 @@ ENV = chained.c env.c init.c is.c list.c \
 
 BUILTIN = env.c echo.c builtin.c pwd.c exit.c unset.c export.c cd.c \
 
-COMMAND =  \
+COMMAND =  create_commands.c lst_cmd.c parse_word.c fill_cmd_args.c\
 
 EXPANDER_FILES = $(addprefix $(EXPANDER_DIR), $(EXPANDER))
 LEXER_FILES = $(addprefix $(LEXER_DIR), $(LEXER))

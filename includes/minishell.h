@@ -14,6 +14,7 @@
 # define PROMPT "\001\e[45m\002>>> \001\e[0m\e[33m\002 Minishell>$ \001\e[0m\002"
 //# define BUFFER_SIZE 42
 
+typedef struct s_cmd	t_cmd;
 typedef struct s_lexer t_lexer;
 typedef struct s_var t_var;
 typedef struct s_data t_data;
@@ -60,6 +61,7 @@ typedef struct s_data
     char        *line;
 	char		**env;
     t_lexer     *lexer_head;
+	t_cmd		*cmd_head;
     t_var     	*env_head;
 }   t_data;
 
@@ -74,6 +76,16 @@ typedef struct s_lexer
     t_lexer     *next;
 }   t_lexer;
 
+typedef struct s_cmd
+{
+	char	*command;
+	char	*path;
+	char	**args;
+	bool	pipe_output;
+	int		*pipe_fd;
+	t_cmd	*previous;
+	t_cmd	*next;
+}	t_cmd;
 
 /* MAIN */
 
@@ -180,7 +192,18 @@ char    *delete_var_name_and_replace(t_lexer *node, char *var_value, int index);
 
 /* CREATE COMMANDS*/
 
-//void	create_commands(t_data *data);
+void	debugger_cmds(t_data *data);
+
+void	create_commands(t_data *data);
+void	cmd_lst_addback(t_cmd **cmd_head, t_cmd *new_node);
+t_cmd	*new_node_cmd(bool value);
+t_cmd	*get_last_cmd(t_cmd *cmd_lst);
+void	parse_words(t_cmd **cmd_head, t_lexer **lexer_lst);
+
+int		fill_cmd_args(t_lexer **lexer_lst, t_cmd *last_cmd);
+int		create_args(t_cmd *last_cmd, t_lexer **lexer_lst);
+int		add_new_args(t_cmd *last_cmd, t_lexer **lexer_lst);
+char	**fill_args_tab(t_cmd *last_cmd, t_lexer **lexer_lst, char **new_args_tab, int old_args_count);
 
 /* ERROR */
 
