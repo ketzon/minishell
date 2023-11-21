@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:37:39 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/17 16:10:10 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/21 19:47:27 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 void	free_reset_ptr(void	*ptr)
 {
 	if (ptr)
+	{
 		free(ptr);
-	ptr = NULL;
+		ptr = NULL;
+	}
 }
 
 void	free_data(t_data *data)
@@ -60,12 +62,29 @@ void	free_env_array(char **env_arr)
 		return ;
 	while (env_arr[index] != NULL)
 	{
-		free_reset_ptr(env_arr[index]);
-		env_arr[index] = NULL;
+		if (env_arr[index])
+		{
+			free_reset_ptr(env_arr[index]);
+		}
 		index++;
 	}
 	free_reset_ptr(env_arr);
 	return ;
+}
+
+void	free_strs(char **strs)
+{
+	int	i;
+
+	i = 0;
+	if (!strs)
+		return ;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
 }
 
 void	clear_lexer_head(t_lexer **lexer_head)
@@ -76,7 +95,7 @@ void	clear_lexer_head(t_lexer **lexer_head)
 	while (*lexer_head)
 	{
 		tmp = (*lexer_head)->next;
-		if ((*lexer_head)->token == WORD)
+		if ((*lexer_head)->token == WORD || (*lexer_head)->token == VAR)
 			free((*lexer_head)->word);
 		free(*lexer_head);
 		*lexer_head = tmp;

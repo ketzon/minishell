@@ -126,6 +126,8 @@ char	*get_line_name(char *line);
 
 /* FREE */
 
+void	free_strs(char **strs);
+
 void	free_data(t_data *data);
 void	free_reset_ptr(void	*ptr);
 void	free_env_array(char **env_arr);
@@ -200,6 +202,7 @@ t_cmd	*new_node_cmd(bool value);
 t_cmd	*get_last_cmd(t_cmd *cmd_lst);
 void	parse_words(t_cmd **cmd_head, t_lexer **lexer_lst);
 
+void	split_var_cmd(char *var_str, t_cmd *last_cmd);
 int		fill_cmd_args(t_lexer **lexer_lst, t_cmd *last_cmd);
 int		create_args(t_cmd *last_cmd, t_lexer **lexer_lst);
 int		add_new_args(t_cmd *last_cmd, t_lexer **lexer_lst);

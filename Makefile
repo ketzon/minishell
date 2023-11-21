@@ -9,7 +9,7 @@ BUILTIN_DIR = builtin/
 SRCS_DIR = srcs/
 CMD_DIR = command/
 
-SRCS = main.c signals.c srcs_utils.c error.c free.c handle_quotes.c delete_quotes.c\
+SRCS = main.c signals.c srcs_utils.c error.c free.c handle_quotes.c delete_quotes.c debuggers.c\
 
 EXPANDER = var_expander.c var_expander_utils.c variables_check.c var_replace.c \
 
@@ -19,7 +19,7 @@ ENV = chained.c env.c init.c is.c list.c \
 
 BUILTIN = env.c echo.c builtin.c pwd.c exit.c unset.c export.c cd.c \
 
-COMMAND =  create_commands.c lst_cmd.c parse_word.c fill_cmd_args.c\
+COMMAND =  create_commands.c lst_cmd.c parse_word.c fill_cmd_args.c split_var_cmd.c \
 
 EXPANDER_FILES = $(addprefix $(EXPANDER_DIR), $(EXPANDER))
 LEXER_FILES = $(addprefix $(LEXER_DIR), $(LEXER))
