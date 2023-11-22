@@ -9,6 +9,7 @@
 # include <readline/history.h>
 # include <stdbool.h>
 # include <signal.h>
+# include <fcntl.h>
 
 # define NOT_FIND  1
 # define PROMPT "\001\e[45m\002>>> \001\e[0m\e[33m\002 Minishell>$ \001\e[0m\002"
@@ -39,6 +40,18 @@ typedef enum e_token
     OUTAPPEND = 8,
 	END = 9
 }   t_token;
+
+typedef struct s_io
+{
+	char	*infile;
+	char	*outfile;
+	char	*heredoc_eof;
+	bool	heredoc_quotes;
+	int		input_fd;
+	int		output_fd;
+	int		stdin_backup;
+	int		stdout_backup;
+}	t_io_data;
 
 typedef struct s_builtin
 {
@@ -83,6 +96,7 @@ typedef struct s_cmd
 	char	**args;
 	bool	pipe_output;
 	int		*pipe_fd;
+	t_io_data	*io_struct;
 	t_cmd	*previous;
 	t_cmd	*next;
 }	t_cmd;
@@ -91,6 +105,10 @@ typedef struct s_cmd
 
 bool    parse_input(t_data *data);
 void    reset_loop(t_data *data);
+
+/* INIT */
+
+void	initialise_io(t_cmd *cmd_node);
 
 /* SIGNALS */
 
@@ -201,6 +219,8 @@ void	cmd_lst_addback(t_cmd **cmd_head, t_cmd *new_node);
 t_cmd	*new_node_cmd(bool value);
 t_cmd	*get_last_cmd(t_cmd *cmd_lst);
 void	parse_words(t_cmd **cmd_head, t_lexer **lexer_lst);
+void	parse_input_cmd(t_cmd **cmd_head, t_lexer **lexer_head);
+void	open_input(t_io_data *io, char *input_name, char *og_name);
 
 void	split_var_cmd(char *var_str, t_cmd *last_cmd);
 int		fill_cmd_args(t_lexer **lexer_lst, t_cmd *last_cmd);

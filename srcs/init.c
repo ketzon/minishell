@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_commands.c                                  :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 16:19:51 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/22 18:34:27 by fgonzale         ###   ########.fr       */
+/*   Created: 2023/11/22 21:53:52 by fgonzale          #+#    #+#             */
+/*   Updated: 2023/11/22 22:08:28 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	create_commands(t_data *data)
+void	initialise_io(t_cmd *cmd_node)
 {
-	t_lexer	*tmp;
-
-	tmp = data->lexer_head;
-	if (tmp->token == END)
+	cmd_node->io_struct = malloc(sizeof(t_io_data));
+	if (!cmd_node->io_struct)
 		return ;
-	while (tmp->next != NULL)
-	{
-		if (tmp == data->lexer_head)
-			cmd_lst_addback(&data->cmd_head, new_node_cmd(false));
-		if (tmp->token == WORD || tmp->token == VAR)
-			parse_words(&data->cmd_head, &tmp);
-		else if (tmp->token == INPUT)
-			parse_input_cmd(&data->cmd_head, &tmp);
-		else if(tmp->token == END)
-			break ;
-	}
+	cmd_node->io_struct->heredoc_eof = NULL;
+	cmd_node->io_struct->infile = NULL;
+	cmd_node->io_struct->outfile = NULL;
+	cmd_node->io_struct->heredoc_quotes = false;
+	cmd_node->io_struct->input_fd = -1;
+	cmd_node->io_struct->output_fd = -1;
+	cmd_node->io_struct->stdin_backup = -1;
+	cmd_node->io_struct->stdout_backup = -1;
 }
