@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:36:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/16 19:58:23 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:49:58 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static char    *find_matching_var(t_data *data, char *word)
     else
         var_value = NULL;
     //printf("OG INPUT = %s | VAR NAME = %s | VAR_VALUE = %s\n", word, var_extracted, var_value);
+	//Dans cette fonction , il faut verifier que ?= est gere et que il faut faire un itoa de g_last_exit_code.
     free(var_extracted);
     return (var_value);
 }

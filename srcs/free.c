@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:37:39 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/21 19:47:27 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:41:46 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void	clear_lexer_head(t_lexer **lexer_head)
 		tmp = (*lexer_head)->next;
 		if ((*lexer_head)->token == WORD || (*lexer_head)->token == VAR)
 			free((*lexer_head)->word);
+		if ((*lexer_head)->word_backup)
+			free((*lexer_head)->word_backup);
 		free(*lexer_head);
 		*lexer_head = tmp;
 	}

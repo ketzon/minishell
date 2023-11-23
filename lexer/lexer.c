@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 10:52:58 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/15 18:12:31 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:52:34 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int    add_token(char *input, int i, t_lexer **head)
         str = "|";
         token = PIPE;
     }
-    stack_add_bottom(head, new_node(str, token));
+    stack_add_bottom(head, new_node(str, NULL, token));
     return (j);
 }
 
@@ -91,7 +91,8 @@ int     add_word(char *input, int i, t_lexer **head)
         else
             j++;
     }
-    stack_add_bottom(head, new_node(ft_substr(input, i, j), WORD));
+	(void)head;
+    //stack_add_bottom(head, new_node(ft_substr(input, i, j), WORD));
     return (j);
 }
 

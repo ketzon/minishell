@@ -159,7 +159,7 @@ char *ft_strcpy(char *dest, const char *src);
 int	ws(char c);
 int ft_skip_white_spaces(char *str);
 void    stack_add_bottom(t_lexer **head, t_lexer *new);
-t_lexer *new_node(char *input, t_token token);
+t_lexer *new_node(char *input, char *input_backup, t_token token);
 int	count_len(char *str, int count, int i);
 
 /* QUOTES */

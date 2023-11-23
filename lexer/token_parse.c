@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:29:16 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/16 20:13:52 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:37:31 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static int	save_input(t_data *data, int start, int *i)
 {
 	int		type;
 	char 	*str;
+	char	*word;
 
 	str = data->line;
 	type = is_sep(str, (*i));
@@ -46,7 +47,10 @@ static int	save_input(t_data *data, int start, int *i)
 	if (type)
 	{
 		if ((*i) != 0 && is_sep(str, (*i) - 1) == 0)
-			stack_add_bottom(&data->lexer_head, new_node(ft_substr(str, start, (*i) - start), WORD));
+		{
+			word = ft_substr(str, start, (*i) - start);
+			stack_add_bottom(&data->lexer_head, new_node(word, ft_strdup(word), WORD));
+		}
 		if (type == OUTAPPEND || type == HEREDOC || type == PIPE
 			|| type == INPUT || type == OUTPUT || type == END)
 		{

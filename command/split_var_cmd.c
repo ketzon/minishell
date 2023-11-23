@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:48:08 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/21 19:59:18 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:54:42 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	split_var_cmd(char *var_str, t_cmd *last_cmd)
 		return ;
 	last_cmd->command = ft_strdup(var_splitted[0]);
 	if (var_splitted[1])
-		tmp_lexer = new_node(ft_strdup(var_splitted[1]), WORD);
+		tmp_lexer = new_node(ft_strdup(var_splitted[1]), NULL, WORD);
 	tmp_save_free = tmp_lexer;
 	while (var_splitted[++i])
-		stack_add_bottom(&tmp_lexer, new_node(ft_strdup(var_splitted[i]), WORD));
-	stack_add_bottom(&tmp_lexer, new_node(NULL, END));
+		stack_add_bottom(&tmp_lexer, new_node(ft_strdup(var_splitted[i]), NULL, WORD));
+	stack_add_bottom(&tmp_lexer, new_node(NULL, NULL, END));
 	fill_cmd_args(&tmp_lexer, last_cmd);
 	clear_lexer_head(&tmp_save_free);
 	free_env_array(var_splitted);

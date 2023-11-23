@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/21 17:45:19 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:51:30 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void    stack_add_bottom(t_lexer **head, t_lexer *new)
     }
 }
 
-t_lexer *new_node(char *input, t_token token)
+t_lexer *new_node(char *input, char *input_backup, t_token token)
 {
     t_lexer *new;
 
@@ -66,6 +66,7 @@ t_lexer *new_node(char *input, t_token token)
     new->previous = NULL;
     new->token = token;
     new->word = input;
+	new->word_backup = input_backup;
     return (new);
 }
 

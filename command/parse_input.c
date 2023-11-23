@@ -6,24 +6,50 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:32:47 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/22 22:49:25 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:50:38 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+static bool	erase_previous_file(t_io_data *io, bool infile)
+{
+	if (infile == true && io->infile)
+	{
+		if (io->input_fd == -1 || (io->outfile && io->output_fd == -1))
+			return (false);
+		if (io->heredoc_eof != NULL)
+		{
+			free_reset_ptr(io->heredoc_eof);
+			io->heredoc_eof = NULL;
+			unlink(io->infile);
+		}
+		free(io->infile);
+		close(io->input_fd);
+	}
+	else if (infile == false && io->outfile)
+	{
+		if (io->output_fd == -1 || (io->infile && io->input_fd == -1))
+			return (false);
+		free(io->outfile);
+		close(io->output_fd);
+	}
+	return (true);
+}
+
 void	open_input(t_io_data *io, char *input_name, char *og_name)
 {
-	//remove_old_file();
+	if (erase_previous_file(io, true) == false)
+		return ;
 	io->infile = ft_strdup(input_name);
-	//(io_infile && io_infile[0] == '\0')
-//	{
-		//error_msg("ambigous redirect");
-		//return ;
-//	}
+	if (io->infile && io->infile[0] == '\0')
+	{
+		printf("%s ambigous redirect", og_name); // Changer pour errcmd.
+		return ;
+	}
 	io->input_fd = open(io->infile, O_RDONLY);
 	if (io->input_fd == -1)
-		printf("Error opening infile\n"); // Changer pour errcmd.
+		printf("%s : '%s'\n", strerror(errno), io->infile); // Changer pour errcmd.
 }
 
 void	parse_input_cmd(t_cmd **cmd_head, t_lexer **lexer_head)
