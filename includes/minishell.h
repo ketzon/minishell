@@ -219,8 +219,10 @@ void	cmd_lst_addback(t_cmd **cmd_head, t_cmd *new_node);
 t_cmd	*new_node_cmd(bool value);
 t_cmd	*get_last_cmd(t_cmd *cmd_lst);
 void	parse_words(t_cmd **cmd_head, t_lexer **lexer_lst);
+bool	erase_previous_file(t_io_data *io, bool infile);
 void	parse_input_cmd(t_cmd **cmd_head, t_lexer **lexer_head);
 void	open_input(t_io_data *io, char *input_name, char *og_name);
+void	parse_output(t_cmd **cmd_head, t_lexer **lexer_head);
 
 void	split_var_cmd(char *var_str, t_cmd *last_cmd);
 int		fill_cmd_args(t_lexer **lexer_lst, t_cmd *last_cmd);

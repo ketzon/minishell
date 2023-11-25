@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:44:30 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/23 18:58:16 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/26 00:58:17 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ void	debugger_cmds(t_data *data)
 		printf("Command = %s\n", tmp->command);
 		while (tmp->args && tmp->args[i])
 			printf("Args = %s\n", tmp->args[i++]);
-		if (tmp->io_struct->input_fd != -1)
+		if (tmp->io_struct && tmp->io_struct->input_fd != -1)
 			printf("infile = %s\n", tmp->io_struct->infile);
+		if (tmp->io_struct && tmp->io_struct->output_fd != -1)
+			printf("outfile = %s\n", tmp->io_struct->outfile);
 		tmp = tmp->next;
 	}
 	printf("-----------------------------\n");

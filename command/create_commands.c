@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:19:51 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/22 18:34:27 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/26 00:27:37 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	create_commands(t_data *data)
 			parse_words(&data->cmd_head, &tmp);
 		else if (tmp->token == INPUT)
 			parse_input_cmd(&data->cmd_head, &tmp);
+		else if (tmp->token == OUTPUT)
+			parse_output(&data->cmd_head, &tmp);
 		else if(tmp->token == END)
 			break ;
 	}

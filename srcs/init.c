@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 21:53:52 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/22 22:08:28 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/26 00:52:28 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	initialise_io(t_cmd *cmd_node)
 {
+	if (cmd_node->io_struct)
+		return ;
 	cmd_node->io_struct = malloc(sizeof(t_io_data));
 	if (!cmd_node->io_struct)
 		return ;

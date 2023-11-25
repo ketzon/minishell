@@ -6,13 +6,13 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:32:47 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/23 18:50:38 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/26 00:35:01 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static bool	erase_previous_file(t_io_data *io, bool infile)
+bool	erase_previous_file(t_io_data *io, bool infile)
 {
 	if (infile == true && io->infile)
 	{
