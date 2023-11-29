@@ -5,6 +5,9 @@
 # include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
+# include <sys/types.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdbool.h>
@@ -13,10 +16,13 @@
 # define NOT_FIND  1
 # define PROMPT "\001\e[45m\002>>> \001\e[0m\e[33m\002 Minishell>$ \001\e[0m\002"
 //# define BUFFER_SIZE 42
+# define CMD_NOT_FOUND 127
+# define CMD_NOT_EXECUTABLE 126
 
 typedef struct s_lexer t_lexer;
 typedef struct s_var t_var;
 typedef struct s_data t_data;
+typedef struct s_command t_command;
 
 
 enum e_quoting_status
@@ -41,7 +47,7 @@ typedef enum e_token
 typedef struct s_builtin
 {
 	char	*name;
-	int		(*func)(t_data *data);
+	int		(*func)(t_data *data, t_command *cmd);
 }	t_builtin;
 
 typedef struct s_io_fds
@@ -84,7 +90,8 @@ typedef struct s_data
 	char		**env;
 	t_command	*cmd;
     t_lexer     *lexer_head;
-    t_var     	*env_head;
+    t_var 		*env_head;
+	pid_t 		 pid;
 }   t_data;
 
 typedef struct s_lexer
@@ -113,14 +120,14 @@ void	sigint_handling(int signal);
 
 /* BUILTIN */
 
-// int	execute_builtin(t_data *data);
-// int	builtin_cd(t_data *data);
-// int	builtin_echo(t_data *data);
-// int	builtin_env(t_data *data);
-// int builtin_exit(t_data *data);
-// int builtin_pwd(t_data *data);
-// int builtin_unset(t_data *data);
-// int	builtin_export(t_data *data);
+int	execute_builtin(t_data *data, t_command *cmd);
+int	builtin_cd(t_data *data, t_command *cmd);
+int	builtin_echo(t_data *data, t_command *cmd);
+int	builtin_env(t_data *data, t_command *cmd);
+int builtin_exit(t_data *data, t_command *cmd);
+int builtin_pwd(t_data *data, t_command *cmd);
+int builtin_unset(t_data *data, t_command *cmd);
+int	builtin_export(t_data *data, t_command *cmd);
 
 /* ENV */
 
@@ -140,12 +147,14 @@ char	*get_line_name(char *line);
 
 /* FREE */
 
-void	free_data(t_data *data);
+void	free_data(t_data *data, bool clear_history);
+void 	free_ptr(void *ptr);
 void	free_env_array(char **env_arr);
 void	free_env_struct(t_var *env_head);
 
 /* UTILS */
 
+void close_fds(t_command *cmds, bool close_backups);
 int	ft_strcmp(char *s1, char *s2);
 char *ft_strcpy(char *dest, const char *src);
 int	ws(char c);
@@ -164,6 +173,8 @@ int     quotes_handling(char *str, int start, char quote);
 
 /* IS */
 
+int is_index(char **env, char *var);
+bool cmd_is_dir(char *cmd);
 bool is_quotes(char *str);
 int	is_null(char *str);
 int	is_value_null(char *str);
@@ -198,13 +209,28 @@ char    *delete_var_name_and_replace(t_lexer *node, char *var_value, int index);
 
 /* CREATE COMMANDS*/
 
+
+/* REDIRECTIONS */
+void	close_fds(t_command *cmds, bool close_backups);
+void 	close_pipe_fds(t_command *cmds, t_command *skip_cmd);
+bool 	check_infile_outfile(t_io_fds *io);
+bool 	set_pipe_fds(t_command *cmds, t_command *cmd);
+bool 	restore_io(t_io_fds *io);
+bool	redirect_io(t_io_fds *io);
+bool 	create_pipes(t_data *data);
+
 /* EXECUTE */
-int *execute(t_data *data);
+int execute(t_data *data);
+int execute_command(t_data *data, t_command *cmd);
+char *get_cmd_path(t_data *data, char *name);
+int  check_command_not_found(t_data *data, t_command *cmd);
+void 	free_str_tab(char **tab);
 
 //void	create_commands(t_data *data);
 
 /* ERROR */
-
 int	ft_error(int error);
+int errmsg_cmd(char *command, char *detail, char *error_message, int error_nb);
+void 	exit_shell(t_data *data, int exit_number);
 
 #endif

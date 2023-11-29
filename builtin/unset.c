@@ -6,14 +6,15 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:52:53 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/20 12:03:56 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 15:49:43 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	builtin_unset(t_data *data)
+int	builtin_unset(t_data *data, t_command *cmd)
 {
+		(void)cmd;
 		t_lexer	*current;
 		int i;
 		int j;

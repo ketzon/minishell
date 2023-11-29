@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/15 14:20:33 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/24 13:41:23 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool    parse_input(t_data *data)
 {
 	if (data->line == NULL)
 	{
-		free_data(data);
+		free_data(data, true);
 		exit(0);
 	}
 	return (true);
@@ -106,11 +106,14 @@ int main(int , char **, char **envp)
 			printf("Input OK\n");
 			t_command *test_cmd = create_test_command();
 			print_command_info(test_cmd);
-			execute(data);
+			int status = execute(&data);
+			printf("%d\n", status);
 		}
 		else
+		{
 			printf("Input KO\n");
 			reset_loop(&data);
+		}
 	}
 	return (0);
 }

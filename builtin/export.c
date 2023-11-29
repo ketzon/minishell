@@ -6,7 +6,7 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:12:48 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/21 17:39:26 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 16:48:54 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,17 +96,16 @@ void add_new_env_var(t_data *data, char *key, char *value)
     data->env = new_env;
 }
 
-int builtin_export(t_data *data)
+int builtin_export(t_data *data, t_command *cmd)
 {
+    (void)cmd;
     t_lexer *current;
     char *key;
     char *value;
     int i;
 	current = data->lexer_head->next;
     if (!current)
-    {
-        return (builtin_env(data));
-    }
+        return (builtin_env(data, cmd));
     while (current)
     {
         split_key_value(current->word, &key, &value);

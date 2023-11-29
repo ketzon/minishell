@@ -5,7 +5,8 @@ LIBFT_DIR = ./libft
 LEXER_DIR = lexer/
 ENV_DIR = env/
 EXPANDER_DIR = expander/
-ECEXUTION_DIR = execution/
+EXECUTION_DIR = execution/
+REDIRECTIONS_DIR = redirections/
 BUILTIN_DIR = builtin/
 SRCS_DIR = srcs/
 CMD_DIR = command/
@@ -14,7 +15,9 @@ SRCS = main.c signals.c srcs_utils.c error.c free.c handle_quotes.c delete_quote
 
 EXPANDER = var_expander.c var_expander_utils.c variables.c var_replace.c \
 
-EXECUTION = execute.c \
+REDIRECTIONS = file_io.c pipe.c \
+
+EXECUTION = execute.c execute_cmd.c execute_utils.c parse_path.c\
 
 LEXER = lexer.c quotes.c \
 
@@ -28,10 +31,12 @@ EXPANDER_FILES = $(addprefix $(EXPANDER_DIR), $(EXPANDER))
 LEXER_FILES = $(addprefix $(LEXER_DIR), $(LEXER))
 ENV_FILES = $(addprefix $(ENV_DIR), $(ENV))
 SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))
-#BUILTIN_FILES = $(addprefix $(BUILTIN_DIR), $(BUILTIN))
+BUILTIN_FILES = $(addprefix $(BUILTIN_DIR), $(BUILTIN))
+EXECUTION_FILES = $(addprefix $(EXECUTION_DIR), $(EXECUTION))
+REDIRECTIONS_FILES = $(addprefix $(REDIRECTIONS_DIR), $(REDIRECTIONS))
 CMD_FILES = $(addprefix $(CMD_DIR), $(COMMAND))
 
-ALL_FILES = $(SRCS_FILES) $(ENV_FILES) $(LEXER_FILES) $(EXPANDER_FILES) $(CMD_FILES) #$(BUILTIN_FILES)
+ALL_FILES = $(SRCS_FILES) $(ENV_FILES) $(LEXER_FILES) $(EXPANDER_FILES) $(CMD_FILES) $(EXECUTION_FILES) $(BUILTIN_FILES) $(REDIRECTIONS_FILES)
 
 MANDATORY = minishell
 ALL_OBJ = $(foreach src,$(ALL_FILES),$(BIN)/$(src:.c=.o))
