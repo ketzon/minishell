@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:36:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/29 16:07:26 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:11:30 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ char    *find_matching_var(t_data *data, char *word)
     var_extracted = extract_var_from_string(word);
     if (var_extracted && var_exist(data, var_extracted) == true)
         var_value = get_var_value(data, var_extracted);
-	else if (var_extracted && var_extracted[0] == '?' && var_extracted[1] == '=')
-		var_value = ft_itoa(10);
+	// else if (var_extracted && var_extracted[0] == '?' && var_extracted[1] == '=')
+	// 	var_value = ft_itoa(10);
     else
         var_value = NULL;
     printf("OG INPUT = %s | VAR NAME = %s | VAR_VALUE = %s\n", word, var_extracted, var_value);
