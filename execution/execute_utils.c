@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 09:17:42 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 15:26:08 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 18:09:43 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ bool 	cmd_is_dir(char *cmd)
 	return (S_ISDIR(cmd_stat.st_mode));
 }
 
-int 	check_command_not_found(t_data *data, t_command *cmd)
+int 	check_command_not_found(t_data *data, t_cmd *cmd)
 {
 	if (ft_strchr(cmd->command, '/') == NULL
 		&& is_index(data->env, "PATH") != -1)
-		return (errmsg_cmd(cmd->command, NULL, "command not found", 
+		return (errmsg_cmd(cmd->command, NULL, "command not found",
 				CMD_NOT_FOUND));
 	if (access(cmd->command, F_OK) != 0)
 		return (errmsg_cmd(cmd->command, NULL, strerror(errno), CMD_NOT_FOUND));

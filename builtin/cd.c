@@ -6,13 +6,13 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:52:33 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 15:50:24 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 18:11:17 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	builtin_cd(t_data *data, t_command *cmd)
+int	builtin_cd(t_data *data, t_cmd *cmd)
 {
 	(void)cmd;
 	char *path;

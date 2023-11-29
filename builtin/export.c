@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:12:48 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 16:48:54 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 18:15:01 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void add_new_env_var(t_data *data, char *key, char *value)
     new_env = malloc((i + 2) * sizeof(char *));
     if (!new_env)
         exit(1);
-	
+
     while (j < i)
     {
         new_env[j] = data->env[j];
@@ -96,7 +96,7 @@ void add_new_env_var(t_data *data, char *key, char *value)
     data->env = new_env;
 }
 
-int builtin_export(t_data *data, t_command *cmd)
+int builtin_export(t_data *data, t_cmd *cmd)
 {
     (void)cmd;
     t_lexer *current;

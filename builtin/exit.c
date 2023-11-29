@@ -6,14 +6,14 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:06:03 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 15:49:22 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 18:11:28 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../includes/minishell.h"
 
-int builtin_exit(t_data *data, t_command *cmd)
+int builtin_exit(t_data *data, t_cmd *cmd)
 {
     (void)cmd;
 	int exit_value;

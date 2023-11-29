@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:46:28 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/28 11:42:00 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 21:12:03 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int execute_sys_bin(t_data *data, t_command *cmd)
+static int execute_sys_bin(t_data *data, t_cmd *cmd)
 {
 	if (!cmd->command || cmd->command[0] == '\0')
 		return (CMD_NOT_FOUND);
@@ -26,7 +26,7 @@ static int execute_sys_bin(t_data *data, t_command *cmd)
 	return (EXIT_FAILURE);
 }
 
-static int execute_local_bin(t_data *data, t_command *cmd)
+static int execute_local_bin(t_data *data, t_cmd *cmd)
 {
 	int val;
 
@@ -38,18 +38,18 @@ static int execute_local_bin(t_data *data, t_command *cmd)
 	return (1);
 }
 
-int execute_command(t_data *data, t_command *cmd)
+int execute_command(t_data *data, t_cmd *cmd)
 {
 	int val;
 
 	if (cmd->command == NULL || cmd == NULL)
 		exit_shell(data, errmsg_cmd("child", NULL,
 					"parsing error: no to command to execute!", EXIT_FAILURE));
-	if (check_infile_outfile(cmd->io_fds) == false)
+	if (check_infile_outfile(cmd->io_struct) == false)
 		exit_shell(data, EXIT_FAILURE);
-	set_pipe_fds(data->cmd, cmd);
-	redirect_io(cmd->io_fds);
-	close_fds(data->cmd, false);
+	set_pipe_fds(data->cmd_head, cmd);
+	redirect_io(cmd->io_struct);
+	close_fds(data->cmd_head, false);
 	if (ft_strchr(cmd->command, '/') == NULL)
 	{
 		val = execute_builtin(data, cmd);

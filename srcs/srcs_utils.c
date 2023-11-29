@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/29 17:15:13 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 18:05:16 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,16 +110,16 @@ void    free_ptr(void *ptr)
     }
 }
 
-void	close_fds(t_command *cmds, bool close_backups)
+void	close_fds(t_cmd *cmds, bool close_backups)
 {
-	if (cmds->io_fds)
+	if (cmds->io_struct)
 	{
-		if (cmds->io_fds->fd_in != -1)
-			close(cmds->io_fds->fd_in);
-		if (cmds->io_fds->fd_out != -1)
-			close(cmds->io_fds->fd_out);
+		if (cmds->io_struct->input_fd != -1)
+			close(cmds->io_struct->input_fd);
+		if (cmds->io_struct->output_fd != -1)
+			close(cmds->io_struct->output_fd);
 		if (close_backups)
-			restore_io(cmds->io_fds);
+			restore_io(cmds->io_struct);
 	}
 	close_pipe_fds(cmds, NULL);
 }
@@ -135,8 +135,8 @@ void 	exit_shell(t_data *data, int exit_number)
 {
 	if (data)
 	{
-		if (data->cmd && data->cmd->io_fds)
-			close_fds(data->cmd, true);
+		if (data->cmd_head && data->cmd_head->io_struct)
+			close_fds(data->cmd_head, true);
 		free_data(data, true);
 	}
 	exit (exit_number);

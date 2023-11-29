@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:04:15 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 15:49:10 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 18:10:37 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	builtin_env(t_data *data, t_command *cmd)
+int	builtin_env(t_data *data, t_cmd *cmd)
 {
 		(void)cmd;
 		int i;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   file_io.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:40:21 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/27 10:19:39 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 22:13:16 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool 	restore_io(t_io_fds *io)
+bool 	restore_io(t_io_data *io)
 {
 	int val;
 
@@ -34,7 +34,7 @@ bool 	restore_io(t_io_fds *io)
 	}
 	return (val);
 }
-bool	redirect_io(t_io_fds *io)
+bool	redirect_io(t_io_data *io)
 {
 	int val;
 
@@ -47,25 +47,25 @@ bool	redirect_io(t_io_fds *io)
 		val = errmsg_cmd("dup", "stdin_backup", strerror(errno), false);
 	if (io->stdout_backup == -1)
 		val = errmsg_cmd("dup", "stdout_backup", strerror(errno), false);
-	if (io->fd_in != -1)
-		if (dup2(io->fd_in, STDIN_FILENO) == -1)
+	if (io->input_fd != -1)
+		if (dup2(io->input_fd, STDIN_FILENO) == -1)
 		val = errmsg_cmd("dup2", io->infile, strerror(errno), false);
-	if (io->fd_out != -1)
+	if (io->output_fd != -1)
 	{
-		if (dup2(io->fd_out, STDIN_FILENO) == -1)
+		if (dup2(io->output_fd, STDOUT_FILENO) == -1)
 		val = errmsg_cmd("dup2", io->outfile, strerror(errno), false);
 	}
 	return (val);
 }
-bool	check_infile_outfile(t_io_fds *io)
+bool	check_infile_outfile(t_io_data *io)
 {
 	if (!io)
 		return (true);
 	if (!io->infile && !io->outfile)
 		return (true);
-	if (io->infile && io->fd_in == -1)
+	if (io->infile && io->input_fd == -1)
 		return (false);
-	if (io->outfile && io->fd_out == -1)
+	if (io->outfile && io->output_fd == -1)
 		return (false);
 	return (true);
 }

@@ -62,7 +62,7 @@ typedef struct s_io
 typedef struct s_builtin
 {
 	char	*name;
-	int		(*func)(t_data *data, t_command *cmd);
+	int		(*func)(t_data *data, t_cmd *cmd);
 }	t_builtin;
 
 typedef struct s_io_fds
@@ -149,14 +149,14 @@ void	sigint_handling(int signal);
 
 /* BUILTIN */
 
-int	execute_builtin(t_data *data, t_command *cmd);
-int	builtin_cd(t_data *data, t_command *cmd);
-int	builtin_echo(t_data *data, t_command *cmd);
-int	builtin_env(t_data *data, t_command *cmd);
-int builtin_exit(t_data *data, t_command *cmd);
-int builtin_pwd(t_data *data, t_command *cmd);
-int builtin_unset(t_data *data, t_command *cmd);
-int	builtin_export(t_data *data, t_command *cmd);
+int	execute_builtin(t_data *data, t_cmd *cmd);
+int	builtin_cd(t_data *data, t_cmd *cmd);
+int	builtin_echo(t_data *data, t_cmd *cmd);
+int	builtin_env(t_data *data, t_cmd *cmd);
+int builtin_exit(t_data *data, t_cmd *cmd);
+int builtin_pwd(t_data *data, t_cmd *cmd);
+int builtin_unset(t_data *data, t_cmd *cmd);
+int	builtin_export(t_data *data, t_cmd *cmd);
 
 /* ENV */
 
@@ -186,7 +186,7 @@ void	clear_lexer_head(t_lexer **lexer_head);
 
 /* UTILS */
 
-void close_fds(t_command *cmds, bool close_backups);
+//void close_fds(t_command *cmds, bool close_backups);
 int	ft_strcmp(char *s1, char *s2);
 char *ft_strcpy(char *dest, const char *src);
 int	ws(char c);
@@ -251,19 +251,19 @@ char    *delete_var_name_and_replace(t_lexer *node, char *var_value, int index);
 void	debugger_cmds(t_data *data);
 
 /* REDIRECTIONS */
-void	close_fds(t_command *cmds, bool close_backups);
-void 	close_pipe_fds(t_command *cmds, t_command *skip_cmd);
-bool 	check_infile_outfile(t_io_fds *io);
-bool 	set_pipe_fds(t_command *cmds, t_command *cmd);
-bool 	restore_io(t_io_fds *io);
-bool	redirect_io(t_io_fds *io);
+void	close_fds(t_cmd *cmds, bool close_backups);
+void 	close_pipe_fds(t_cmd *cmds, t_cmd *skip_cmd);
+bool 	check_infile_outfile(t_io_data *io);
+bool 	set_pipe_fds(t_cmd *cmds, t_cmd *cmd);
+bool 	restore_io(t_io_data *io);
+bool	redirect_io(t_io_data *io);
 bool 	create_pipes(t_data *data);
 
 /* EXECUTE */
 int execute(t_data *data);
-int execute_command(t_data *data, t_command *cmd);
+int execute_command(t_data *data, t_cmd *cmd);
 char *get_cmd_path(t_data *data, char *name);
-int  check_command_not_found(t_data *data, t_command *cmd);
+int  check_command_not_found(t_data *data, t_cmd *cmd);
 void 	free_str_tab(char **tab);
 
 void	create_commands(t_data *data);

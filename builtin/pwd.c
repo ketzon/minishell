@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:05:04 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 15:51:18 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 18:11:45 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	builtin_pwd(t_data *data, t_command *cmd)
+int	builtin_pwd(t_data *data, t_cmd *cmd)
 {
 		(void)data;
 		(void)cmd;

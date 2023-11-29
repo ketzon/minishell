@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:41:45 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/27 10:40:29 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 21:47:38 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int get_children(t_data *data)
 	int status;
 	int save_status;
 
-	close_fds(data->cmd, false);
+	close_fds(data->cmd_head, false);
 	save_status = 0;
 	wpid = 0;
 	while (wpid != -1 || errno != ECHILD)
@@ -39,9 +39,9 @@ static int get_children(t_data *data)
 
 static int create_children(t_data *data)
 {
-	t_command 	*cmd;
+	t_cmd 	*cmd;
 
-	cmd = data->cmd;
+	cmd = data->cmd_head;
 	while (cmd != NULL && data->pid != 0)
 	{
 		data->pid = fork();
@@ -58,12 +58,12 @@ static int init_exec(t_data *data)
 {
 	int io_val;
 
-	io_val = check_infile_outfile(data->cmd->io_fds);
-	if (!data || !data->cmd)
+	io_val = check_infile_outfile(data->cmd_head->io_struct);
+	if (!data || !data->cmd_head)
 		return (EXIT_SUCCESS);
-	if (!data->cmd->command)
+	if (!data->cmd_head->command)
 	{
-		if (data->cmd->io_fds && !io_val)
+		if (data->cmd_head->io_struct && !io_val)
 				return (EXIT_FAILURE);
 		return (EXIT_SUCCESS);
 	}
@@ -79,12 +79,12 @@ int	execute(t_data *data)
 	val = init_exec(data);
 	if  (val != CMD_NOT_FOUND)
 		return (val);
-	if (!data->cmd->pipe_output && !data->cmd->prev
-		&& check_infile_outfile(data->cmd->io_fds))
+	if (!data->cmd_head->pipe_output && !data->cmd_head->previous
+		&& check_infile_outfile(data->cmd_head->io_struct))
 	{
-		redirect_io(data->cmd->io_fds);
-		val = execute_builtin(data, data->cmd);
-		restore_io(data->cmd->io_fds);
+		redirect_io(data->cmd_head->io_struct);
+		val = execute_builtin(data, data->cmd_head);
+		restore_io(data->cmd_head->io_struct);
 	}
 	if (val != CMD_NOT_FOUND)
 		return (val);
