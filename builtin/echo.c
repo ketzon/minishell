@@ -6,14 +6,15 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:06:29 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/22 12:55:31 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/29 15:50:15 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	builtin_echo(t_data *data)
+int	builtin_echo(t_data *data, t_command *cmd)
 {
+	(void)cmd;
 	t_lexer *current;
 	current = data->lexer_head->next;
 

@@ -6,7 +6,7 @@
 /*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:26:48 by fbesson           #+#    #+#             */
-/*   Updated: 2023/09/26 16:53:59 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/26 14:26:40 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,26 @@ bool is_quotes(char *str)
 		i++;
 	}
 	return (false);
+}
+
+int is_index(char **env, char *var)
+{
+	int index;
+	char *tmp;
+
+	index = 0;
+	tmp = ft_strjoin(var, "=");
+	if (!tmp)
+		return (-1);
+	while (env[index])
+	{
+		if (ft_strncmp(tmp, env[index], ft_strlen(tmp)) == 0)
+		{
+			free_ptr(tmp);
+			return (index);
+		}
+		index++;
+	}
+	free_ptr(tmp);
+	return (-1);
 }
