@@ -177,7 +177,6 @@ char	*get_line_name(char *line);
 /* FREE */
 
 void	free_strs(char **strs);
-void	free_data(t_data *data);
 void	free_reset_ptr(void	*ptr);
 void	free_data(t_data *data, bool clear_history);
 void 	free_ptr(void *ptr);
