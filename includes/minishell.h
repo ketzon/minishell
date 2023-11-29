@@ -203,6 +203,7 @@ int     var_word_len(char *str);
 bool    var_exist(t_data *data, char *var_name);
 char     *get_var_value(t_data *data, char *var_name);
 bool    invalid_next_char(char c);
+char    *find_matching_var(t_data *data, char *word);
 
 /* EXPANDER REPLACE*/
 
@@ -225,6 +226,8 @@ void	open_input(t_io_data *io, char *input_name, char *og_name);
 void	parse_output(t_cmd **cmd_head, t_lexer **lexer_head);
 void	parse_output_append(t_cmd **cmd_head, t_lexer **lexer_head);
 void	parse_pipe(t_cmd **cmd_head, t_lexer **lexer_head);
+void	parse_heredoc(t_data *data, t_cmd **cmd_head, t_lexer **lexer_head);
+bool	fill_heredoc(t_data *data, t_io_data *io, int temp_fd);
 
 void	split_var_cmd(char *var_str, t_cmd *last_cmd);
 int		fill_cmd_args(t_lexer **lexer_lst, t_cmd *last_cmd);
@@ -232,6 +235,11 @@ int		create_args(t_cmd *last_cmd, t_lexer **lexer_lst);
 int		add_new_args(t_cmd *last_cmd, t_lexer **lexer_lst);
 char	**fill_args_tab(t_cmd *last_cmd, t_lexer **lexer_lst, char **new_args_tab, int old_args_count);
 
+/* HEREDOC*/
+
+int   replace_value_heredoc(char **line, char *var_value, int index);
+char    *delete_var_name_and_replace_heredoc(char **line, char *var_value, int index);
+int     delete_var_name_heredoc(char **line, int index);
 /* ERROR */
 
 int	ft_error(int error);

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:19:51 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/27 16:40:17 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:24:02 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	create_commands(t_data *data)
 			parse_input_cmd(&data->cmd_head, &tmp);
 		else if (tmp->token == OUTPUT)
 			parse_output(&data->cmd_head, &tmp);
-		// else if (tmp->token == HEREDOC)
-		// 	parse_heredoc(&data->cmd_head, &tmp);
+		else if (tmp->token == HEREDOC)
+		 	parse_heredoc(data ,&data->cmd_head, &tmp);
 		else if (tmp->token == OUTAPPEND)
 			parse_output_append(&data->cmd_head, &tmp);
 		else if (tmp->token == PIPE)
@@ -38,4 +38,5 @@ void	create_commands(t_data *data)
 		else if(tmp->token == END)
 			break ;
 	}
+	//prep_no_arg_commands(data);
 }

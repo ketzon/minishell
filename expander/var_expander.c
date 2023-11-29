@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:36:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/23 18:49:58 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/29 03:45:19 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char    *extract_var_from_string(char *word)
     return (var_name);
 }
 
-static char    *find_matching_var(t_data *data, char *word)
+char    *find_matching_var(t_data *data, char *word)
 {
     char    *var_extracted;
     char    *var_value;
