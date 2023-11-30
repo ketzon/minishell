@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/29 17:14:19 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:32:52 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool    parse_input(t_data *data)
 		return (false);
 	variable_expander(data);
 	handle_quotes(data);
-	/debugger_lexer(data);
+	//debugger_lexer(data);
 	create_commands(data);
 	//debugger_cmds(data);
 	return (true);
