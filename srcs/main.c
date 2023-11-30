@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/30 12:10:42 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/11/30 17:22:23 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void    reset_loop(t_data *data)
 		if (data->lexer_head)
 			clear_lexer_head(&data->lexer_head);
 	}
-	if (data->line)
-		free(data->line);
 }
 
 /* t_io_fds *create_test_io_fds() */

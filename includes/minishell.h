@@ -24,7 +24,6 @@ typedef struct s_cmd	t_cmd;
 typedef struct s_lexer t_lexer;
 typedef struct s_var t_var;
 typedef struct s_data t_data;
-typedef struct s_command t_command;
 
 
 enum e_quoting_status
@@ -77,18 +76,6 @@ typedef struct s_io_fds
 	int		stdout_backup;
 }	t_io_fds;
 
-typedef struct s_command
-{
-	char				*command;
-	char				*path;
-	char				**args;
-	bool				pipe_output;
-	int					*pipe_fd;
-	t_io_fds			*io_fds;
-	struct s_command	*next;
-	struct s_command	*prev;
-}	t_command;
-
 typedef struct s_var
 {
 	int index;
@@ -103,7 +90,6 @@ typedef struct s_data
 {
     char        *line;
 	char		**env;
-	t_command	*cmd;
     t_lexer     *lexer_head;
 	t_cmd		*cmd_head;
     t_var     	*env_head;
