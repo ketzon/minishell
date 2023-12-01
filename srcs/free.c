@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:37:39 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 17:04:53 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/01 03:19:21 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,55 @@ void	clear_lexer_head(t_lexer **lexer_head)
 		free(*lexer_head);
 		*lexer_head = tmp;
 	}
+}
+
+void	clear_cmd_head(t_cmd **cmd_head)
+{
+	t_cmd	*temp;
+
+	temp = NULL;
+	while (*cmd_head != NULL)
+	{
+		temp = (*cmd_head)->next;
+		if ((*cmd_head)->command)
+		{
+			free_reset_ptr((*cmd_head)->command);
+			(*cmd_head)->command = NULL;
+		}
+		if ((*cmd_head)->args)
+		{
+			free_str_tab((*cmd_head)->args);
+			(*cmd_head)->args = NULL;
+		}
+		if ((*cmd_head)->pipe_fd)
+		{
+			free((*cmd_head)->pipe_fd);
+			(*cmd_head)->pipe_fd = NULL;
+		}
+		if ((*cmd_head)->io_struct)
+		{
+			free_io_struct((*cmd_head)->io_struct);
+			(*cmd_head)->io_struct = NULL;
+		}
+		free(*cmd_head);
+		*cmd_head = temp;
+	}
+}
+
+void	free_io_struct(t_io_data *io)
+{
+	if (io == NULL)
+		return ;
+	restore_io(io);
+	if (io->heredoc_eof)
+	{
+		unlink(io->infile);
+		free(io->heredoc_eof);
+	}
+	if (io->infile)
+		free(io->infile);
+	if (io->outfile)
+		free(io->outfile);
+	if (io)
+		free(io);
 }

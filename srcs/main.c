@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/30 17:22:23 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/01 03:51:46 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,18 @@ void    reset_loop(t_data *data)
     	if (data->line)
 		{
         	free_reset_ptr(data->line);
+			data->line = NULL;
 		}
 		if (data->lexer_head)
+		{
 			clear_lexer_head(&data->lexer_head);
+			data->lexer_head = NULL;
+		}
+		if (data->cmd_head)
+		{
+			clear_cmd_head(&data->cmd_head);
+			data->cmd_head = NULL;
+		}
 	}
 }
 
@@ -118,6 +127,7 @@ static void 	init_data(t_data *data, char **envp)
 	data->env = create_env_arr(envp);
 	data->env_head = init_env(data->env);
 	data->lexer_head = NULL;
+	data->cmd_head = NULL;
 	data->pid = -1;
 }
 
@@ -132,17 +142,16 @@ int main(int , char **, char **envp)
 		data.line = readline(PROMPT);
 		if (parse_input(&data) == true)
 		{
-			printf("Input OK\n");
 			/* t_command *test_cmd = create_test_command(); */
 			/* print_command_info(test_cmd); */
-			int status = execute(&data);
-			printf("%d\n", status);
+			execute(&data);
 		}
 		else
 		{
+			//exit_code = 1;
 			printf("Input KO\n");
-			reset_loop(&data);
 		}
+		reset_loop(&data);
 	}
 	return (0);
 }

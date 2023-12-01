@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:40:21 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 22:13:16 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/01 04:05:11 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool 	restore_io(t_io_data *io)
 	}
 	if (io->stdout_backup != -1)
 	{
-		if (dup2(io->stdin_backup, STDIN_FILENO) == -1)
+		if (dup2(io->stdout_backup, STDOUT_FILENO) == -1)
 			val = false;
 		close(io->stdout_backup);
 		io->stdout_backup = -1;

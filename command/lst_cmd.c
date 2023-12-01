@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:25:49 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/20 18:05:59 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/01 03:49:16 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_cmd	*new_node_cmd(bool value)
 	new->command = NULL;
 	new->path = NULL;
 	new->pipe_fd = NULL;
+	new->io_struct = NULL;
 	new->previous = NULL;
 	new->next = NULL;
 	return (new);

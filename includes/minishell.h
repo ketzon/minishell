@@ -64,18 +64,6 @@ typedef struct s_builtin
 	int		(*func)(t_data *data, t_cmd *cmd);
 }	t_builtin;
 
-typedef struct s_io_fds
-{
-	char	*infile;
-	char	*outfile;
-	char	*heredoc_delimiter;
-	bool	heredoc_quotes;
-	int		fd_in;
-	int		fd_out;
-	int		stdin_backup;
-	int		stdout_backup;
-}	t_io_fds;
-
 typedef struct s_var
 {
 	int index;
@@ -169,6 +157,8 @@ void 	free_ptr(void *ptr);
 void	free_env_array(char **env_arr);
 void	free_env_struct(t_var *env_head);
 void	clear_lexer_head(t_lexer **lexer_head);
+void	clear_cmd_head(t_cmd **cmd_head);
+void	free_io_struct(t_io_data *io);
 
 /* UTILS */
 
