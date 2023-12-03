@@ -6,16 +6,16 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:05:04 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 18:11:45 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:02:15 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	builtin_pwd(t_data *data, t_cmd *cmd)
+int	builtin_pwd(t_data *data, char **args)
 {
 		(void)data;
-		(void)cmd;
+		(void)args;
 		char buffer[5000];
 
 		if (getcwd(buffer, sizeof(buffer)) != NULL)

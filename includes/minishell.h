@@ -61,7 +61,7 @@ typedef struct s_io
 typedef struct s_builtin
 {
 	char	*name;
-	int		(*func)(t_data *data, t_cmd *cmd);
+	int		(*func)(t_data *data, char ** args);
 }	t_builtin;
 
 typedef struct s_var
@@ -124,13 +124,13 @@ void	sigint_handling(int signal);
 /* BUILTIN */
 
 int	execute_builtin(t_data *data, t_cmd *cmd);
-int	builtin_cd(t_data *data, t_cmd *cmd);
-int	builtin_echo(t_data *data, t_cmd *cmd);
-int	builtin_env(t_data *data, t_cmd *cmd);
-int builtin_exit(t_data *data, t_cmd *cmd);
-int builtin_pwd(t_data *data, t_cmd *cmd);
-int builtin_unset(t_data *data, t_cmd *cmd);
-int	builtin_export(t_data *data, t_cmd *cmd);
+int	builtin_cd(t_data *data, char **args);
+int	builtin_echo(t_data *data, char **args);
+int	builtin_env(t_data *data, char **args);
+int builtin_exit(t_data *data, char **args);
+int builtin_pwd(t_data *data, char **args);
+int builtin_unset(t_data *data, char **args);
+int	builtin_export(t_data *data, char **args);
 
 /* ENV */
 

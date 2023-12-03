@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 12:31:38 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 17:56:30 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:03:54 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_builtin builtins[] =
 
 int	execute_builtin(t_data *data, t_cmd *cmd)
 {
-	(void)cmd;
 	int i;
 	char *command_name;
 	command_name = data->lexer_head->word;
@@ -35,7 +34,7 @@ int	execute_builtin(t_data *data, t_cmd *cmd)
 	while (builtins[i].name)
 	{
 		if (ft_strcmp(command_name, builtins[i].name) == 0)
-			return (builtins[i].func(data, cmd));
+			return (builtins[i].func(data, cmd->args));
 		i++;
 	}
 	return (CMD_NOT_FOUND);

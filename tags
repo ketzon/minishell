@@ -82,15 +82,14 @@ add_new_args	command/fill_cmd_args.c	/^int	add_new_args(t_cmd *last_cmd, t_lexer
 add_new_env_var	builtin/export.c	/^void add_new_env_var(t_data *data, char *key, char *value)$/;"	f
 add_token	lexer/lexer.c	/^int    add_token(char *input, int i, t_lexer **head)$/;"	f
 add_word	lexer/lexer.c	/^int     add_word(char *input, int i, t_lexer **head)$/;"	f
-args	includes/minishell.h	/^	char				**args;$/;"	m	struct:s_command
 args	includes/minishell.h	/^	char	**args;$/;"	m	struct:s_cmd
-builtin_cd	builtin/cd.c	/^int	builtin_cd(t_data *data, t_cmd *cmd)$/;"	f
-builtin_echo	builtin/echo.c	/^int	builtin_echo(t_data *data, t_cmd *cmd)$/;"	f
-builtin_env	builtin/env.c	/^int	builtin_env(t_data *data, t_cmd *cmd)$/;"	f
-builtin_exit	builtin/exit.c	/^int builtin_exit(t_data *data, t_cmd *cmd)$/;"	f
-builtin_export	builtin/export.c	/^int builtin_export(t_data *data, t_cmd *cmd)$/;"	f
-builtin_pwd	builtin/pwd.c	/^int	builtin_pwd(t_data *data, t_cmd *cmd)$/;"	f
-builtin_unset	builtin/unset.c	/^int	builtin_unset(t_data *data, t_cmd *cmd)$/;"	f
+builtin_cd	builtin/cd.c	/^int	builtin_cd(t_data *data, char **args)$/;"	f
+builtin_echo	builtin/echo.c	/^int	builtin_echo(t_data *data, char **args)$/;"	f
+builtin_env	builtin/env.c	/^int	builtin_env(t_data *data, char **args)$/;"	f
+builtin_exit	builtin/exit.c	/^int builtin_exit(t_data *data, char **args)$/;"	f
+builtin_export	builtin/export.c	/^int builtin_export(t_data *data, char **args)$/;"	f
+builtin_pwd	builtin/pwd.c	/^int	builtin_pwd(t_data *data, char **args)$/;"	f
+builtin_unset	builtin/unset.c	/^int	builtin_unset(t_data *data, char **args)$/;"	f
 builtins	builtin/builtin.c	/^t_builtin builtins[] =$/;"	v
 change_back_to_default	srcs/delete_quotes.c	/^static bool	change_back_to_default(t_lexer **token_node, int *i, int *status)$/;"	f	file:
 change_status_to_quote	srcs/delete_quotes.c	/^static void	change_status_to_quote(t_lexer **token_node, int *i, int *status)$/;"	f	file:
@@ -101,15 +100,14 @@ check_invalid_consecutive_tokens	expander/variables_check.c	/^static bool  check
 check_invalid_tokens	expander/variables_check.c	/^static bool check_invalid_tokens(t_lexer *node)$/;"	f	file:
 check_line	command/heredoc_utils.c	/^static bool	check_line(t_data *data, char **line, t_io_data *io, bool *return_value)$/;"	f	file:
 clean	libft/ft_split.c	/^static void	clean(char **array, unsigned int nb)$/;"	f	file:
+clear_cmd_head	srcs/free.c	/^void	clear_cmd_head(t_cmd **cmd_head)$/;"	f
 clear_lexer_head	srcs/free.c	/^void	clear_lexer_head(t_lexer **lexer_head)$/;"	f
 close_fds	srcs/srcs_utils.c	/^void	close_fds(t_cmd *cmds, bool close_backups)$/;"	f
 close_pipe_fds	redirections/pipe.c	/^void 	close_pipe_fds(t_cmd *cmds, t_cmd *skip_cmd)$/;"	f
 closed_quotes	lexer/quotes.c	/^bool closed_quotes(char *line)$/;"	f
-cmd	includes/minishell.h	/^	t_command	*cmd;$/;"	m	struct:s_data
 cmd_head	includes/minishell.h	/^	t_cmd		*cmd_head;$/;"	m	struct:s_data
 cmd_is_dir	execution/execute_utils.c	/^bool 	cmd_is_dir(char *cmd)$/;"	f
 cmd_lst_addback	command/lst_cmd.c	/^void	cmd_lst_addback(t_cmd **cmd_head, t_cmd *new_node)$/;"	f
-command	includes/minishell.h	/^	char				*command;$/;"	m	struct:s_command
 command	includes/minishell.h	/^	char	*command;$/;"	m	struct:s_cmd
 connect_node	env/chained.c	/^void	connect_node(t_var *curr_node, t_var *next_node)$/;"	f
 content	includes/libft.h	/^	void			*content;$/;"	m	struct:s_list
@@ -134,6 +132,7 @@ delete_var_name_heredoc	expander/heredoc_expander.c	/^int     delete_var_name_he
 digit_count	libft/ft_itoa.c	/^static int	digit_count(long n)$/;"	f	file:
 e_quoting_status	includes/minishell.h	/^enum e_quoting_status$/;"	g
 e_token	includes/minishell.h	/^typedef enum e_token$/;"	g
+echo	builtin/echo.c	/^static void echo(char **args, bool n_flag, int i)$/;"	f	file:
 env	includes/minishell.h	/^	char		**env;$/;"	m	struct:s_data
 env_head	includes/minishell.h	/^    t_var     	*env_head;$/;"	m	struct:s_data
 erase_previous_file	command/parse_input.c	/^bool	erase_previous_file(t_io_data *io, bool infile)$/;"	f
@@ -146,8 +145,6 @@ execute_sys_bin	execution/execute_cmd.c	/^static int execute_sys_bin(t_data *dat
 exit_shell	srcs/srcs_utils.c	/^void 	exit_shell(t_data *data, int exit_number)$/;"	f
 extract_content	env/list.c	/^char	*extract_content(char *line, int start, int end)$/;"	f
 extract_var_from_string	expander/var_expander.c	/^static char    *extract_var_from_string(char *word)$/;"	f	file:
-fd_in	includes/minishell.h	/^	int		fd_in;$/;"	m	struct:s_io_fds
-fd_out	includes/minishell.h	/^	int		fd_out;$/;"	m	struct:s_io_fds
 fill_args_tab	command/fill_cmd_args.c	/^char	**fill_args_tab(t_cmd *last_cmd, t_lexer **lexer_lst, char **new_args_tab, int old_args_count)$/;"	f
 fill_cmd_args	command/fill_cmd_args.c	/^int	fill_cmd_args(t_lexer **lexer_lst, t_cmd *last_cmd)$/;"	f
 fill_heredoc	command/heredoc_utils.c	/^bool	fill_heredoc(t_data *data, t_io_data *io, int temp_fd)$/;"	f
@@ -159,6 +156,7 @@ flag_variables	expander/variables_check.c	/^static void flag_variables (t_lexer 
 free_data	srcs/free.c	/^void	free_data(t_data *data, bool clear_history)$/;"	f
 free_env_array	srcs/free.c	/^void	free_env_array(char **env_arr)$/;"	f
 free_env_struct	srcs/free.c	/^void	free_env_struct(t_var *env_head)$/;"	f
+free_io_struct	srcs/free.c	/^void	free_io_struct(t_io_data *io)$/;"	f
 free_ptr	srcs/srcs_utils.c	/^void    free_ptr(void *ptr)$/;"	f
 free_reset_ptr	srcs/free.c	/^void	free_reset_ptr(void	*ptr)$/;"	f
 free_str_tab	srcs/srcs_utils.c	/^void 	free_str_tab(char **tab)$/;"	f
@@ -223,7 +221,7 @@ ft_strtrim	libft/ft_strtrim.c	/^char	*ft_strtrim(const char *s1, const char *set
 ft_substr	libft/ft_substr.c	/^char	*ft_substr(char const *str, unsigned int start, size_t n)$/;"	f
 ft_tolower	libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
 ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
-func	includes/minishell.h	/^	int		(*func)(t_data *data, t_cmd *cmd);$/;"	m	struct:s_builtin
+func	includes/minishell.h	/^	int		(*func)(t_data *data, char ** args);$/;"	m	struct:s_builtin
 get_children	execution/execute.c	/^static int get_children(t_data *data)$/;"	f	file:
 get_cmd_path	execution/parse_path.c	/^char	*get_cmd_path(t_data *data, char *name)$/;"	f
 get_env_path	env/env.c	/^char    *get_env_path(char **envp)$/;"	f
@@ -239,15 +237,12 @@ get_status	lexer/token_parse.c	/^static int	get_status(int status, char c)$/;"	f
 get_var_value	expander/var_expander_utils.c	/^char     *get_var_value(t_data *data, char *var_name)$/;"	f
 handle_quotes	srcs/handle_quotes.c	/^int	handle_quotes(t_data *data)$/;"	f
 have_spaces	command/parse_word.c	/^static bool have_spaces(char *str)$/;"	f	file:
-heredoc_delimiter	includes/minishell.h	/^	char	*heredoc_delimiter;$/;"	m	struct:s_io_fds
 heredoc_eof	includes/minishell.h	/^	char	*heredoc_eof;$/;"	m	struct:s_io
 heredoc_quotes	includes/minishell.h	/^	bool	heredoc_quotes;$/;"	m	struct:s_io
-heredoc_quotes	includes/minishell.h	/^	bool	heredoc_quotes;$/;"	m	struct:s_io_fds
 id	includes/minishell.h	/^	int id;$/;"	m	struct:s_var
 if_quotes_and_default	srcs/delete_quotes.c	/^static bool	if_quotes_and_default(t_lexer **token_node, int i, int *status)$/;"	f	file:
 index	includes/minishell.h	/^	int index;$/;"	m	struct:s_var
 infile	includes/minishell.h	/^	char	*infile;$/;"	m	struct:s_io
-infile	includes/minishell.h	/^	char	*infile;$/;"	m	struct:s_io_fds
 infos	includes/minishell.h	/^	char *infos;$/;"	m	struct:s_var
 init_data	srcs/main.c	/^static void 	init_data(t_data *data, char **envp)$/;"	f	file:
 init_env	env/init.c	/^t_var	*init_env(char **env_array)$/;"	f
@@ -256,9 +251,9 @@ init_exec	execution/execute.c	/^static int init_exec(t_data *data)$/;"	f	file:
 initialise_io	srcs/init.c	/^void	initialise_io(t_cmd *cmd_node)$/;"	f
 input_fd	includes/minishell.h	/^	int		input_fd;$/;"	m	struct:s_io
 invalid_next_char	expander/var_expander_utils.c	/^bool    invalid_next_char(char c)$/;"	f
-io_fds	includes/minishell.h	/^	t_io_fds			*io_fds;$/;"	m	struct:s_command
 io_struct	includes/minishell.h	/^	t_io_data	*io_struct;$/;"	m	struct:s_cmd
 is_index	env/is.c	/^int is_index(char **env, char *var)$/;"	f
+is_n	builtin/echo.c	/^static bool is_n(char *str)$/;"	f	file:
 is_null	env/is.c	/^int	is_null(char *str)$/;"	f
 is_quotes	env/is.c	/^bool is_quotes(char *str)$/;"	f
 is_sep	lexer/token_parse.c	/^int	is_sep(char *str, int i)$/;"	f
@@ -277,7 +272,6 @@ name	includes/minishell.h	/^	char *name;$/;"	m	struct:s_var
 new_node	srcs/srcs_utils.c	/^t_lexer *new_node(char *input, char *input_backup, t_token token)$/;"	f
 new_node_cmd	command/lst_cmd.c	/^t_cmd	*new_node_cmd(bool value)$/;"	f
 next	includes/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
-next	includes/minishell.h	/^	struct s_command	*next;$/;"	m	struct:s_command	typeref:struct:s_command::s_command
 next	includes/minishell.h	/^	struct s_var *next;$/;"	m	struct:s_var	typeref:struct:s_var::s_var
 next	includes/minishell.h	/^	t_cmd	*next;$/;"	m	struct:s_cmd
 next	includes/minishell.h	/^    t_lexer     *next;$/;"	m	struct:s_lexer
@@ -286,7 +280,6 @@ open_input	command/parse_input.c	/^void	open_input(t_io_data *io, char *input_na
 open_outfile_append	command/parse_output_append.c	/^static void	open_outfile_append(t_io_data *io, char *output_name, char *og_name)$/;"	f	file:
 open_output_trunc	command/parse_output.c	/^static void	open_output_trunc(t_io_data *io, char *output_name, char *og_name)$/;"	f	file:
 outfile	includes/minishell.h	/^	char	*outfile;$/;"	m	struct:s_io
-outfile	includes/minishell.h	/^	char	*outfile;$/;"	m	struct:s_io_fds
 output_fd	includes/minishell.h	/^	int		output_fd;$/;"	m	struct:s_io
 parse_heredoc	command/parse_heredoc.c	/^void	parse_heredoc(t_data *data, t_cmd **cmd_head, t_lexer **lexer_head)$/;"	f
 parse_input	srcs/main.c	/^bool    parse_input(t_data *data)$/;"	f
@@ -295,14 +288,10 @@ parse_output	command/parse_output.c	/^void	parse_output(t_cmd **cmd_head, t_lexe
 parse_output_append	command/parse_output_append.c	/^void	parse_output_append(t_cmd **cmd_head, t_lexer **lexer_head)$/;"	f
 parse_pipe	command/parse_pipe.c	/^void	parse_pipe(t_cmd **cmd_head, t_lexer **lexer_head)$/;"	f
 parse_words	command/parse_word.c	/^void	parse_words(t_cmd **cmd_head, t_lexer **lexer_lst)$/;"	f
-path	includes/minishell.h	/^	char				*path;$/;"	m	struct:s_command
 path	includes/minishell.h	/^	char	*path;$/;"	m	struct:s_cmd
 pid	includes/minishell.h	/^	pid_t 		 pid;$/;"	m	struct:s_data
-pipe_fd	includes/minishell.h	/^	int					*pipe_fd;$/;"	m	struct:s_command
 pipe_fd	includes/minishell.h	/^	int		*pipe_fd;$/;"	m	struct:s_cmd
-pipe_output	includes/minishell.h	/^	bool				pipe_output;$/;"	m	struct:s_command
 pipe_output	includes/minishell.h	/^	bool	pipe_output;$/;"	m	struct:s_cmd
-prev	includes/minishell.h	/^	struct s_command	*prev;$/;"	m	struct:s_command	typeref:struct:s_command::s_command
 prev	includes/minishell.h	/^	struct s_var *prev;$/;"	m	struct:s_var	typeref:struct:s_var::s_var
 previous	includes/minishell.h	/^	t_cmd	*previous;$/;"	m	struct:s_cmd
 previous	includes/minishell.h	/^    t_lexer     *previous;$/;"	m	struct:s_lexer
@@ -316,10 +305,8 @@ reset_loop	srcs/main.c	/^void    reset_loop(t_data *data)$/;"	f
 restore_io	redirections/file_io.c	/^bool 	restore_io(t_io_data *io)$/;"	f
 s_builtin	includes/minishell.h	/^typedef struct s_builtin$/;"	s
 s_cmd	includes/minishell.h	/^typedef struct s_cmd$/;"	s
-s_command	includes/minishell.h	/^typedef struct s_command$/;"	s
 s_data	includes/minishell.h	/^typedef struct s_data$/;"	s
 s_io	includes/minishell.h	/^typedef struct s_io$/;"	s
-s_io_fds	includes/minishell.h	/^typedef struct s_io_fds$/;"	s
 s_lexer	includes/minishell.h	/^typedef struct s_lexer$/;"	s
 s_list	includes/libft.h	/^typedef struct s_list$/;"	s
 s_list	libft/libft.h	/^typedef struct s_list$/;"	s
@@ -332,18 +319,13 @@ split_key_value	builtin/export.c	/^void split_key_value(char *str, char **key, c
 split_var_cmd	command/split_var_cmd.c	/^void	split_var_cmd(char *var_str, t_cmd *last_cmd)$/;"	f
 stack_add_bottom	srcs/srcs_utils.c	/^void    stack_add_bottom(t_lexer **head, t_lexer *new)$/;"	f
 stdin_backup	includes/minishell.h	/^	int		stdin_backup;$/;"	m	struct:s_io
-stdin_backup	includes/minishell.h	/^	int		stdin_backup;$/;"	m	struct:s_io_fds
 stdout_backup	includes/minishell.h	/^	int		stdout_backup;$/;"	m	struct:s_io
-stdout_backup	includes/minishell.h	/^	int		stdout_backup;$/;"	m	struct:s_io_fds
 t_builtin	includes/minishell.h	/^}	t_builtin;$/;"	t	typeref:struct:s_builtin
 t_cmd	includes/minishell.h	/^typedef struct s_cmd	t_cmd;$/;"	t	typeref:struct:s_cmd
 t_cmd	includes/minishell.h	/^}	t_cmd;$/;"	t	typeref:struct:s_cmd
-t_command	includes/minishell.h	/^typedef struct s_command t_command;$/;"	t	typeref:struct:s_command
-t_command	includes/minishell.h	/^}	t_command;$/;"	t	typeref:struct:s_command
 t_data	includes/minishell.h	/^typedef struct s_data t_data;$/;"	t	typeref:struct:s_data
 t_data	includes/minishell.h	/^}   t_data;$/;"	t	typeref:struct:s_data
 t_io_data	includes/minishell.h	/^}	t_io_data;$/;"	t	typeref:struct:s_io
-t_io_fds	includes/minishell.h	/^}	t_io_fds;$/;"	t	typeref:struct:s_io_fds
 t_lexer	includes/minishell.h	/^typedef struct s_lexer t_lexer;$/;"	t	typeref:struct:s_lexer
 t_lexer	includes/minishell.h	/^}   t_lexer;$/;"	t	typeref:struct:s_lexer
 t_list	includes/libft.h	/^}		t_list;$/;"	t	typeref:struct:s_list
