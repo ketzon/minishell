@@ -6,11 +6,33 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:19:51 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/03 19:17:32 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/03 19:22:09 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static void	prep_no_args_commands(t_data *data)
+{
+	t_cmd	*cmd;
+
+	if (!data || !data->cmd_head)
+		return ;
+	cmd = data->cmd_head;
+	while (cmd && cmd->command)
+	{
+		if (!cmd->args)
+		{
+			cmd->args = malloc(sizeof(char *) * 2);
+			if (!cmd->args)
+				return ;
+			cmd->args[0] = ft_strdup(cmd->command);
+			cmd->args[1] = NULL;
+		}
+		cmd = cmd->next;
+	}
+	cmd = get_last_cmd(cmd);
+}
 
 void	create_commands(t_data *data)
 {
@@ -38,27 +60,6 @@ void	create_commands(t_data *data)
 		else if(tmp->token == END)
 			break ;
 	}
-	prep_no_arg_commands(data);
+	prep_no_args_commands(data);
 }
 
-static void	prep_no_args_commands(t_data *data)
-{
-	t_cmd	*cmd;
-
-	if (!data || !data->cmd_head)
-		return ;
-	cmd = data->cmd_head;
-	while (cmd && cmd->command)
-	{
-		if (!cmd->args)
-		{
-			cmd->args = malloc(sizeof(char *) * 2);
-			if (!cmd->args)
-				return ;
-			cmd->args[0] = ft_strdup(cmd->command);
-			cmd->args[1] = NULL;
-		}
-		cmd = cmd->next;
-	}
-	cmd = get_last_cmd(cmd);
-}
