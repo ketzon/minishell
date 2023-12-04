@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/01 03:51:46 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/04 18:54:32 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,6 @@ int main(int , char **, char **envp)
 		}
 		else
 		{
-			//exit_code = 1;
 			printf("Input KO\n");
 		}
 		reset_loop(&data);

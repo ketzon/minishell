@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:36:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/29 16:07:26 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:56:57 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char    *find_matching_var(t_data *data, char *word)
     var_extracted = extract_var_from_string(word);
     if (var_extracted && var_exist(data, var_extracted) == true)
         var_value = get_var_value(data, var_extracted);
-	else if (var_extracted && var_extracted[0] == '?' && var_extracted[1] == '=')
+	else if (var_extracted && var_extracted[0] == '?' && var_extracted[1] == '\0')
 		var_value = ft_itoa(10);
     else
         var_value = NULL;
@@ -57,7 +57,7 @@ static void    replace_var(t_data *data, t_lexer *node)
     while (node->word[i])
     {
         quotes_check(&single_quote, node->word[i]);
-        if (node->word[i] == '$' && single_quote == 0 && invalid_next_char(node->word[i + 1] == false) && var_in_quotes(node->word, i) == false)
+        if (node->word[i] == '$' && single_quote == 0 && invalid_next_char(node->word[i + 1]) == false && var_in_quotes(node->word, i) == false)
         {
             var_value = find_matching_var(data, &node->word[i]);
             replace_value(node, var_value, i);

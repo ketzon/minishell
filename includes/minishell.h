@@ -25,6 +25,7 @@ typedef struct s_lexer t_lexer;
 typedef struct s_var t_var;
 typedef struct s_data t_data;
 
+//extern	int g_exit_code;
 
 enum e_quoting_status
 {
@@ -261,6 +262,12 @@ int		fill_cmd_args(t_lexer **lexer_lst, t_cmd *last_cmd);
 int		create_args(t_cmd *last_cmd, t_lexer **lexer_lst);
 int		add_new_args(t_cmd *last_cmd, t_lexer **lexer_lst);
 char	**fill_args_tab(t_cmd *last_cmd, t_lexer **lexer_lst, char **new_args_tab, int old_args_count);
+int		count_cmd_args(t_lexer *lexer_lst);
+
+int	create_args_echo_mode(t_lexer **lexer_lst, t_cmd *last_cmd);
+int	add_args_echo_mode(t_lexer **lexer_lst, t_cmd *last_cmd);
+void	delete_empty_var_args(t_lexer **lexer_lst);
+char	**copy_to_new_tab(int len, char **new_tab, t_cmd *last_cmd, t_lexer *tmp);
 
 /* HEREDOC*/
 

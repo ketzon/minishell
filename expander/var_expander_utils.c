@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 15:26:40 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/13 19:34:02 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:52:09 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool    invalid_next_char(char c)
 {
-    if (c == ' ' || c == '\0')
+    if (c == ' ' || c == '\0' || c == '$')
         return (true);
     else
         return (false);
@@ -55,9 +55,12 @@ int var_word_len(char *str)
     int i;
 
     i = 0;
+
+	if (str[i] == '?')
+		return (1);
     while (str[i])
     {
-        if (isalnum(str[i]) == 0)
+        if (isalnum(str[i]) == 0 && str[i] != '_')
             break;
         i++;
     }
