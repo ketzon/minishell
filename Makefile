@@ -1,5 +1,5 @@
 BIN = bin
-FLAGS = -Wall -Werror -Wextra  -g
+FLAGS = -Wall -Wextra -Werror  -g
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_DIR = ./libft
 LEXER_DIR = lexer/

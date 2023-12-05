@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:25:49 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 04:03:58 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:29:30 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_cmd	*new_node_cmd(bool value)
 
 void	cmd_lst_addback(t_cmd **cmd_head, t_cmd *new_node)
 {
-	t_cmd *tmp;
+	t_cmd	*tmp;
 
 	tmp = *cmd_head;
 	if (*cmd_head == NULL)

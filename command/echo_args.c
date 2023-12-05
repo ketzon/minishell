@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 03:23:14 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/04 17:17:19 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:19:56 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	delete_token(t_lexer *node, void (*del)(void *))
 
 void	delete_empty_var_args(t_lexer **lexer_lst)
 {
-	t_lexer *tmp;
+	t_lexer	*tmp;
 
 	tmp = *lexer_lst;
 	while (tmp->token == WORD || tmp->token == VAR)
@@ -162,5 +162,5 @@ char	**copy_to_new_tab(int len, char **new_tab, t_cmd *last_cmd, t_lexer *tmp)
 		tmp = tmp->next;
 	}
 	new_tab[i] = NULL;
-	return(new_tab);
+	return (new_tab);
 }

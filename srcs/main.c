@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 18:08:05 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 21:28:14 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int g_exit_code = 0;
 
-bool    parse_input(t_data *data)
+bool	parse_input(t_data *data)
 {
 	if (data->line == NULL)
 	{
@@ -23,7 +23,6 @@ bool    parse_input(t_data *data)
 	}
 	// Verifier que la chaine n'est pas simplement vide.
 	// Si que des espaces return 'true'.
-
 	add_history(data->line);
 	if (token_parse(data) == 1)
 		return (false);
@@ -39,13 +38,13 @@ bool    parse_input(t_data *data)
 	return (true);
 }
 
-void    reset_loop(t_data *data)
+void	reset_loop(t_data *data)
 {
 	if (data)
 	{
-    	if (data->line)
+		if (data->line)
 		{
-        	free_reset_ptr(data->line);
+			free_reset_ptr(data->line);
 			data->line = NULL;
 		}
 		if (data->lexer_head)
@@ -61,7 +60,7 @@ void    reset_loop(t_data *data)
 	}
 }
 
-static void 	init_data(t_data *data, char **envp)
+static void	init_data(t_data *data, char **envp)
 {
 	data->env = create_env_arr(envp);
 	data->env_head = init_env(data->env);
@@ -71,10 +70,12 @@ static void 	init_data(t_data *data, char **envp)
 	data->pid = -1;
 }
 
-int main(int , char **, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-	t_data  data;
+	t_data	data;
 
+	(void)argc;
+	(void)argv;
 	init_data(&data, envp);
 	while (1)
 	{

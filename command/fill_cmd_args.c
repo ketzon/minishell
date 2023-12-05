@@ -6,15 +6,15 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 20:04:40 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/04 16:56:09 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:21:10 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		count_cmd_args(t_lexer *lexer_lst)
+int	count_cmd_args(t_lexer *lexer_lst)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (lexer_lst && (lexer_lst->token == WORD || lexer_lst->token == VAR))
@@ -27,9 +27,9 @@ int		count_cmd_args(t_lexer *lexer_lst)
 
 int	create_args(t_cmd *last_cmd, t_lexer **lexer_lst)
 {
-	int	i;
-	int	args_count;
-	t_lexer *tmp;
+	int		i;
+	int		args_count;
+	t_lexer	*tmp;
 
 	tmp = *lexer_lst;
 	i = 0;
@@ -54,9 +54,8 @@ int	add_new_args(t_cmd *last_cmd, t_lexer **lexer_lst)
 {
 	t_lexer	*tmp;
 	char	**new_args_tab;
-	int	old_args_count;
-	int	args_count;
-
+	int		old_args_count;
+	int		args_count;
 
 	tmp = *lexer_lst;
 	old_args_count = 0;
@@ -79,7 +78,7 @@ int	add_new_args(t_cmd *last_cmd, t_lexer **lexer_lst)
 
 char	**fill_args_tab(t_cmd *last_cmd, t_lexer **lexer_lst, char **new_args_tab, int old_args_count)
 {
-	int	i;
+	int		i;
 	t_lexer	*tmp;
 
 	tmp = *lexer_lst;
@@ -103,10 +102,10 @@ int	fill_cmd_args(t_lexer **lexer_lst, t_cmd *last_cmd)
 {
 	if (ft_strcmp(last_cmd->command, "echo") == 0)
 	{
-	 	if (last_cmd->args == NULL)
-	 		return (create_args_echo_mode(lexer_lst, last_cmd));
-	 	else
-	 		return (add_args_echo_mode(lexer_lst, last_cmd));
+		if (last_cmd->args == NULL)
+			return (create_args_echo_mode(lexer_lst, last_cmd));
+		else
+			return (add_args_echo_mode(lexer_lst, last_cmd));
 	}
 	if (last_cmd && last_cmd->args == NULL)
 		return (create_args(last_cmd, lexer_lst));
