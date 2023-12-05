@@ -6,11 +6,13 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/04 18:54:32 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 03:15:30 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int g_exit_code = 0;
 
 bool    parse_input(t_data *data)
 {
@@ -59,73 +61,11 @@ void    reset_loop(t_data *data)
 	}
 }
 
-/* t_io_fds *create_test_io_fds() */
-/* { */
-/* 	t_io_fds *io_fds = malloc(sizeof(t_io_fds)); */
-/* 	if (!io_fds) */
-/* 	{ */
-/* 		return NULL; */
-/* 	} */
-/* 	io_fds->infile = "input.txt"; */
-/* 	io_fds->outfile = "output.txt"; */
-/* 	io_fds->heredoc_delimiter = NULL; */
-/* 	io_fds->heredoc_quotes = false; */
-/* 	io_fds->fd_in = 0; */
-/* 	io_fds->fd_out = 1; */
-/* 	io_fds->stdin_backup = 0; */
-/* 	io_fds->stdout_backup = 1; */
-/* 	return (io_fds); */
-/* } */
-
-/* t_command *create_test_command() */
-/* { */
-/* 	t_command *cmd = malloc(sizeof(t_command)); */
-/* 	if (!cmd) */
-/* 	{ */
-/* 		return NULL; */
-/* 	} */
-/* 	cmd->command = "ls"; */
-/* 	cmd->path = "/bin/ls"; */
-/* 	cmd->args = malloc(2 * sizeof(char *)); */
-/* 	cmd->args[0] = "ls"; */
-/* 	cmd->args[1] = NULL; */
-/* 	cmd->pipe_output = true; */
-/* 	cmd->pipe_fd = NULL; */
-/* 	cmd->io_fds = create_test_io_fds(); */
-/* 	cmd->next = NULL; */
-/* 	cmd->prev = NULL; */
-/* 	return (cmd); */
-/* } */
-
-/* void print_command_info(t_command *cmd) */
-/* { */
-/* 	int i; */
-/* 	i = 0; */
-/* 	if (!cmd) */
-/* 	{ */
-/* 		printf("Command is NULL\n"); */
-/* 		return; */
-/* 	} */
-/* 	printf("Command: %s\n", cmd->command); */
-/* 	printf("Path: %s\n", cmd->path); */
-/* 	printf("Arguments: "); */
-/* 	while (cmd->args[i] != NULL) */
-/* 	{ */
-/* 		printf("%s ", cmd->args[i]); */
-/* 		i++; */
-/* 	} */
-/* 	printf("\n"); */
-/* 	printf("Pipe output: "); */
-/* 	if (cmd->pipe_output) */
-/* 		printf("true\n"); */
-/* 	else */
-/* 		printf("false\n"); */
-/* } */
-
 static void 	init_data(t_data *data, char **envp)
 {
 	data->env = create_env_arr(envp);
 	data->env_head = init_env(data->env);
+	data->line = NULL;
 	data->lexer_head = NULL;
 	data->cmd_head = NULL;
 	data->pid = -1;
@@ -141,15 +81,9 @@ int main(int , char **, char **envp)
 		signals_handling();
 		data.line = readline(PROMPT);
 		if (parse_input(&data) == true)
-		{
-			/* t_command *test_cmd = create_test_command(); */
-			/* print_command_info(test_cmd); */
-			execute(&data);
-		}
+			g_exit_code = execute(&data);
 		else
-		{
-			printf("Input KO\n");
-		}
+			g_exit_code = 1;
 		reset_loop(&data);
 	}
 	return (0);

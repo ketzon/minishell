@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:04:45 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/29 04:18:38 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:39:04 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	check_expand_var_line(t_data *data, char **line)
 	{
 		if ((*line)[i] == '$' && invalid_next_char((*line)[i + 1]) == false && var_in_quotes(*line, i) == false)
 		{
-			var_value = find_matching_var(data, &(*line)[i]);
+			var_value = find_matching_var(data, &(*line)[i], NULL);
 			replace_value_heredoc(line, var_value, i);
 		}
 		i++;

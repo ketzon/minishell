@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 00:27:45 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/27 16:28:42 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 04:10:53 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static void	open_output_trunc(t_io_data *io, char *output_name, char *og_name)
 	io->outfile = ft_strdup(output_name);
 	if (io->outfile && io->outfile[0] == '\0')
 	{
-		printf("%s ambigous redirect", og_name); // Changer pour errcmd.
+		errmsg_cmd(og_name, NULL, "ambiguous redirect", false);
 		return ;
 	}
 	io->output_fd = open(io->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (io->output_fd == -1)
-		printf("%s : '%s'\n", strerror(errno), io->outfile); // Changer pour errcmd.
+		errmsg_cmd(io->outfile, NULL, strerror(errno), false);
 }
 
 void	parse_output(t_cmd **cmd_head, t_lexer **lexer_head)

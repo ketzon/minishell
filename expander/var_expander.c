@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:36:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/04 19:56:57 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 03:14:32 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,23 @@ static char    *extract_var_from_string(char *word)
     return (var_name);
 }
 
-char    *find_matching_var(t_data *data, char *word)
+char    *find_matching_var(t_data *data, char *word, t_lexer *node)
 {
     char    *var_extracted;
     char    *var_value;
 
     var_extracted = extract_var_from_string(word);
     if (var_extracted && var_exist(data, var_extracted) == true)
+	{
         var_value = get_var_value(data, var_extracted);
+		if (node != NULL)
+			node->var_exists = true;
+	}
 	else if (var_extracted && var_extracted[0] == '?' && var_extracted[1] == '\0')
-		var_value = ft_itoa(10);
+		var_value = ft_itoa(g_exit_code);
     else
         var_value = NULL;
-    printf("OG INPUT = %s | VAR NAME = %s | VAR_VALUE = %s\n", word, var_extracted, var_value);
+    //printf("OG INPUT = %s | VAR NAME = %s | VAR_VALUE = %s\n", word, var_extracted, var_value);
     free(var_extracted);
     return (var_value);
 }
@@ -59,7 +63,7 @@ static void    replace_var(t_data *data, t_lexer *node)
         quotes_check(&single_quote, node->word[i]);
         if (node->word[i] == '$' && single_quote == 0 && invalid_next_char(node->word[i + 1]) == false && var_in_quotes(node->word, i) == false)
         {
-            var_value = find_matching_var(data, &node->word[i]);
+            var_value = find_matching_var(data, &node->word[i], node);
             replace_value(node, var_value, i);
         }
         else

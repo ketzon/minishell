@@ -25,7 +25,7 @@ typedef struct s_lexer t_lexer;
 typedef struct s_var t_var;
 typedef struct s_data t_data;
 
-//extern	int g_exit_code;
+extern int g_exit_code;
 
 enum e_quoting_status
 {
@@ -215,7 +215,7 @@ int     var_word_len(char *str);
 bool    var_exist(t_data *data, char *var_name);
 char     *get_var_value(t_data *data, char *var_name);
 bool    invalid_next_char(char c);
-char    *find_matching_var(t_data *data, char *word);
+char    *find_matching_var(t_data *data, char *word, t_lexer *node);
 
 /* EXPANDER REPLACE*/
 
