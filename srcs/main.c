@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 03:15:30 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:08:05 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int main(int , char **, char **envp)
 	{
 		signals_handling();
 		data.line = readline(PROMPT);
+		//ajouter signals_handling_noninteractive;
 		if (parse_input(&data) == true)
 			g_exit_code = execute(&data);
 		else
