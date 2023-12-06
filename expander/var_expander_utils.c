@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 15:26:40 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 17:15:09 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:20:49 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ bool	var_exist(t_data *data, char *var_name)
 	env_tmp = data->env_head;
 	while (env_tmp)
 	{
-		if (ft_strncmp(env_tmp->name, var_name, var_name_len) == 0 && ft_strlen(env_tmp->name) == var_name_len)
+		if (ft_strncmp(env_tmp->name, var_name, var_name_len) == 0
+			&& ft_strlen(env_tmp->name) == var_name_len)
 			return (true);
 		env_tmp = env_tmp->next;
 	}

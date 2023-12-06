@@ -6,11 +6,25 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:26:07 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/06 16:49:59 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:19:52 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	quotes_handling(char *str, int start, char quote) // PEUT ETRE DELETE.
+{
+	int	i;
+
+	i = 0;
+	if (str[start] != quote)
+		return (0);
+	i++;
+	while (str[start + i] && str[start + i] != quote)
+		i++;
+	return (i);
+}
+
 
 int	find_matching_quote(char *line, int i, int *num_del, int del)
 {

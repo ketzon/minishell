@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:55:08 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 17:07:55 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:19:58 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,4 @@ t_lexer	*new_node(char *input, char *input_backup, t_token token)
 	new->join = false;
 	new->word_backup = input_backup;
 	return (new);
-}
-
-int	quotes_handling(char *str, int start, char quote) // PEUT ETRE DELETE.
-{
-	int	i;
-
-	i = 0;
-	if (str[start] != quote)
-		return (0);
-	i++;
-	while (str[start + i] && str[start + i] != quote)
-		i++;
-	return (i);
 }
