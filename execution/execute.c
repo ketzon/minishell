@@ -6,17 +6,17 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:41:45 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 21:47:38 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 22:15:59 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int get_children(t_data *data)
+static int	get_children(t_data *data)
 {
-	pid_t wpid;
-	int status;
-	int save_status;
+	pid_t	wpid;
+	int		status;
+	int		save_status;
 
 	close_fds(data->cmd_head, false);
 	save_status = 0;
@@ -37,9 +37,9 @@ static int get_children(t_data *data)
 	return (status);
 }
 
-static int create_children(t_data *data)
+static int	create_children(t_data *data)
 {
-	t_cmd 	*cmd;
+	t_cmd	*cmd;
 
 	cmd = data->cmd_head;
 	while (cmd != NULL && data->pid != 0)
@@ -54,9 +54,9 @@ static int create_children(t_data *data)
 	return (get_children(data));
 }
 
-static int init_exec(t_data *data)
+static int	init_exec(t_data *data)
 {
-	int io_val;
+	int	io_val;
 
 	io_val = check_infile_outfile(data->cmd_head->io_struct);
 	if (!data || !data->cmd_head)
@@ -64,20 +64,20 @@ static int init_exec(t_data *data)
 	if (!data->cmd_head->command)
 	{
 		if (data->cmd_head->io_struct && !io_val)
-				return (EXIT_FAILURE);
+			return (EXIT_FAILURE);
 		return (EXIT_SUCCESS);
 	}
 	if (!create_pipes(data))
-			return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	return (CMD_NOT_FOUND);
 }
 
 int	execute(t_data *data)
 {
-	int val;
+	int	val;
 
 	val = init_exec(data);
-	if  (val != CMD_NOT_FOUND)
+	if (val != CMD_NOT_FOUND)
 		return (val);
 	if (!data->cmd_head->pipe_output && !data->cmd_head->previous
 		&& check_infile_outfile(data->cmd_head->io_struct))

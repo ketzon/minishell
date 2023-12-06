@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:41:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 20:03:32 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/06 22:45:24 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct s_data
 	t_cmd		*cmd_head;
 	t_var		*env_head;
 	pid_t		pid;
+	t_builtin	builtins[];
 }	t_data;
 
 typedef struct s_lexer
@@ -160,6 +161,7 @@ char	**create_env_arr(char **envp);
 t_var	*init_env(char **env_array);
 t_var	*init_env_var(char *name, char *infos, int id);
 void	create_env_list(t_var **env_head, char **env_arr);
+char	*get_env_var_value(char **env, char *var);
 char	*get_env_path(char **envp);
 char	*get_home_path(char **envp);
 char	*malloc_each_line(char *line);

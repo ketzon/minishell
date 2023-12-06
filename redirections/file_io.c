@@ -6,15 +6,15 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:40:21 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/01 04:05:11 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 22:12:59 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool 	restore_io(t_io_data *io)
+bool	restore_io(t_io_data *io)
 {
-	int val;
+	int	val;
 
 	if (io == NULL)
 		return (true);
@@ -34,9 +34,10 @@ bool 	restore_io(t_io_data *io)
 	}
 	return (val);
 }
+
 bool	redirect_io(t_io_data *io)
 {
-	int val;
+	int	val;
 
 	val = true;
 	if (!io)
@@ -49,14 +50,15 @@ bool	redirect_io(t_io_data *io)
 		val = errmsg_cmd("dup", "stdout_backup", strerror(errno), false);
 	if (io->input_fd != -1)
 		if (dup2(io->input_fd, STDIN_FILENO) == -1)
-		val = errmsg_cmd("dup2", io->infile, strerror(errno), false);
+			val = errmsg_cmd("dup2", io->infile, strerror(errno), false);
 	if (io->output_fd != -1)
 	{
 		if (dup2(io->output_fd, STDOUT_FILENO) == -1)
-		val = errmsg_cmd("dup2", io->outfile, strerror(errno), false);
+			val = errmsg_cmd("dup2", io->outfile, strerror(errno), false);
 	}
 	return (val);
 }
+
 bool	check_infile_outfile(t_io_data *io)
 {
 	if (!io)

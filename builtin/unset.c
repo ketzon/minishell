@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:52:53 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/03 16:05:57 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/06 22:58:14 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,33 @@
 
 int	builtin_unset(t_data *data, char **args)
 {
-		(void)args;
-		t_lexer	*current;
-		int i;
-		int j;
+	t_lexer	*current;
+	int		i;
+	int		j;
 
-		j = 0;
-		current = data->lexer_head->next;
-		while (current)
+	j = 0;
+	(void)args;
+	current = data->lexer_head->next;
+	while (current)
+	{
+		i = 0;
+		while (data->env[i])
 		{
-				i = 0;
-				while (data->env[i])
+			if (ft_strncmp(data->env[i], current->word, ft_strlen(current->word)) == 0
+				&& data->env[i][ft_strlen(current->word)] == '=')
+			{
+				free(data->env[i]);
+				j = i;
+				while (data->env[j])
 				{
-						if (ft_strncmp(data->env[i], current->word, ft_strlen(current->word)) == 0 &&
-										data->env[i][ft_strlen(current->word)] == '=')
-						{
-								free(data->env[i]);
-								j = i;
-								while (data->env[j])
-								{
-										data->env[j] = data->env[j + 1];
-										j++;
-								}
-								break;
-						}
-						i++;
+					data->env[j] = data->env[j + 1];
+					j++;
 				}
-				current = current->next;
+				break ;
+			}
+			i++;
 		}
-		return (0);
+		current = current->next;
+	}
+	return (0);
 }
-

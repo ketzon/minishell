@@ -6,16 +6,16 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:06:29 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/03 19:19:45 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/06 22:48:45 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static bool is_n(char *str)
+static bool	is_n(char *str)
 {
-	int i;
-	bool n_flag;
+	int		i;
+	bool	n_flag;
 
 	n_flag = false;
 	i = 0;
@@ -29,7 +29,7 @@ static bool is_n(char *str)
 	return (n_flag);
 }
 
-static void echo(char **args, bool n_flag, int i)
+static void	echo(char **args, bool n_flag, int i)
 {
 	if (args[i] == NULL)
 	{
@@ -50,8 +50,8 @@ static void echo(char **args, bool n_flag, int i)
 
 int	builtin_echo(t_data *data, char **args)
 {
-	int i;
-	bool n_flag;
+	int		i;
+	bool	n_flag;
 
 	(void)data;
 	i = 1;
