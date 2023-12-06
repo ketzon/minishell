@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:37:39 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/05 20:14:43 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:55:06 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	free_env_struct(t_var *env_head)
 
 void	free_env_array(char **env_arr)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	if (env_arr == NULL)
