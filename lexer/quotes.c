@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:26:07 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/15 00:17:35 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:49:59 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	find_matching_quote(char *line, int i, int *num_del, int del)
 	return (j - i);
 }
 
-bool closed_quotes(char *line)
+bool	closed_quotes(char *line)
 {
 	int	i;
 	int	s;

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 00:27:45 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 04:10:53 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:15:49 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	parse_output(t_cmd **cmd_head, t_lexer **lexer_head)
 
 	last_cmd = get_last_cmd(*cmd_head);
 	initialise_io(last_cmd);
-	open_output_trunc(last_cmd->io_struct, (*lexer_head)->next->word, (*lexer_head)->next->word_backup);
+	open_output_trunc(last_cmd->io_struct, (*lexer_head)->next->word,
+		(*lexer_head)->next->word_backup);
 	if ((*lexer_head)->next->next)
 		*lexer_head = (*lexer_head)->next->next;
 	else

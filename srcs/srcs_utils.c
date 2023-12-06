@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/04 04:27:48 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:33:37 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int ft_skip_white_spaces(char *str)
     return (i);
 }
 
-char *ft_strcpy(char *dest, const char *src)
+char	*ft_strcpy(char *dest, const char *src)
 {
 		char *start = dest;
 
@@ -37,40 +37,9 @@ char *ft_strcpy(char *dest, const char *src)
 		return start;
 }
 
-void    stack_add_bottom(t_lexer **head, t_lexer *new)
-{
-    t_lexer *tmp;
-
-    if (*head == NULL)
-        *head = new;
-    else
-    {
-        tmp = *head;
-        while (tmp && tmp->next)
-            tmp = tmp->next;
-        tmp->next = new;
-        new->previous = tmp;
-    }
-}
-
-t_lexer *new_node(char *input, char *input_backup, t_token token)
-{
-    t_lexer *new;
-
-    new = malloc(sizeof(*new));
-    new->next = NULL;
-    new->previous = NULL;
-    new->token = token;
-    new->word = input;
-	new->var_exists = false;
-	new->join = false;
-	new->word_backup = input_backup;
-    return (new);
-}
-
 int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] || s2[i])
@@ -82,9 +51,9 @@ int	ft_strcmp(char *s1, char *s2)
 	return (0);
 }
 
-void 	free_str_tab(char **tab)
+void	free_str_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (tab)
@@ -103,13 +72,13 @@ void 	free_str_tab(char **tab)
 	}
 }
 
-void    free_ptr(void *ptr)
+void	free_ptr(void *ptr)
 {
-    if (ptr != NULL)
-    {
-        free(ptr);
-        ptr = NULL;
-    }
+	if (ptr != NULL)
+	{
+		free(ptr);
+		ptr = NULL;
+	}
 }
 
 void	close_fds(t_cmd *cmds, bool close_backups)
@@ -154,7 +123,7 @@ static bool add_detail_quotes(char *command)
 
 char *join_strs(char *str, char *add)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (add == NULL)
 		return (str);
@@ -168,8 +137,8 @@ char *join_strs(char *str, char *add)
 
 int 	errmsg_cmd(char *command, char *detail, char *error_message, int error_nb)
 {
-	char *msg;
-	bool detail_quotes;
+	char	*msg;
+	bool	detail_quotes;
 
 	detail_quotes = add_detail_quotes(command);
 	msg = ft_strdup("minishell: ");
@@ -193,3 +162,19 @@ int 	errmsg_cmd(char *command, char *detail, char *error_message, int error_nb)
 	return (error_nb);
 }
 
+void	errmsg(char *errmsg, char *detail, int quotes)
+{
+	char	*msg;
+
+	msg = ft_strdup("minishell: ");
+	msg = join_strs(msg, errmsg);
+	if (quotes)
+		msg = join_strs(msg, " `");
+	else
+		msg = join_strs(msg, ": ");
+	msg = join_strs(msg, detail);
+	if (quotes)
+		msg = join_strs(msg, "'");
+	ft_putendl_fd(msg, STDERR_FILENO);
+	free_ptr(msg);
+}

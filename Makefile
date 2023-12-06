@@ -16,7 +16,7 @@ SRCS = main.c signals.c srcs_utils.c error.c free.c handle_quotes.c delete_quote
 
 EXPANDER = var_expander.c var_expander_utils.c variables_check.c var_replace.c heredoc_expander.c \
 
-LEXER = lexer.c quotes.c token_parse.c \
+LEXER = quotes.c token_parse.c token_parse_utils.c\
 
 REDIRECTIONS = file_io.c pipe.c \
 

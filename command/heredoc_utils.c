@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:04:45 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 22:28:39 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:12:22 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	check_expand_var_line(t_data *data, char **line)
 	i = 0;
 	while ((*line)[i])
 	{
-		if ((*line)[i] == '$' && invalid_next_char((*line)[i + 1]) == false && var_in_quotes(*line, i) == false)
+		if ((*line)[i] == '$' && invalid_next_char((*line)[i + 1]) == false
+			&& var_in_quotes(*line, i) == false)
 		{
 			var_value = find_matching_var(data, &(*line)[i], NULL);
 			replace_value_heredoc(line, var_value, i);
@@ -29,11 +30,13 @@ static void	check_expand_var_line(t_data *data, char **line)
 	}
 }
 
-static bool	check_line(t_data *data, char **line, t_io_data *io, bool *return_value)
+static bool	check_line(t_data *data, char **line
+	, t_io_data *io, bool *return_value)
 {
 	if (*line == NULL)
 	{
-		errmsg_cmd("warning", "heredoc delimited by EOF: wanted", io->heredoc_eof, true);
+		errmsg_cmd("warning", "heredoc delimited by EOF: wanted",
+			io->heredoc_eof, true);
 		*return_value = true;
 		return (false);
 	}

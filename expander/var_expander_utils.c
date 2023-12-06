@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 15:26:40 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 21:37:00 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:15:09 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,4 @@ bool	var_in_quotes(char *word, int i)
 			return (true);
 	}
 	return (false);
-}
-
-void	quotes_check(int *single_quote, char c)
-{
-	if (c == '\'')
-		*single_quote = 1;
 }

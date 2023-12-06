@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbesson <fbesson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:26:48 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/26 14:26:40 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/06 18:05:45 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	is_value_null(char *str)
 	return (0);
 }
 
-bool is_quotes(char *str)
+bool	is_quotes(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -42,10 +42,10 @@ bool is_quotes(char *str)
 	return (false);
 }
 
-int is_index(char **env, char *var)
+int	is_index(char **env, char *var)
 {
-	int index;
-	char *tmp;
+	int		index;
+	char	*tmp;
 
 	index = 0;
 	tmp = ft_strjoin(var, "=");

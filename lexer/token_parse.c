@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:29:16 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 21:21:22 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:57:27 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int	save_input(t_data *data, int start, int *i)
 		if ((*i) != 0 && is_sep(str, (*i) - 1) == 0)
 		{
 			word = ft_substr(str, start, (*i) - start);
-			stack_add_bottom(&data->lexer_head, new_node(word, ft_strdup(word), WORD));
+			stack_add_bottom(&data->lexer_head,
+				new_node(word, ft_strdup(word), WORD));
 		}
 		if (type == OUTAPPEND || type == HEREDOC || type == PIPE
 			|| type == INPUT || type == OUTPUT || type == END)
@@ -95,9 +96,10 @@ int	token_parse(t_data *data)
 	if (status != DEFAULT)
 	{
 		if (status == DQUOTE)
-			printf("unexpected EOF while looking for matching \"\n");
+			errmsg("unexpected EOF while looking for matching", "\"", true);
 		else if (status == SQUOTE)
-			printf("unexpected EOF while looking for matching \'\n");
+			errmsg("unexpected EOF while looking for matching", "\'", true);
+		errmsg("syntax error", "unexpected end of file", false);
 		return (1);
 	}
 	return (0);

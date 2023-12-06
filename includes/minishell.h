@@ -181,10 +181,10 @@ int	count_len(char *str, int count, int i);
 /* QUOTES */
 
 int		handle_quotes(t_data *data);
-int	delete_quotes(t_lexer **node);
-int	    find_matching_quote(char *line, int i, int *num_del, int del);
-bool    closed_quotes(char *line);
-int     quotes_handling(char *str, int start, char quote);
+int		delete_quotes(t_lexer **node);
+int		find_matching_quote(char *line, int i, int *num_del, int del);
+bool	closed_quotes(char *line);
+int		quotes_handling(char *str, int start, char quote);
 
 /* IS */
 
@@ -198,15 +198,10 @@ int	is_value_null(char *str);
 
 void	debugger_lexer(t_data *data);
 
-int	token_parse(t_data *data);
+int		token_parse(t_data *data);
 char	*token_word(t_token token);
-int	is_sep(char *str, int i);
-
-void    lexer(t_data *data);
-t_lexer   *fill_lexer_struct(char *input);
-int     add_word(char *input, int i, t_lexer **head);
-int     add_token(char *input, int i, t_lexer **head);
-bool    is_token(char c);
+int		is_sep(char *str, int i);
+int		add_token(char *input, int i, t_lexer **head);
 
 /* VARIABLE CHECK*/
 
@@ -243,11 +238,13 @@ bool	redirect_io(t_io_data *io);
 bool 	create_pipes(t_data *data);
 
 /* EXECUTE */
-int execute(t_data *data);
-int execute_command(t_data *data, t_cmd *cmd);
-char *get_cmd_path(t_data *data, char *name);
-int  check_command_not_found(t_data *data, t_cmd *cmd);
-void 	free_str_tab(char **tab);
+int		execute(t_data *data);
+int		execute_command(t_data *data, t_cmd *cmd);
+char	*get_cmd_path(t_data *data, char *name);
+int		check_command_not_found(t_data *data, t_cmd *cmd);
+void	free_str_tab(char **tab);
+
+/* COMMANDS */
 
 void	create_commands(t_data *data);
 void	cmd_lst_addback(t_cmd **cmd_head, t_cmd *new_node);
@@ -281,8 +278,10 @@ int   replace_value_heredoc(char **line, char *var_value, int index);
 char    *delete_var_name_and_replace_heredoc(char **line, char *var_value, int index);
 int     delete_var_name_heredoc(char **line, int index);
 /* ERROR */
-int	ft_error(int error);
-int errmsg_cmd(char *command, char *detail, char *error_message, int error_nb);
+
+int		ft_error(int error);
+int		errmsg_cmd(char *command, char *detail, char *error_message, int error_nb);
 void 	exit_shell(t_data *data, int exit_number);
+void	errmsg(char *errmsg, char *detail, int quotes);
 
 #endif
