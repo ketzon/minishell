@@ -278,6 +278,7 @@ line	includes/minishell.h	/^    char        *line;$/;"	m	struct:s_data
 line_count	env/env.c	/^int	line_count(char **envp)$/;"	f
 main	srcs/main.c	/^int	main(int argc, char **argv, char **envp)$/;"	f
 malloc_each_line	env/env.c	/^char	*malloc_each_line(char *line)$/;"	f
+mute	builtin/pwd.c	/^static void mute(char **dont_need)$/;"	f	file:
 name	includes/minishell.h	/^	char	*name;$/;"	m	struct:s_builtin
 name	includes/minishell.h	/^	char *name;$/;"	m	struct:s_var
 new_node	srcs/srcs_utils.c	/^t_lexer *new_node(char *input, char *input_backup, t_token token)$/;"	f
