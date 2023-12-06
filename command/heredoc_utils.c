@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:04:45 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/29 04:18:38 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:28:39 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	check_expand_var_line(t_data *data, char **line)
 {
-	int	i;
+	int		i;
 	char	*var_value;
 
 	i = 0;
@@ -22,7 +22,7 @@ static void	check_expand_var_line(t_data *data, char **line)
 	{
 		if ((*line)[i] == '$' && invalid_next_char((*line)[i + 1]) == false && var_in_quotes(*line, i) == false)
 		{
-			var_value = find_matching_var(data, &(*line)[i]);
+			var_value = find_matching_var(data, &(*line)[i], NULL);
 			replace_value_heredoc(line, var_value, i);
 		}
 		i++;
@@ -33,7 +33,7 @@ static bool	check_line(t_data *data, char **line, t_io_data *io, bool *return_va
 {
 	if (*line == NULL)
 	{
-		printf("Error , YOU HAVE TO EOF\n"); // Changer pour errcmd.
+		errmsg_cmd("warning", "heredoc delimited by EOF: wanted", io->heredoc_eof, true);
 		*return_value = true;
 		return (false);
 	}
@@ -45,12 +45,12 @@ static bool	check_line(t_data *data, char **line, t_io_data *io, bool *return_va
 	if (io->heredoc_quotes == false && ft_strchr(*line, '$'))
 	{
 		check_expand_var_line(data, line);
-	 	if ((*line) == NULL)
-	 	{
-	 		free_reset_ptr(*line);
-	 		*return_value = false;
-	 		return (false);
-	 	}
+		if ((*line) == NULL)
+		{
+			free_reset_ptr(*line);
+			*return_value = false;
+			return (false);
+		}
 	}
 	return (true);
 }

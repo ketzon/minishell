@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:25:49 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/01 03:49:16 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:29:30 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_cmd	*new_node_cmd(bool value)
 	new = malloc(sizeof(t_cmd));
 	if (!new)
 		return (NULL);
-	//ft_memset(new, 0, sizeof(t_cmd)); --MCOMBEAU.
 	new->pipe_output = value;
 	new->args = NULL;
 	new->command = NULL;
@@ -40,7 +39,7 @@ t_cmd	*new_node_cmd(bool value)
 
 void	cmd_lst_addback(t_cmd **cmd_head, t_cmd *new_node)
 {
-	t_cmd *tmp;
+	t_cmd	*tmp;
 
 	tmp = *cmd_head;
 	if (*cmd_head == NULL)

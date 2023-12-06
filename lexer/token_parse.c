@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:29:16 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/23 18:37:31 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 21:21:22 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,11 @@ int	is_sep(char *str, int i)
 static int	save_input(t_data *data, int start, int *i)
 {
 	int		type;
-	char 	*str;
+	char	*str;
 	char	*word;
 
 	str = data->line;
 	type = is_sep(str, (*i));
-
 	if (type)
 	{
 		if ((*i) != 0 && is_sep(str, (*i) - 1) == 0)
@@ -87,7 +86,6 @@ int	token_parse(t_data *data)
 	len = ft_strlen(data->line);
 	start = 0;
 	status = DEFAULT;
-
 	while (++i <= len)
 	{
 		status = get_status(status, data->line[i]);

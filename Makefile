@@ -1,5 +1,5 @@
 BIN = bin
-FLAGS = -Wall -Werror -Wextra  -g
+FLAGS = -Wall -Wextra -Werror  -g
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_DIR = ./libft
 LEXER_DIR = lexer/
@@ -10,6 +10,7 @@ REDIRECTIONS_DIR = redirections/
 BUILTIN_DIR = builtin/
 SRCS_DIR = srcs/
 CMD_DIR = command/
+CC = clang
 
 SRCS = main.c signals.c srcs_utils.c error.c free.c handle_quotes.c delete_quotes.c debuggers.c init.c \
 
@@ -26,7 +27,7 @@ ENV = chained.c env.c init.c is.c list.c \
 
 BUILTIN = env.c echo.c builtin.c pwd.c exit.c unset.c export.c cd.c \
 
-COMMAND =  create_commands.c lst_cmd.c parse_word.c fill_cmd_args.c split_var_cmd.c parse_input.c parse_output.c parse_output_append.c parse_pipe.c parse_heredoc.c heredoc_utils.c \
+COMMAND =  create_commands.c lst_cmd.c parse_word.c fill_cmd_args.c split_var_cmd.c parse_input.c parse_output.c parse_output_append.c parse_pipe.c parse_heredoc.c heredoc_utils.c echo_args.c\
 
 EXPANDER_FILES = $(addprefix $(EXPANDER_DIR), $(EXPANDER))
 LEXER_FILES = $(addprefix $(LEXER_DIR), $(LEXER))

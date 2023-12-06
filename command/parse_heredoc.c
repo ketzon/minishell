@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:56:18 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/28 19:16:21 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:29:59 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static bool	create_heredoc(t_data *data, t_io_data *io)
 
 void	parse_heredoc(t_data *data, t_cmd **cmd_head, t_lexer **lexer_head)
 {
-	t_cmd *last_cmd;
+	t_cmd	*last_cmd;
 
 	last_cmd = get_last_cmd(*cmd_head);
 	initialise_io(last_cmd);

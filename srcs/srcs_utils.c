@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/29 18:05:16 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/04 04:27:48 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ t_lexer *new_node(char *input, char *input_backup, t_token token)
     new->previous = NULL;
     new->token = token;
     new->word = input;
+	new->var_exists = false;
+	new->join = false;
 	new->word_backup = input_backup;
     return (new);
 }

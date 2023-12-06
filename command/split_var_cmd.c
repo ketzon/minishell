@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:48:08 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/23 18:54:42 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:30:40 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	split_var_cmd(char *var_str, t_cmd *last_cmd)
 {
 	int		i;
-	char 	**var_splitted;
+	char	**var_splitted;
 	t_lexer	*tmp_lexer;
 	t_lexer	*tmp_save_free;
 
