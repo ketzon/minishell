@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:06:29 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/03 18:13:10 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/03 19:19:45 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ int	builtin_echo(t_data *data, char **args)
 	bool n_flag;
 
 	(void)data;
-	if (args == NULL)
-		return (printf("error no args\n")); //args doit pointer sur la commande
 	i = 1;
 	n_flag = false;
 	while (args[i] && is_n(args[i]))

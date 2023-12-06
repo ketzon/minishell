@@ -17,8 +17,8 @@ CC	libft/Makefile	/^CC = gcc$/;"	m
 CFLAGS	libft/Makefile	/^CFLAGS = -Wall -Werror -Wextra -g -w$/;"	m
 CMD_DIR	Makefile	/^CMD_DIR = command\/$/;"	m
 CMD_FILES	Makefile	/^CMD_FILES = $(addprefix $(CMD_DIR), $(COMMAND))$/;"	m
-CMD_NOT_EXECUTABLE	includes/minishell.h	21;"	d
-CMD_NOT_FOUND	includes/minishell.h	20;"	d
+CMD_NOT_EXECUTABLE	includes/minishell.h	25;"	d
+CMD_NOT_FOUND	includes/minishell.h	24;"	d
 COMMAND	Makefile	/^COMMAND =  create_commands.c lst_cmd.c parse_word.c fill_cmd_args.c split_var_cmd.c parse_input.c parse_output.c parse_output_append.c parse_pipe.c parse_heredoc.c heredoc_utils.c \\$/;"	m
 DEFAULT	includes/minishell.h	/^		DEFAULT,$/;"	e	enum:e_quoting_status
 DQUOTE	includes/minishell.h	/^		DQUOTE$/;"	e	enum:e_quoting_status
@@ -54,17 +54,18 @@ MANDATORY	Makefile	/^MANDATORY = minishell$/;"	m
 MINISHELL_H	includes/minishell.h	2;"	d
 NAME	Makefile	/^NAME = $(MANDATORY)$/;"	m
 NAME	libft/Makefile	/^NAME = libft.a$/;"	m
-NOT_FIND	includes/minishell.h	17;"	d
+NOT_FIND	includes/minishell.h	21;"	d
 NO_COLOR	libft/Makefile	/^NO_COLOR = \\033[m$/;"	m
 OBJS	libft/Makefile	/^OBJS = $(SRCS:.c=.o) $/;"	m
 OBJS_BONUS	libft/Makefile	/^OBJS_BONUS = $(BONUS:.c=.o)$/;"	m
 OK_COLOR	libft/Makefile	/^OK_COLOR = \\033[0;32m$/;"	m
 OUTAPPEND	includes/minishell.h	/^    OUTAPPEND = 8,$/;"	e	enum:e_token
 OUTPUT	includes/minishell.h	/^    OUTPUT = 7,$/;"	e	enum:e_token
+PATH_MAX	includes/minishell.h	18;"	d
 PIPE	includes/minishell.h	/^    PIPE = 4,$/;"	e	enum:e_token
 PRINTF_H	includes/printf.h	15;"	d
 PRINTF_H	libft/printf.h	15;"	d
-PROMPT	includes/minishell.h	18;"	d
+PROMPT	includes/minishell.h	22;"	d
 RED	Makefile	/^RED = \\033[31m$/;"	m
 REDIRECTIONS	Makefile	/^REDIRECTIONS = file_io.c pipe.c \\$/;"	m
 REDIRECTIONS_DIR	Makefile	/^REDIRECTIONS_DIR = redirections\/$/;"	m
@@ -244,10 +245,11 @@ if_quotes_and_default	srcs/delete_quotes.c	/^static bool	if_quotes_and_default(t
 index	includes/minishell.h	/^	int index;$/;"	m	struct:s_var
 infile	includes/minishell.h	/^	char	*infile;$/;"	m	struct:s_io
 infos	includes/minishell.h	/^	char *infos;$/;"	m	struct:s_var
-init_data	srcs/main.c	/^static void 	init_data(t_data *data, char **envp)$/;"	f	file:
+init_data	srcs/main.c	/^static bool 	init_data(t_data *data, char **envp)$/;"	f	file:
 init_env	env/init.c	/^t_var	*init_env(char **env_array)$/;"	f
 init_env_var	env/init.c	/^t_var	*init_env_var(char *name, char *infos, int id)$/;"	f
 init_exec	execution/execute.c	/^static int init_exec(t_data *data)$/;"	f	file:
+init_wds	srcs/main.c	/^static bool init_wds(t_data *data)$/;"	f	file:
 initialise_io	srcs/init.c	/^void	initialise_io(t_cmd *cmd_node)$/;"	f
 input_fd	includes/minishell.h	/^	int		input_fd;$/;"	m	struct:s_io
 invalid_next_char	expander/var_expander_utils.c	/^bool    invalid_next_char(char c)$/;"	f
@@ -276,6 +278,7 @@ next	includes/minishell.h	/^	struct s_var *next;$/;"	m	struct:s_var	typeref:stru
 next	includes/minishell.h	/^	t_cmd	*next;$/;"	m	struct:s_cmd
 next	includes/minishell.h	/^    t_lexer     *next;$/;"	m	struct:s_lexer
 next	libft/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
+old_wd	includes/minishell.h	/^	char 		*old_wd;$/;"	m	struct:s_data
 open_input	command/parse_input.c	/^void	open_input(t_io_data *io, char *input_name, char *og_name)$/;"	f
 open_outfile_append	command/parse_output_append.c	/^static void	open_outfile_append(t_io_data *io, char *output_name, char *og_name)$/;"	f	file:
 open_output_trunc	command/parse_output.c	/^static void	open_output_trunc(t_io_data *io, char *output_name, char *og_name)$/;"	f	file:
@@ -292,6 +295,7 @@ path	includes/minishell.h	/^	char	*path;$/;"	m	struct:s_cmd
 pid	includes/minishell.h	/^	pid_t 		 pid;$/;"	m	struct:s_data
 pipe_fd	includes/minishell.h	/^	int		*pipe_fd;$/;"	m	struct:s_cmd
 pipe_output	includes/minishell.h	/^	bool	pipe_output;$/;"	m	struct:s_cmd
+prep_no_args_commands	command/create_commands.c	/^static void	prep_no_args_commands(t_data *data)$/;"	f	file:
 prev	includes/minishell.h	/^	struct s_var *prev;$/;"	m	struct:s_var	typeref:struct:s_var::s_var
 previous	includes/minishell.h	/^	t_cmd	*previous;$/;"	m	struct:s_cmd
 previous	includes/minishell.h	/^    t_lexer     *previous;$/;"	m	struct:s_lexer
@@ -343,6 +347,7 @@ var_in_quotes	expander/var_expander_utils.c	/^bool    var_in_quotes(char *word, 
 var_word_len	expander/var_expander_utils.c	/^int var_word_len(char *str)$/;"	f
 variable_check	expander/variables_check.c	/^int variable_check(t_data *data)$/;"	f
 variable_expander	expander/var_expander.c	/^void    variable_expander(t_data *data)$/;"	f
+wd	includes/minishell.h	/^	char 		*wd;$/;"	m	struct:s_data
 word	includes/minishell.h	/^    char        *word;$/;"	m	struct:s_lexer
 word_backup	includes/minishell.h	/^	char		*word_backup;$/;"	m	struct:s_lexer
 words_count	libft/ft_split.c	/^static size_t	words_count(char const *str, char c)$/;"	f	file:

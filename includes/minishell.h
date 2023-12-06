@@ -14,6 +14,10 @@
 # include <signal.h>
 # include <fcntl.h>
 
+# ifndef PATH_MAX
+# 	define PATH_MAX 4096
+# endif
+
 # define NOT_FIND  1
 # define PROMPT "\001\e[45m\002>>> \001\e[0m\e[33m\002 Minishell>$ \001\e[0m\002"
 //# define BUFFER_SIZE 42
@@ -78,6 +82,8 @@ typedef struct s_data
 {
     char        *line;
 	char		**env;
+	char 		*wd;
+	char 		*old_wd;
     t_lexer     *lexer_head;
 	t_cmd		*cmd_head;
     t_var     	*env_head;

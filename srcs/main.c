@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/01 03:51:46 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/04 09:04:35 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,20 +122,47 @@ void    reset_loop(t_data *data)
 /* 		printf("false\n"); */
 /* } */
 
-static void 	init_data(t_data *data, char **envp)
+static bool init_wds(t_data *data)
+{
+	char buff[PATH_MAX];
+	char *wd;
+
+	wd = getcwd(buff, PATH_MAX);
+	data->wd = ft_strdup(wd);
+	if (data->wd == NULL)
+		return (false);
+	if (is_index(data->env, "OLDPWD") != -1)
+		data->old_wd = get_line_infos("OLDPWD");
+	else
+	{
+		data->old_wd = ft_strdup(wd);
+		if (data->old_wd == NULL)
+			return (false);
+	}
+	return (true);
+}
+
+static bool 	init_data(t_data *data, char **envp)
 {
 	data->env = create_env_arr(envp);
 	data->env_head = init_env(data->env);
+	if (init_wds(data) == false)
+	{
+		errmsg_cmd("Fatal", NULL, "Could not initialize working directories", 1);
+		return (false);
+	}
 	data->lexer_head = NULL;
 	data->cmd_head = NULL;
 	data->pid = -1;
+	return (true);
 }
 
 int main(int , char **, char **envp)
 {
 	t_data  data;
 
-	init_data(&data, envp);
+	if (init_data(&data, envp) == false)
+		exit(EXIT_FAILURE);
 	while (1)
 	{
 		signals_handling();
