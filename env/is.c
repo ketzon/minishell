@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:26:48 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/06 18:05:45 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:54:19 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,23 @@ int	is_value_null(char *str)
 	if (!str[0])
 		return (1);
 	return (0);
+}
+
+bool 	is_valid_var_key(char *var)
+{
+	int i;
+
+	i = 0;
+	if (ft_isalpha(var[i]) == 0 && var[i] != '_')
+		return (false);
+	i++;
+	while (var[i] && var[i] != '=')
+	{
+		if (ft_isalnum(var[i]) == 0 && var[i] != '_')
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 bool	is_quotes(char *str)

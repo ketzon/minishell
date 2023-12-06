@@ -6,13 +6,13 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:46:28 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 21:12:03 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 22:21:46 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int execute_sys_bin(t_data *data, t_cmd *cmd)
+static int	execute_sys_bin(t_data *data, t_cmd *cmd)
 {
 	if (!cmd->command || cmd->command[0] == '\0')
 		return (CMD_NOT_FOUND);
@@ -26,9 +26,9 @@ static int execute_sys_bin(t_data *data, t_cmd *cmd)
 	return (EXIT_FAILURE);
 }
 
-static int execute_local_bin(t_data *data, t_cmd *cmd)
+static int	execute_local_bin(t_data *data, t_cmd *cmd)
 {
-	int val;
+	int	val;
 
 	val = check_command_not_found(data, cmd);
 	if (val != 0)
@@ -38,13 +38,13 @@ static int execute_local_bin(t_data *data, t_cmd *cmd)
 	return (1);
 }
 
-int execute_command(t_data *data, t_cmd *cmd)
+int	execute_command(t_data *data, t_cmd *cmd)
 {
-	int val;
+	int	val;
 
 	if (cmd->command == NULL || cmd == NULL)
 		exit_shell(data, errmsg_cmd("child", NULL,
-					"parsing error: no to command to execute!", EXIT_FAILURE));
+				"parsing error: no to command to execute!", EXIT_FAILURE));
 	if (check_infile_outfile(cmd->io_struct) == false)
 		exit_shell(data, EXIT_FAILURE);
 	set_pipe_fds(data->cmd_head, cmd);

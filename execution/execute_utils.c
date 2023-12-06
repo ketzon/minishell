@@ -6,22 +6,22 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 09:17:42 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 18:09:43 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 22:23:45 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool 	cmd_is_dir(char *cmd)
+bool	cmd_is_dir(char *cmd)
 {
-	struct stat cmd_stat;
+	struct stat	cmd_stat;
 
 	ft_memset(&cmd_stat, 0, sizeof(cmd_stat));
 	stat(cmd, &cmd_stat);
 	return (S_ISDIR(cmd_stat.st_mode));
 }
 
-int 	check_command_not_found(t_data *data, t_cmd *cmd)
+int	check_command_not_found(t_data *data, t_cmd *cmd)
 {
 	if (ft_strchr(cmd->command, '/') == NULL
 		&& is_index(data->env, "PATH") != -1)
@@ -36,5 +36,4 @@ int 	check_command_not_found(t_data *data, t_cmd *cmd)
 		return (errmsg_cmd(cmd->command, NULL, strerror(errno),
 				CMD_NOT_EXECUTABLE));
 	return (0);
-
 }

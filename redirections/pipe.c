@@ -6,13 +6,13 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:53:52 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:02 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 21:21:04 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void 	close_pipe_fds(t_cmd *cmds, t_cmd *skip_cmd)
+void	close_pipe_fds(t_cmd *cmds, t_cmd *skip_cmd)
 {
 	while (cmds)
 	{
@@ -25,7 +25,7 @@ void 	close_pipe_fds(t_cmd *cmds, t_cmd *skip_cmd)
 	}
 }
 
-bool 	set_pipe_fds(t_cmd *cmds, t_cmd *cmd)
+bool	set_pipe_fds(t_cmd *cmds, t_cmd *cmd)
 {
 	if (cmd == NULL)
 		return (false);
@@ -39,8 +39,8 @@ bool 	set_pipe_fds(t_cmd *cmds, t_cmd *cmd)
 
 bool	create_pipes(t_data *data)
 {
-	int *fd;
-	t_cmd *cmd;
+	int		*fd;
+	t_cmd	*cmd;
 
 	cmd = data->cmd_head;
 	while (cmd)
@@ -50,7 +50,7 @@ bool	create_pipes(t_data *data)
 			fd = malloc(sizeof(int) * 2);
 			if (!fd || pipe(fd) != 0)
 			{
-				free_data(data, false); //penser a free cmd_head.
+				free_data(data, false);
 				return (false);
 			}
 			cmd->pipe_fd = fd;
@@ -59,5 +59,3 @@ bool	create_pipes(t_data *data)
 	}
 	return (true);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 17:33:37 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:36:28 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,4 +177,12 @@ void	errmsg(char *errmsg, char *detail, int quotes)
 		msg = join_strs(msg, "'");
 	ft_putendl_fd(msg, STDERR_FILENO);
 	free_ptr(msg);
+}
+
+int ft_isspace(int c)
+{
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\r'
+		|| c == '\v' || c == '\f')
+		return (c);
+	return (0);
 }
