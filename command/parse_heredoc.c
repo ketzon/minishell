@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:56:18 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 22:29:59 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:14:34 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 static char	*get_heredoc_name(void)
 {
-	char			*tmp_name = "/tmp/.mini_heredoc_";
+	char			*tmp_name;
 	static int		number;
 	char			*number_char;
 	char			*heredoc_name;
 
+	tmp_name = "/tmp/.mini_heredoc_";
 	number = 1;
 	number_char = ft_itoa(number);
 	if (!number_char)
@@ -35,7 +36,8 @@ static char	*get_eof(char *eof, bool *quotes)
 	char	*new_eof;
 
 	end = ft_strlen(eof) - 1;
-	if ((eof[0] == '\"' && eof[end] == '\"') || (eof[0] == '\'' && eof[end] == '\''))
+	if ((eof[0] == '\"' && eof[end] == '\"')
+		|| (eof[0] == '\'' && eof[end] == '\''))
 	{
 		*quotes = true;
 		new_eof = ft_strtrim(eof, "\'\"");
@@ -66,9 +68,11 @@ void	parse_heredoc(t_data *data, t_cmd **cmd_head, t_lexer **lexer_head)
 	if (erase_previous_file(last_cmd->io_struct, true) == false)
 		return ;
 	last_cmd->io_struct->infile = get_heredoc_name();
-	last_cmd->io_struct->heredoc_eof = get_eof((*lexer_head)->next->word, &last_cmd->io_struct->heredoc_quotes);
+	last_cmd->io_struct->heredoc_eof = get_eof((*lexer_head)->next->word,
+			&last_cmd->io_struct->heredoc_quotes);
 	if (create_heredoc(data, last_cmd->io_struct) == true)
-		last_cmd->io_struct->input_fd = open(last_cmd->io_struct->infile, O_RDONLY);
+		last_cmd->io_struct->input_fd = open(last_cmd->io_struct->infile,
+				O_RDONLY);
 	else
 		last_cmd->io_struct->input_fd = -1;
 	if ((*lexer_head)->next->next)

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:03:29 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 22:31:04 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:06:37 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	parse_words(t_cmd **cmd_head, t_lexer **lexer_lst)
 	while (tmp && (tmp->token == VAR || tmp->token == WORD))
 	{
 		last_cmd = get_last_cmd(*cmd_head);
-		if (tmp->previous == NULL || (tmp->previous && tmp->previous->token == PIPE) || last_cmd->command == NULL)
+		if (tmp->previous == NULL || (tmp->previous
+				&& tmp->previous->token == PIPE) || last_cmd->command == NULL)
 		{
 			if (tmp->token == VAR && have_spaces(tmp->word) == true)
 				split_var_cmd(tmp->word, last_cmd);

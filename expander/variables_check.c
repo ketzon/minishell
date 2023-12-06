@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:49:54 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 21:55:52 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:59:54 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ static bool	check_invalid_tokens(t_lexer *node)
 {
 	if (check_invalid_consecutive_tokens(node) == true)
 	{
-		if (node->token == END && node->previous && node->previous->token > PIPE)
-			printf("syntax error near unexpected token 'newline'\n");
+		if (node->token == END && node->previous
+			&& node->previous->token > PIPE)
+			errmsg("syntax error near unexpected token", "newline", true);
 		else if (node->token == END && node->previous)
-			printf("syntax error near unexpected token '%s'\n", node->previous->word);
+			errmsg("syntax error near unexpected token",
+				node->previous->word, true);
 		else
-			printf("syntax error near unexpected token '%s'\n", node->word);
+			errmsg("syntax error near unexpected token", node->word, true);
 		return (true);
 	}
 	return (false);
@@ -62,7 +64,10 @@ int	variable_check(t_data *data)
 
 	temp = data->lexer_head;
 	if (temp->token == PIPE)
-		return (printf("syntax error near unexpected token '|'\n"), 1);
+	{
+		errmsg("syntax error near unexpected token", temp->word, true);
+		return (1);
+	}
 	while (temp)
 	{
 		flag_variables(temp);

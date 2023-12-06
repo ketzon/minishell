@@ -6,11 +6,17 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:36:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 21:30:24 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:02:09 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	quotes_check(int *single_quote, char c)
+{
+	if (c == '\'')
+		*single_quote = 1;
+}
 
 static char	*extract_var_from_string(char *word)
 {
@@ -41,7 +47,8 @@ char	*find_matching_var(t_data *data, char *word, t_lexer *node)
 		if (node != NULL)
 			node->var_exists = true;
 	}
-	else if (var_extracted && var_extracted[0] == '?' && var_extracted[1] == '\0')
+	else if (var_extracted && var_extracted[0] == '?'
+		&& var_extracted[1] == '\0')
 		var_value = ft_itoa(g_exit_code);
 	else
 		var_value = NULL;
@@ -61,7 +68,9 @@ static void	replace_var(t_data *data, t_lexer *node)
 	while (node->word[i])
 	{
 		quotes_check(&single_quote, node->word[i]);
-		if (node->word[i] == '$' && single_quote == 0 && invalid_next_char(node->word[i + 1]) == false && var_in_quotes(node->word, i) == false)
+		if (node->word[i] == '$' && single_quote == 0
+			&& invalid_next_char(node->word[i + 1]) == false
+			&& var_in_quotes(node->word, i) == false)
 		{
 			var_value = find_matching_var(data, &node->word[i], node);
 			replace_value(node, var_value, i);

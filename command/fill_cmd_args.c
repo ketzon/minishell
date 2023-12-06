@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 20:04:40 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 22:21:10 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:10:30 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,16 @@ int	add_new_args(t_cmd *last_cmd, t_lexer **lexer_lst)
 	new_args_tab = malloc((old_args_count + args_count + 1) * sizeof(char *));
 	if (!new_args_tab)
 		return (1);
-	new_args_tab = fill_args_tab(last_cmd, lexer_lst, new_args_tab, old_args_count);
+	new_args_tab = fill_args_tab(last_cmd, lexer_lst,
+			new_args_tab, old_args_count);
 	free(last_cmd->args);
 	last_cmd->args = new_args_tab;
 	*lexer_lst = tmp;
 	return (0);
 }
 
-char	**fill_args_tab(t_cmd *last_cmd, t_lexer **lexer_lst, char **new_args_tab, int old_args_count)
+char	**fill_args_tab(t_cmd *last_cmd, t_lexer **lexer_lst
+		, char **new_args_tab, int old_args_count)
 {
 	int		i;
 	t_lexer	*tmp;

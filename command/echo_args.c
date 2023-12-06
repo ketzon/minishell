@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 03:23:14 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/05 22:19:56 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:07:54 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	delete_empty_var_args(t_lexer **lexer_lst)
 	tmp = *lexer_lst;
 	while (tmp->token == WORD || tmp->token == VAR)
 	{
-		if (tmp->token == VAR && tmp->word[0] == '\0' && tmp->var_exists == false)
+		if (tmp->token == VAR && tmp->word[0] == '\0'
+			&& tmp->var_exists == false)
 		{
 			tmp = tmp->next;
 			if (tmp == (*lexer_lst)->next)
@@ -79,7 +80,8 @@ static char	*join_variables(t_lexer **lexer_lst)
 
 	tmp = *lexer_lst;
 	str = ft_strdup(tmp->word);
-	while (tmp->token == VAR && tmp->next->token == VAR && tmp->next->join == true)
+	while (tmp->token == VAR && tmp->next->token == VAR
+		&& tmp->next->join == true)
 	{
 		str = ft_strjoin(str, tmp->next->word);
 		tmp = tmp->next;
