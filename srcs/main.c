@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 18:55:45 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:50:08 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ int	main(int argc, char **argv, char **envp)
 		exit(EXIT_FAILURE);
 	(void)argc;
 	(void)argv;
-	init_data(&data, envp);
 	while (1)
 	{
 		signals_handling();

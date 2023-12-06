@@ -6,27 +6,15 @@
 /*   By: fbesson@student.42.fr <marvin@42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 20:07:43 by fbesson@stude     #+#    #+#             */
-/*   Updated: 2023/03/24 15:39:05 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/06 19:38:50 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(char *av)
+int	ft_isdigit(int c)
 {
-	int	i;
-
-	i = 0;
-	if (av[i] == '\0')
-		return (0);
-	if ((av[i] == '+' || av[i] == '-') && av[i + 1] != '\0')
-		i++;
-	while (av[i])
-	{
-		if (av[i] >= '0' && av[i] <= '9')
-			i++;
-		else
-			return (0);
-	}
-	return (1);
+	if (c >= '0' && c <= '9')
+		return (c);
+	return (0);
 }

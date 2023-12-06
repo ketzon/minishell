@@ -18,8 +18,8 @@ CC	libft/Makefile	/^CC = gcc$/;"	m
 CFLAGS	libft/Makefile	/^CFLAGS = -Wall -Werror -Wextra -g -w$/;"	m
 CMD_DIR	Makefile	/^CMD_DIR = command\/$/;"	m
 CMD_FILES	Makefile	/^CMD_FILES = $(addprefix $(CMD_DIR), $(COMMAND))$/;"	m
-CMD_NOT_EXECUTABLE	includes/minishell.h	37;"	d
-CMD_NOT_FOUND	includes/minishell.h	36;"	d
+CMD_NOT_EXECUTABLE	includes/minishell.h	38;"	d
+CMD_NOT_FOUND	includes/minishell.h	37;"	d
 COMMAND	Makefile	/^COMMAND =  create_commands.c lst_cmd.c parse_word.c fill_cmd_args.c split_var_cmd.c parse_input.c parse_output.c parse_output_append.c parse_pipe.c parse_heredoc.c heredoc_utils.c echo_args.c\\$/;"	m
 DEFAULT	includes/minishell.h	/^	DEFAULT,$/;"	e	enum:e_quoting_status
 DQUOTE	includes/minishell.h	/^	DQUOTE$/;"	e	enum:e_quoting_status
@@ -55,18 +55,18 @@ MANDATORY	Makefile	/^MANDATORY = minishell$/;"	m
 MINISHELL_H	includes/minishell.h	14;"	d
 NAME	Makefile	/^NAME = $(MANDATORY)$/;"	m
 NAME	libft/Makefile	/^NAME = libft.a$/;"	m
-NOT_FIND	includes/minishell.h	33;"	d
+NOT_FIND	includes/minishell.h	34;"	d
 NO_COLOR	libft/Makefile	/^NO_COLOR = \\033[m$/;"	m
 OBJS	libft/Makefile	/^OBJS = $(SRCS:.c=.o) $/;"	m
 OBJS_BONUS	libft/Makefile	/^OBJS_BONUS = $(BONUS:.c=.o)$/;"	m
 OK_COLOR	libft/Makefile	/^OK_COLOR = \\033[0;32m$/;"	m
 OUTAPPEND	includes/minishell.h	/^	OUTAPPEND = 8,$/;"	e	enum:e_token
 OUTPUT	includes/minishell.h	/^	OUTPUT = 7,$/;"	e	enum:e_token
-PATH_MAX	includes/minishell.h	30;"	d
+PATH_MAX	includes/minishell.h	31;"	d
 PIPE	includes/minishell.h	/^	PIPE = 4,$/;"	e	enum:e_token
 PRINTF_H	includes/printf.h	15;"	d
 PRINTF_H	libft/printf.h	15;"	d
-PROMPT	includes/minishell.h	34;"	d
+PROMPT	includes/minishell.h	35;"	d
 RED	Makefile	/^RED = \\033[31m$/;"	m
 REDIRECTIONS	Makefile	/^REDIRECTIONS = file_io.c pipe.c \\$/;"	m
 REDIRECTIONS_DIR	Makefile	/^REDIRECTIONS_DIR = redirections\/$/;"	m
@@ -82,14 +82,13 @@ WORD	includes/minishell.h	/^	WORD = 2,$/;"	e	enum:e_token
 add_args_echo_mode	command/echo_args.c	/^int	add_args_echo_mode(t_lexer **lexer_lst, t_cmd *last_cmd)$/;"	f
 add_detail_quotes	srcs/srcs_utils.c	/^static bool add_detail_quotes(char *command)$/;"	f	file:
 add_new_args	command/fill_cmd_args.c	/^int	add_new_args(t_cmd *last_cmd, t_lexer **lexer_lst)$/;"	f
-add_new_env_var	builtin/export.c	/^void add_new_env_var(t_data *data, char *key, char *value)$/;"	f
 add_token	lexer/token_parse_utils.c	/^int	add_token(char *input, int i, t_lexer **head)$/;"	f
 args	includes/minishell.h	/^	char		**args;$/;"	m	struct:s_cmd
 builtin_cd	builtin/cd.c	/^int	builtin_cd(t_data *data, char **args)$/;"	f
 builtin_echo	builtin/echo.c	/^int	builtin_echo(t_data *data, char **args)$/;"	f
 builtin_env	builtin/env.c	/^int	builtin_env(t_data *data, char **args)$/;"	f
-builtin_exit	builtin/exit.c	/^int builtin_exit(t_data *data, char **args)$/;"	f
-builtin_export	builtin/export.c	/^int builtin_export(t_data *data, char **args)$/;"	f
+builtin_exit	builtin/exit.c	/^int	builtin_exit(t_data *data, char **args)$/;"	f
+builtin_export	builtin/export.c	/^int	builtin_export(t_data *data, char **args)$/;"	f
 builtin_pwd	builtin/pwd.c	/^int	builtin_pwd(t_data *data, char **args)$/;"	f
 builtin_unset	builtin/unset.c	/^int	builtin_unset(t_data *data, char **args)$/;"	f
 builtins	builtin/builtin.c	/^t_builtin builtins[] =$/;"	v
@@ -101,6 +100,7 @@ check_infile_outfile	redirections/file_io.c	/^bool	check_infile_outfile(t_io_dat
 check_invalid_consecutive_tokens	expander/variables_check.c	/^static bool	check_invalid_consecutive_tokens(t_lexer *node)$/;"	f	file:
 check_invalid_tokens	expander/variables_check.c	/^static bool	check_invalid_tokens(t_lexer *node)$/;"	f	file:
 check_line	command/heredoc_utils.c	/^static bool	check_line(t_data *data, char **line$/;"	f	file:
+check_out_of_range	builtin/exit.c	/^static bool	check_out_of_range(int neg, unsigned long long num, bool *error)$/;"	f	file:
 clean	libft/ft_split.c	/^static void	clean(char **array, unsigned int nb)$/;"	f	file:
 clear_cmd_head	srcs/free.c	/^void	clear_cmd_head(t_cmd **cmd_head)$/;"	f
 clear_lexer_head	srcs/free.c	/^void	clear_lexer_head(t_lexer **lexer_head)$/;"	f
@@ -169,6 +169,7 @@ free_reset_ptr	srcs/free.c	/^void	free_reset_ptr(void	*ptr)$/;"	f
 free_str_tab	srcs/srcs_utils.c	/^void	free_str_tab(char **tab)$/;"	f
 free_strs	srcs/free.c	/^void	free_strs(char **strs)$/;"	f
 ft_atoi	libft/ft_atoi.c	/^int	ft_atoi(const char *str)$/;"	f
+ft_atoi_long	builtin/exit.c	/^static int	ft_atoi_long(const char *str, bool *error)$/;"	f	file:
 ft_bzero	libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
 ft_calloc	libft/ft_calloc.c	/^void	*ft_calloc(size_t nelements, size_t bytes)$/;"	f
 ft_cmp_nb	libft/ft_cmp_nb.c	/^int	ft_cmp_nb(char *a, char *b)$/;"	f
@@ -178,8 +179,9 @@ ft_error	srcs/error.c	/^int	ft_error(int error)$/;"	f
 ft_isalnum	libft/ft_isalnum.c	/^int	ft_isalnum(int c)$/;"	f
 ft_isalpha	libft/ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	f
 ft_isascii	libft/ft_isascii.c	/^int	ft_isascii(int c)$/;"	f
-ft_isdigit	libft/ft_isdigit.c	/^int	ft_isdigit(char *av)$/;"	f
+ft_isdigit	libft/ft_isdigit.c	/^int	ft_isdigit(int c)$/;"	f
 ft_isprint	libft/ft_isprint.c	/^int	ft_isprint(int c)$/;"	f
+ft_isspace	srcs/srcs_utils.c	/^int ft_isspace(int c)$/;"	f
 ft_itoa	libft/ft_itoa.c	/^char	*ft_itoa(int n)$/;"	f
 ft_lstadd_back	libft/ft_lstadd_back.c	/^void	ft_lstadd_back(t_list **lst, t_list *new)$/;"	f
 ft_lstadd_front	libft/ft_lstadd_front.c	/^void	ft_lstadd_front(t_list **lst, t_list *new)$/;"	f
@@ -221,7 +223,6 @@ ft_strlcpy	libft/ft_strlcpy.c	/^size_t	ft_strlcpy(char *dest, const char *src, s
 ft_strlen	libft/ft_strlen.c	/^size_t	ft_strlen(const char *str)$/;"	f
 ft_strmapi	libft/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*fonction)(unsigned int, char))$/;"	f
 ft_strncmp	libft/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f
-ft_strncpy	builtin/export.c	/^void	ft_strncpy(char *src, char *dest, int size)$/;"	f
 ft_strnstr	libft/ft_strnstr.c	/^char	*ft_strnstr(const char *src, const char *to_find, size_t n)$/;"	f
 ft_strrchr	libft/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/;"	f
 ft_strtrim	libft/ft_strtrim.c	/^char	*ft_strtrim(const char *s1, const char *set)$/;"	f
@@ -233,10 +234,13 @@ g_exit_code	srcs/main.c	/^int g_exit_code = 0;$/;"	v
 get_children	execution/execute.c	/^static int get_children(t_data *data)$/;"	f	file:
 get_cmd_path	execution/parse_path.c	/^char	*get_cmd_path(t_data *data, char *name)$/;"	f
 get_env_path	env/env.c	/^char    *get_env_path(char **envp)$/;"	f
+get_env_var_index	env/env.c	/^int	get_env_var_index(char **env, char *var)$/;"	f
 get_env_var_value	execution/parse_path.c	/^char	*get_env_var_value(char **env, char *var)$/;"	f
 get_eof	command/parse_heredoc.c	/^static char	*get_eof(char *eof, bool *quotes)$/;"	f	file:
+get_exit_code	builtin/exit.c	/^static int	get_exit_code(char *arg, bool *error)$/;"	f	file:
 get_heredoc_name	command/parse_heredoc.c	/^static char	*get_heredoc_name(void)$/;"	f	file:
 get_home_path	env/env.c	/^char    *get_home_path(char **envp)$/;"	f
+get_key_value_pair	builtin/export.c	/^static char	**get_key_value_pair(char *arg)$/;"	f	file:
 get_last_cmd	command/lst_cmd.c	/^t_cmd	*get_last_cmd(t_cmd *cmd_lst)$/;"	f
 get_line_infos	env/list.c	/^char	*get_line_infos(char *line)$/;"	f
 get_line_name	env/list.c	/^char	*get_line_name(char *line)$/;"	f
@@ -264,8 +268,10 @@ io_struct	includes/minishell.h	/^	t_io_data	*io_struct;$/;"	m	struct:s_cmd
 is_index	env/is.c	/^int	is_index(char **env, char *var)$/;"	f
 is_n	builtin/echo.c	/^static bool is_n(char *str)$/;"	f	file:
 is_null	env/is.c	/^int	is_null(char *str)$/;"	f
+is_quiet_mode	builtin/exit.c	/^static bool	is_quiet_mode(t_data *data)$/;"	f	file:
 is_quotes	env/is.c	/^bool	is_quotes(char *str)$/;"	f
 is_sep	lexer/token_parse.c	/^int	is_sep(char *str, int i)$/;"	f
+is_valid_var_key	env/is.c	/^bool 	is_valid_var_key(char *var)$/;"	f
 is_value_null	env/is.c	/^int	is_value_null(char *str)$/;"	f
 join	includes/minishell.h	/^	bool		join;$/;"	m	struct:s_lexer
 join_strs	srcs/srcs_utils.c	/^char *join_strs(char *str, char *add)$/;"	f
@@ -308,6 +314,7 @@ previous	includes/minishell.h	/^	t_cmd		*previous;$/;"	m	struct:s_cmd
 previous	includes/minishell.h	/^	t_lexer		*previous;$/;"	m	struct:s_lexer
 quotes_check	expander/var_expander.c	/^void	quotes_check(int *single_quote, char c)$/;"	f
 quotes_handling	lexer/quotes.c	/^int	quotes_handling(char *str, int start, char quote) \/\/ PEUT ETRE DELETE.$/;"	f
+realloc_env_vars	env/env.c	/^char	**realloc_env_vars(t_data *data, int size)$/;"	f
 redirect_io	redirections/file_io.c	/^bool	redirect_io(t_io_data *io)$/;"	f
 replace_value	expander/var_replace.c	/^int	replace_value(t_lexer *node, char *var_value, int index)$/;"	f
 replace_value_heredoc	expander/heredoc_expander.c	/^int	replace_value_heredoc(char **line, char *var_value, int index)$/;"	f
@@ -323,10 +330,10 @@ s_list	includes/libft.h	/^typedef struct s_list$/;"	s
 s_list	libft/libft.h	/^typedef struct s_list$/;"	s
 s_var	includes/minishell.h	/^typedef struct s_var$/;"	s
 save_input	lexer/token_parse.c	/^static int	save_input(t_data *data, int start, int *i)$/;"	f	file:
+set_env_var	env/env.c	/^bool	set_env_var(t_data *data, char *key, char *value)$/;"	f
 set_pipe_fds	redirections/pipe.c	/^bool 	set_pipe_fds(t_cmd *cmds, t_cmd *cmd)$/;"	f
 sigint_handling	srcs/signals.c	/^void sigint_handling(int signal)$/;"	f
 signals_handling	srcs/signals.c	/^void    signals_handling(void)$/;"	f
-split_key_value	builtin/export.c	/^void split_key_value(char *str, char **key, char **value)$/;"	f
 split_var_cmd	command/split_var_cmd.c	/^void	split_var_cmd(char *var_str, t_cmd *last_cmd)$/;"	f
 stack_add_bottom	lexer/token_parse_utils.c	/^void	stack_add_bottom(t_lexer **head, t_lexer *new)$/;"	f
 stdin_backup	includes/minishell.h	/^	int		stdin_backup;$/;"	m	struct:s_io
@@ -347,7 +354,6 @@ t_var	includes/minishell.h	/^}	t_var;$/;"	t	typeref:struct:s_var
 token	includes/minishell.h	/^	t_token		token;$/;"	m	struct:s_lexer
 token_parse	lexer/token_parse.c	/^int	token_parse(t_data *data)$/;"	f
 token_word	lexer/token_parse.c	/^char	*token_word(t_token token)$/;"	f
-update_env_var	builtin/export.c	/^void update_env_var(t_data *data, char *key, char *value, int index)$/;"	f
 var_exist	expander/var_expander_utils.c	/^bool	var_exist(t_data *data, char *var_name)$/;"	f
 var_exists	includes/minishell.h	/^	bool		var_exists;$/;"	m	struct:s_lexer
 var_in_quotes	expander/var_expander_utils.c	/^bool	var_in_quotes(char *word, int i)$/;"	f

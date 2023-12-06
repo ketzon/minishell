@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:04:15 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/03 16:00:49 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/06 19:24:44 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 int	builtin_env(t_data *data, char **args)
 {
-		(void)args;
-		int i;
-		char **env_vars;
+	int index;
 
-		env_vars = data->env;
-		i = 0;
-		while (env_vars && env_vars[i])
-		{
-				printf("%s\n", env_vars[i]);
-				i++;
-		}
-		return (0);
+	index = 0;
+	if (args && args[1])
+		return (errmsg_cmd("env", NULL, "too many arguments", 2));
+	if (data->env == NULL)
+		return (1);	
+	while (data->env[index])
+		ft_putendl_fd(data->env[index++], STDOUT_FILENO);
+	return (0);
 }

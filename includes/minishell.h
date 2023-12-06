@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:41:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 18:51:52 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 20:03:32 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <readline/history.h>
 # include <stdbool.h>
 # include <signal.h>
+# include <limits.h>
 # include <fcntl.h>
 
 # ifndef PATH_MAX
@@ -153,6 +154,8 @@ int		builtin_export(t_data *data, char **args);
 
 /* ENV */
 
+bool	set_env_var(t_data *data, char *key, char *value);
+bool 	is_valid_var_key(char *var);
 char	**create_env_arr(char **envp);
 t_var	*init_env(char **env_array);
 t_var	*init_env_var(char *name, char *infos, int id);
@@ -186,6 +189,7 @@ int		ft_strcmp(char *s1, char *s2);
 char	*ft_strcpy(char *dest, const char *src);
 int		ws(char c);
 int		ft_skip_white_spaces(char *str);
+int 	ft_isspace(int c);
 void	stack_add_bottom(t_lexer **head, t_lexer *new);
 t_lexer	*new_node(char *input, char *input_backup, t_token token);
 int		count_len(char *str, int count, int i);
