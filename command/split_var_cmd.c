@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:48:08 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 18:16:27 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 23:59:28 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	split_var_cmd(char *var_str, t_cmd *last_cmd)
 	t_lexer	*tmp_lexer;
 	t_lexer	*tmp_save_free;
 
+	tmp_lexer = NULL;
 	i = 1;
 	var_splitted = ft_split(var_str, ' ');
 	if (!var_splitted)

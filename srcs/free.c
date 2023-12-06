@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:37:39 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/06 18:55:06 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/06 22:56:58 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ void	free_data(t_data *data, bool clear_history)
 			free_env_struct(data->env_head);
 		if (data->lexer_head)
 			clear_lexer_head(&data->lexer_head);
-		if (clear_history == true)
-			rl_clear_history();
 		if (data->cmd_head)
 			clear_cmd_head(&data->cmd_head);
-		//free	historique;
+		if (clear_history == true)
+			rl_clear_history();
 	}
 }
 
