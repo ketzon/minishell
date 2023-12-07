@@ -6,25 +6,23 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:22:16 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/19 13:58:15 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:04:40 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-/* INTERPRETE LES DIFFERENTS SIGNAUX */
-void    signals_handling(void)
+void	signals_handling(void)
 {
-    signal(SIGINT, sigint_handling); // GESTION DU SIGNAL CTRL + C, renvoie a la fonction signal_handling.
-    signal(SIGQUIT, SIG_IGN); // GESTION DU SIGNAL CTRL + '\' , SIG_IGN lui dit d'ignorer le signal.
+	signal(SIGINT, sigint_handling);
+	signal(SIGQUIT, SIG_IGN);
 }
 
-/* FONCTION QUI GERE LE SIGNAL CTRL + C*/
-void sigint_handling(int signal)
+void	sigint_handling(int signal)
 {
-    ft_putchar('\n');//affiche un retour a la ligne
-    rl_on_new_line();//curseur deplace sur une new ligne
-    rl_replace_line("", 0);//remplace la commande en cour par une chaine vide
-    rl_redisplay();//affiche le prompt
-    (void)signal;
+	ft_putchar('\n');
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+	(void)signal;
 }

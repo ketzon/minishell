@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:10:12 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/13 19:24:31 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/07 19:41:23 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	connect_node(t_var *curr_node, t_var *next_node)
 
 void	create_list(t_var **env_head, t_var *node)
 {
-	t_var *curr;
-	int index;
+	t_var	*curr;
+	int		index;
 
 	index = 0;
 	if (*env_head == NULL)

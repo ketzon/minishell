@@ -6,7 +6,7 @@
 /*   By: fbesson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:37:13 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/06 19:38:56 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/07 20:03:53 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ t_list	*ft_lstlast(t_list *lst);
 
 //
 
-int	ft_printf(const char *format, ...);
-int	ft_conversions(const char c, va_list *list);
-int	ft_putchar(int c);
-int	ft_putstr(const char *str);
-int	ft_putnbr(unsigned long nb, unsigned int base, int X);
-int	ft_putdecimal(va_list *args);
-int	ft_putptr(va_list *args);
+int		ft_printf(const char *format, ...);
+int		ft_conversions(const char c, va_list *list);
+int		ft_putchar(int c);
+int		ft_putstr(const char *str);
+int		ft_putnbr(unsigned long nb, unsigned int base, int X);
+int		ft_putdecimal(va_list *args);
+int		ft_putptr(va_list *args);
 
 // NEW
 

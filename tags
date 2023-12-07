@@ -91,7 +91,7 @@ builtin_exit	builtin/exit.c	/^int	builtin_exit(t_data *data, char **args)$/;"	f
 builtin_export	builtin/export.c	/^int	builtin_export(t_data *data, char **args)$/;"	f
 builtin_pwd	builtin/pwd.c	/^int	builtin_pwd(t_data *data, char **args)$/;"	f
 builtin_unset	builtin/unset.c	/^int	builtin_unset(t_data *data, char **args)$/;"	f
-builtins	includes/minishell.h	/^	t_builtin	builtins[];$/;"	m	struct:s_data
+builtins	includes/minishell.h	/^	t_builtin	builtins[7];$/;"	m	struct:s_data
 change_back_to_default	srcs/delete_quotes.c	/^static bool	change_back_to_default(t_lexer **token_node, int *i, int *status)$/;"	f	file:
 change_dir	builtin/cd.c	/^static bool	change_dir(t_data *data, char *path)$/;"	f	file:
 change_status_to_quote	srcs/delete_quotes.c	/^static void	change_status_to_quote(t_lexer **token_node, int *i, int *status)$/;"	f	file:
@@ -124,7 +124,7 @@ create_args	command/fill_cmd_args.c	/^int	create_args(t_cmd *last_cmd, t_lexer *
 create_args_echo_mode	command/echo_args.c	/^int	create_args_echo_mode(t_lexer **lexer_lst, t_cmd *last_cmd)$/;"	f
 create_children	execution/execute.c	/^static int	create_children(t_data *data)$/;"	f	file:
 create_commands	command/create_commands.c	/^void	create_commands(t_data *data)$/;"	f
-create_env_arr	env/env.c	/^char	**create_env_arr(char **envp)$/;"	f
+create_env_arr	env/init.c	/^char	**create_env_arr(char **envp)$/;"	f
 create_env_list	env/list.c	/^void	create_env_list(t_var **env_head, char **env_arr)$/;"	f
 create_heredoc	command/parse_heredoc.c	/^static bool	create_heredoc(t_data *data, t_io_data *io)$/;"	f	file:
 create_list	env/chained.c	/^void	create_list(t_var **env_head, t_var *node)$/;"	f
@@ -232,16 +232,16 @@ ft_substr	libft/ft_substr.c	/^char	*ft_substr(char const *str, unsigned int star
 ft_tolower	libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
 ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
 func	includes/minishell.h	/^	int		(*func)(t_data *data, char **args);$/;"	m	struct:s_builtin
-g_exit_code	srcs/main.c	/^int g_exit_code = 0;$/;"	v
+g_exit_code	srcs/main.c	/^int	g_exit_code = 0;$/;"	v
 get_children	execution/execute.c	/^static int	get_children(t_data *data)$/;"	f	file:
 get_cmd_path	execution/parse_path.c	/^char	*get_cmd_path(t_data *data, char *name)$/;"	f
-get_env_path	env/env.c	/^char    *get_env_path(char **envp)$/;"	f
+get_env_path	env/env.c	/^char	*get_env_path(char **envp)$/;"	f
 get_env_var_index	env/env.c	/^int	get_env_var_index(char **env, char *var)$/;"	f
 get_env_var_value	execution/parse_path.c	/^char	*get_env_var_value(char **env, char *var)$/;"	f
 get_eof	command/parse_heredoc.c	/^static char	*get_eof(char *eof, bool *quotes)$/;"	f	file:
 get_exit_code	builtin/exit.c	/^static int	get_exit_code(char *arg, bool *error)$/;"	f	file:
 get_heredoc_name	command/parse_heredoc.c	/^static char	*get_heredoc_name(void)$/;"	f	file:
-get_home_path	env/env.c	/^char    *get_home_path(char **envp)$/;"	f
+get_home_path	env/env.c	/^char	*get_home_path(char **envp)$/;"	f
 get_key_value_pair	builtin/export.c	/^static char	**get_key_value_pair(char *arg)$/;"	f	file:
 get_last_cmd	command/lst_cmd.c	/^t_cmd	*get_last_cmd(t_cmd *cmd_lst)$/;"	f
 get_line_infos	env/list.c	/^char	*get_line_infos(char *line)$/;"	f
@@ -258,6 +258,7 @@ if_quotes_and_default	srcs/delete_quotes.c	/^static bool	if_quotes_and_default(t
 index	includes/minishell.h	/^	int				index;$/;"	m	struct:s_var
 infile	includes/minishell.h	/^	char	*infile;$/;"	m	struct:s_io
 infos	includes/minishell.h	/^	char			*infos;$/;"	m	struct:s_var
+init_builtins	srcs/main.c	/^static void	init_builtins(t_data *data)$/;"	f	file:
 init_data	srcs/main.c	/^static bool	init_data(t_data *data, char **envp)$/;"	f	file:
 init_env	env/init.c	/^t_var	*init_env(char **env_array)$/;"	f
 init_env_var	env/init.c	/^t_var	*init_env_var(char *name, char *infos, int id)$/;"	f
@@ -273,16 +274,16 @@ is_null	env/is.c	/^int	is_null(char *str)$/;"	f
 is_quiet_mode	builtin/exit.c	/^static bool	is_quiet_mode(t_data *data)$/;"	f	file:
 is_quotes	env/is.c	/^bool	is_quotes(char *str)$/;"	f
 is_sep	lexer/token_parse.c	/^int	is_sep(char *str, int i)$/;"	f
-is_valid_var_key	env/is.c	/^bool 	is_valid_var_key(char *var)$/;"	f
+is_valid_var_key	env/is.c	/^bool	is_valid_var_key(char *var)$/;"	f
 is_value_null	env/is.c	/^int	is_value_null(char *str)$/;"	f
 join	includes/minishell.h	/^	bool		join;$/;"	m	struct:s_lexer
 join_strs	srcs/srcs_utils.c	/^char *join_strs(char *str, char *add)$/;"	f
 join_variables	command/echo_args.c	/^static char	*join_variables(t_lexer **lexer_lst)$/;"	f	file:
 lexer_head	includes/minishell.h	/^	t_lexer		*lexer_head;$/;"	m	struct:s_data
 line	includes/minishell.h	/^	char		*line;$/;"	m	struct:s_data
-line_count	env/env.c	/^int	line_count(char **envp)$/;"	f
+line_count	srcs/srcs_utils.c	/^int	line_count(char **envp)$/;"	f
 main	srcs/main.c	/^int	main(int argc, char **argv, char **envp)$/;"	f
-malloc_each_line	env/env.c	/^char	*malloc_each_line(char *line)$/;"	f
+malloc_each_line	env/init.c	/^char	*malloc_each_line(char *line)$/;"	f
 mute	builtin/pwd.c	/^static void	mute(char **dont_need)$/;"	f	file:
 name	includes/minishell.h	/^	char			*name;$/;"	m	struct:s_var
 name	includes/minishell.h	/^	char	*name;$/;"	m	struct:s_builtin
@@ -332,10 +333,10 @@ s_list	includes/libft.h	/^typedef struct s_list$/;"	s
 s_list	libft/libft.h	/^typedef struct s_list$/;"	s
 s_var	includes/minishell.h	/^typedef struct s_var$/;"	s
 save_input	lexer/token_parse.c	/^static int	save_input(t_data *data, int start, int *i)$/;"	f	file:
-set_env_var	env/env.c	/^bool	set_env_var(t_data *data, char *key, char *value)$/;"	f
+set_env_var	env/init.c	/^bool	set_env_var(t_data *data, char *key, char *value)$/;"	f
 set_pipe_fds	redirections/pipe.c	/^bool	set_pipe_fds(t_cmd *cmds, t_cmd *cmd)$/;"	f
-sigint_handling	srcs/signals.c	/^void sigint_handling(int signal)$/;"	f
-signals_handling	srcs/signals.c	/^void    signals_handling(void)$/;"	f
+sigint_handling	srcs/signals.c	/^void	sigint_handling(int signal)$/;"	f
+signals_handling	srcs/signals.c	/^void	signals_handling(void)$/;"	f
 split_var_cmd	command/split_var_cmd.c	/^void	split_var_cmd(char *var_str, t_cmd *last_cmd)$/;"	f
 stack_add_bottom	lexer/token_parse_utils.c	/^void	stack_add_bottom(t_lexer **head, t_lexer *new)$/;"	f
 stdin_backup	includes/minishell.h	/^	int		stdin_backup;$/;"	m	struct:s_io

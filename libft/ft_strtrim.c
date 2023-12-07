@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:05:36 by fbesson@stu       #+#    #+#             */
-/*   Updated: 2023/09/11 14:40:52 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/07 20:04:30 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_set_str(const char c, const char *set)
 		if (set[i] == c)
 			return (1);
 		i++;
-	}	
+	}
 	return (0);
 }
 
@@ -48,7 +48,7 @@ char	*ft_strtrim(const char *s1, const char *set)
 	while (min < max)
 	{
 		tab[i++] = s1[min++];
-	}	
+	}
 	tab[i] = '\0';
 	return (tab);
 }

@@ -6,13 +6,13 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/07 00:08:42 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:35:38 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int g_exit_code = 0;
+int	g_exit_code = 0;
 
 bool	parse_input(t_data *data)
 {
@@ -81,19 +81,20 @@ static bool	init_wds(t_data *data)
 	return (true);
 }
 
+static void	init_builtins(t_data *data)
+{
+	data->builtins[0] = (t_builtin){"echo", &builtin_echo};
+	data->builtins[1] = (t_builtin){"env", &builtin_env};
+	data->builtins[2] = (t_builtin){"pwd", &builtin_pwd};
+	data->builtins[3] = (t_builtin){"unset", &builtin_unset};
+	data->builtins[4] = (t_builtin){"export", &builtin_export};
+	data->builtins[5] = (t_builtin){"cd", &builtin_cd};
+	data->builtins[6] = (t_builtin){"exit", &builtin_exit};
+	data->builtins[7] = (t_builtin){"NULL", NULL};
+}
+
 static bool	init_data(t_data *data, char **envp)
 {
-	data->builtins =
-	{
-		{"echo", builtin_echo},
-		{"env", builtin_env},
-		{"pwd", builtin_pwd},
-		{"exit", builtin_exit},
-		{"unset", builtin_unset},
-		{"export", builtin_export},
-		{"cd", builtin_cd},
-		{NULL, NULL}
-	};
 	data->env = create_env_arr(envp);
 	data->env_head = init_env(data->env);
 	if (init_wds(data) == false)
@@ -101,6 +102,7 @@ static bool	init_data(t_data *data, char **envp)
 		errmsg_cmd("Fatal", NULL, "Could not initialize working directories", 1);
 		return (false);
 	}
+	init_builtins(data);
 	data->line = NULL;
 	data->lexer_head = NULL;
 	data->cmd_head = NULL;

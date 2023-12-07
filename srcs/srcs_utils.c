@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 19:36:28 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/07 19:49:52 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ char	*ft_strcpy(char *dest, const char *src)
 		}
 		*dest = '\0';
 		return start;
+}
+
+int	line_count(char **envp)
+{
+	int	len;
+
+	len = 0;
+	while (envp[len])
+		len++;
+	return (len);
 }
 
 int	ft_strcmp(char *s1, char *s2)
