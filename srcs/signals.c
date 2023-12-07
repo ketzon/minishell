@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:22:16 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/09/19 13:58:15 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:15:54 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void    signals_handling(void)
 /* FONCTION QUI GERE LE SIGNAL CTRL + C*/
 void sigint_handling(int signal)
 {
+	g_exit_code = 130;
     ft_putchar('\n');//affiche un retour a la ligne
     rl_on_new_line();//curseur deplace sur une new ligne
     rl_replace_line("", 0);//remplace la commande en cour par une chaine vide

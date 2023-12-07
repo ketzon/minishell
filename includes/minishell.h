@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:41:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 22:45:24 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/07 22:01:44 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_data
 	t_cmd		*cmd_head;
 	t_var		*env_head;
 	pid_t		pid;
-	t_builtin	builtins[];
+	t_builtin	builtins;
 }	t_data;
 
 typedef struct s_lexer
@@ -156,7 +156,7 @@ int		builtin_export(t_data *data, char **args);
 /* ENV */
 
 bool	set_env_var(t_data *data, char *key, char *value);
-bool 	is_valid_var_key(char *var);
+bool	is_valid_var_key(char *var);
 char	**create_env_arr(char **envp);
 t_var	*init_env(char **env_array);
 t_var	*init_env_var(char *name, char *infos, int id);
@@ -183,6 +183,7 @@ void	free_env_struct(t_var *env_head);
 void	clear_lexer_head(t_lexer **lexer_head);
 void	clear_cmd_head(t_cmd **cmd_head);
 void	free_io_struct(t_io_data *io);
+void	delete_token(t_lexer *node, void (*del)(void *));
 
 /* UTILS */
 
@@ -191,7 +192,7 @@ int		ft_strcmp(char *s1, char *s2);
 char	*ft_strcpy(char *dest, const char *src);
 int		ws(char c);
 int		ft_skip_white_spaces(char *str);
-int 	ft_isspace(int c);
+int		ft_isspace(int c);
 void	stack_add_bottom(t_lexer **head, t_lexer *new);
 t_lexer	*new_node(char *input, char *input_backup, t_token token);
 int		count_len(char *str, int count, int i);
@@ -200,9 +201,6 @@ int		count_len(char *str, int count, int i);
 
 int		handle_quotes(t_data *data);
 int		delete_quotes(t_lexer **node);
-int		find_matching_quote(char *line, int i, int *num_del, int del);
-bool	closed_quotes(char *line);
-int		quotes_handling(char *str, int start, char quote);
 
 /* IS */
 
@@ -241,6 +239,9 @@ char	*find_matching_var(t_data *data, char *word, t_lexer *node);
 int		replace_value(t_lexer *node, char *var_value, int index);
 int		delete_var_name(t_lexer *node, int index);
 char	*delete_var_name_and_replace(t_lexer *node, char *var_value, int index);
+char	*malloc_new_string(t_lexer *node, int var_name_len, char *var_value);
+void	write_new_string(t_lexer *node, int index,
+			char *var_value, char *new_string);
 
 /* CREATE COMMANDS*/
 
@@ -285,12 +286,14 @@ int		add_new_args(t_cmd *last_cmd, t_lexer **lexer_lst);
 char	**fill_args_tab(t_cmd *last_cmd, t_lexer **lexer_lst,
 			char **new_args_tab, int old_args_count);
 int		count_cmd_args(t_lexer *lexer_lst);
+int		count_args(t_lexer *tmp);
 
 int		create_args_echo_mode(t_lexer **lexer_lst, t_cmd *last_cmd);
 int		add_args_echo_mode(t_lexer **lexer_lst, t_cmd *last_cmd);
 void	delete_empty_var_args(t_lexer **lexer_lst);
 char	**copy_to_new_tab(int len, char **new_tab,
 			t_cmd *last_cmd, t_lexer *tmp);
+char	*join_variables(t_lexer **lexer_lst);
 
 /* HEREDOC*/
 
@@ -298,6 +301,10 @@ int		replace_value_heredoc(char **line, char *var_value, int index);
 char	*delete_var_name_and_replace_heredoc(char **line,
 			char *var_value, int index);
 int		delete_var_name_heredoc(char **line, int index);
+char	*malloc_new_string_heredoc(char **line, int var_name_len,
+			char *var_value);
+void	write_new_string_heredoc(char **line, int index,
+			char *var_value, char *new_string);
 /* ERROR */
 
 int		ft_error(int error);

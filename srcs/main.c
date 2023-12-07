@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/07 00:08:42 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:18:09 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,17 @@ static bool	init_wds(t_data *data)
 
 static bool	init_data(t_data *data, char **envp)
 {
-	data->builtins =
-	{
-		{"echo", builtin_echo},
-		{"env", builtin_env},
-		{"pwd", builtin_pwd},
-		{"exit", builtin_exit},
-		{"unset", builtin_unset},
-		{"export", builtin_export},
-		{"cd", builtin_cd},
-		{NULL, NULL}
-	};
+	// data->builtins =
+	// {
+	// 	{"echo", builtin_echo},
+	// 	{"env", builtin_env},
+	// 	{"pwd", builtin_pwd},
+	// 	{"exit", builtin_exit},
+	// 	{"unset", builtin_unset},
+	// 	{"export", builtin_export},
+	// 	{"cd", builtin_cd},
+	// 	{NULL, NULL}
+	// };
 	data->env = create_env_arr(envp);
 	data->env_head = init_env(data->env);
 	if (init_wds(data) == false)
