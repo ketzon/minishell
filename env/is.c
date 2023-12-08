@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:26:48 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/06 19:54:19 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/07 19:54:33 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	is_value_null(char *str)
 	return (0);
 }
 
-bool 	is_valid_var_key(char *var)
+bool	is_valid_var_key(char *var)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ft_isalpha(var[i]) == 0 && var[i] != '_')

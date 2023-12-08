@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:41:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/07 22:01:44 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/07 22:34:55 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_lexer	t_lexer;
 typedef struct s_var	t_var;
 typedef struct s_data	t_data;
 
-extern int	g_exit_code;
+extern int				g_exit_code;
 
 enum e_quoting_status
 {
@@ -102,7 +102,7 @@ typedef struct s_data
 	t_cmd		*cmd_head;
 	t_var		*env_head;
 	pid_t		pid;
-	t_builtin	builtins;
+	t_builtin	builtins[8];
 }	t_data;
 
 typedef struct s_lexer
@@ -155,13 +155,16 @@ int		builtin_export(t_data *data, char **args);
 
 /* ENV */
 
+char	**realloc_env_vars(t_data *data, int size);
 bool	set_env_var(t_data *data, char *key, char *value);
+bool	is_valid_var_key(char *var);
 bool	is_valid_var_key(char *var);
 char	**create_env_arr(char **envp);
 t_var	*init_env(char **env_array);
 t_var	*init_env_var(char *name, char *infos, int id);
 void	create_env_list(t_var **env_head, char **env_arr);
 char	*get_env_var_value(char **env, char *var);
+int		get_env_var_index(char **env, char *var);
 char	*get_env_path(char **envp);
 char	*get_home_path(char **envp);
 char	*malloc_each_line(char *line);
@@ -188,6 +191,7 @@ void	delete_token(t_lexer *node, void (*del)(void *));
 /* UTILS */
 
 //void close_fds(t_command *cmds, bool close_backups);
+int		line_count(char **envp);
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_strcpy(char *dest, const char *src);
 int		ws(char c);

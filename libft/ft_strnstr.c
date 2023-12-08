@@ -6,7 +6,7 @@
 /*   By: fbesson@student.42.fr <marvin@42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 20:10:03 by fbesson@stude     #+#    #+#             */
-/*   Updated: 2022/11/29 22:37:02 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/07 20:02:36 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strnstr(const char *src, const char *to_find, size_t n)
 			}
 			if (to_find[j] == '\0')
 				return ((char *)&src[i]);
-		}		
+		}
 		i++;
 	}
 	return (NULL);

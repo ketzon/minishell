@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:37:39 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/06 22:56:58 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/07 23:06:01 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,12 @@ void	free_env_array(char **env_arr)
 		if (env_arr[index])
 		{
 			free_reset_ptr(env_arr[index]);
+			env_arr[index] = NULL;
 		}
 		index++;
 	}
 	free_reset_ptr(env_arr);
+	env_arr = NULL;
 	return ;
 }
 
