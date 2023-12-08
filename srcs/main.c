@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/08 04:16:34 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/08 19:56:08 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static bool	init_wds(t_data *data)
 	if (data->wd == NULL)
 		return (false);
 	if (is_index(data->env, "OLDPWD") != -1)
-		data->old_wd = get_line_infos("OLDPWD");
+		data->old_wd = get_var_value(data, "OLDPWD");
 	else
 	{
 		data->old_wd = ft_strdup(wd);
