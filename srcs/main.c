@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/08 19:32:45 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:39:45 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	parse_input(t_data *data)
 	handle_quotes(data);
 	create_commands(data);
 	if (data->overwrite_exit_code == false) // ?
-		return (false); 
+		return (false);
 	if (data->cmd_head == NULL) // ?
 	{
 		g_exit_code = 0;
