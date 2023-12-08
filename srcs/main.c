@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/08 20:39:45 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/08 21:34:59 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ bool	parse_input(t_data *data)
 		return (false);
 	if (data->lexer_head->token == END)
 	{
-		data->overwrite_exit_code = false; // ?
+		data->overwrite_exit_code = false;
 		return (false);
 	}
 	if (variable_check(data) == 1)
 		return (false);
 	variable_expander(data);
-	delete_empty_var_args(&data->lexer_head); // ?
+	delete_empty_var_args(&data->lexer_head);
 	handle_quotes(data);
 	create_commands(data);
-	if (data->overwrite_exit_code == false) // ?
+	if (data->overwrite_exit_code == false)
 		return (false);
-	if (data->cmd_head == NULL) // ?
+	if (data->cmd_head == NULL)
 	{
 		g_exit_code = 0;
 		data->overwrite_exit_code = false;
@@ -47,7 +47,7 @@ void	reset_loop(t_data *data)
 {
 	if (data)
 	{
-		data->overwrite_exit_code = true; // ?
+		data->overwrite_exit_code = true;
 		if (data->line)
 		{
 			free_reset_ptr(data->line);
@@ -63,6 +63,11 @@ void	reset_loop(t_data *data)
 			clear_cmd_head(&data->cmd_head);
 			data->cmd_head = NULL;
 		}
+		if (data->env_head)
+		{
+			free_env_struct(data->env_head);
+			data->env_head = NULL;
+		}
 	}
 }
 
@@ -76,7 +81,7 @@ static bool	init_wds(t_data *data)
 	if (data->wd == NULL)
 		return (false);
 	if (is_index(data->env, "OLDPWD") != -1)
-		data->old_wd = get_line_infos("OLDPWD");
+		data->old_wd = get_var_value(data, "OLDPWD");
 	else
 	{
 		data->old_wd = ft_strdup(wd);
@@ -101,7 +106,6 @@ static void	init_builtins(t_data *data)
 static bool	init_data(t_data *data, char **envp)
 {
 	data->env = create_env_arr(envp);
-	data->env_head = init_env(data->env);
 	if (init_wds(data) == false)
 	{
 		errmsg_cmd("Fatal", NULL, "Could not initialize working directories", 1);
@@ -111,8 +115,9 @@ static bool	init_data(t_data *data, char **envp)
 	data->line = NULL;
 	data->lexer_head = NULL;
 	data->cmd_head = NULL;
+	data->env_head = NULL;
 	data->pid = -1;
-	data->overwrite_exit_code = true; // ?
+	data->overwrite_exit_code = true;
 	return (true);
 }
 
@@ -127,6 +132,7 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		signals_handling();
+		data.env_head = init_env(data.env);
 		data.line = readline(PROMPT);
 		if (parse_input(&data) == true)
 			g_exit_code = execute(&data);

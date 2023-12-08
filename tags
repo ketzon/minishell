@@ -20,7 +20,7 @@ CMD_DIR	Makefile	/^CMD_DIR = command\/$/;"	m
 CMD_FILES	Makefile	/^CMD_FILES = $(addprefix $(CMD_DIR), $(COMMAND))$/;"	m
 CMD_NOT_EXECUTABLE	includes/minishell.h	38;"	d
 CMD_NOT_FOUND	includes/minishell.h	37;"	d
-COMMAND	Makefile	/^COMMAND =  create_commands.c lst_cmd.c parse_word.c fill_cmd_args.c split_var_cmd.c parse_input.c parse_output.c parse_output_append.c parse_pipe.c parse_heredoc.c heredoc_utils.c echo_args.c\\$/;"	m
+COMMAND	Makefile	/^COMMAND =  create_commands.c lst_cmd.c parse_word.c fill_cmd_args.c split_var_cmd.c parse_input.c parse_output.c parse_output_append.c parse_pipe.c parse_heredoc.c heredoc_utils.c echo_args.c echo_args2.c\\$/;"	m
 DEFAULT	includes/minishell.h	/^	DEFAULT,$/;"	e	enum:e_quoting_status
 DQUOTE	includes/minishell.h	/^	DQUOTE$/;"	e	enum:e_quoting_status
 ECHO	Makefile	/^ECHO = echo$/;"	m
@@ -44,7 +44,7 @@ HEX_BASE	includes/printf.h	16;"	d
 HEX_BASE	libft/libft.h	16;"	d
 HEX_BASE	libft/printf.h	16;"	d
 INPUT	includes/minishell.h	/^	INPUT = 5,$/;"	e	enum:e_token
-LEXER	Makefile	/^LEXER = quotes.c token_parse.c token_parse_utils.c\\$/;"	m
+LEXER	Makefile	/^LEXER = token_parse.c token_parse_utils.c\\$/;"	m
 LEXER_DIR	Makefile	/^LEXER_DIR = lexer\/$/;"	m
 LEXER_FILES	Makefile	/^LEXER_FILES = $(addprefix $(LEXER_DIR), $(LEXER))$/;"	m
 LIBFT	Makefile	/^LIBFT = $(LIBFT_DIR)\/libft.a$/;"	m
@@ -79,7 +79,7 @@ SRCS_DIR	Makefile	/^SRCS_DIR = srcs\/$/;"	m
 SRCS_FILES	Makefile	/^SRCS_FILES = $(addprefix $(SRCS_DIR), $(SRCS))$/;"	m
 VAR	includes/minishell.h	/^	VAR = 3,$/;"	e	enum:e_token
 WORD	includes/minishell.h	/^	WORD = 2,$/;"	e	enum:e_token
-add_args_echo_mode	command/echo_args.c	/^int	add_args_echo_mode(t_lexer **lexer_lst, t_cmd *last_cmd)$/;"	f
+add_args_echo_mode	command/echo_args2.c	/^int	add_args_echo_mode(t_lexer **lexer_lst, t_cmd *last_cmd)$/;"	f
 add_detail_quotes	srcs/srcs_utils.c	/^static bool add_detail_quotes(char *command)$/;"	f	file:
 add_new_args	command/fill_cmd_args.c	/^int	add_new_args(t_cmd *last_cmd, t_lexer **lexer_lst)$/;"	f
 add_token	lexer/token_parse_utils.c	/^int	add_token(char *input, int i, t_lexer **head)$/;"	f
@@ -91,7 +91,7 @@ builtin_exit	builtin/exit.c	/^int	builtin_exit(t_data *data, char **args)$/;"	f
 builtin_export	builtin/export.c	/^int	builtin_export(t_data *data, char **args)$/;"	f
 builtin_pwd	builtin/pwd.c	/^int	builtin_pwd(t_data *data, char **args)$/;"	f
 builtin_unset	builtin/unset.c	/^int	builtin_unset(t_data *data, char **args)$/;"	f
-builtins	includes/minishell.h	/^	t_builtin	builtins[7];$/;"	m	struct:s_data
+builtins	includes/minishell.h	/^	t_builtin	builtins[8];$/;"	m	struct:s_data
 change_back_to_default	srcs/delete_quotes.c	/^static bool	change_back_to_default(t_lexer **token_node, int *i, int *status)$/;"	f	file:
 change_dir	builtin/cd.c	/^static bool	change_dir(t_data *data, char *path)$/;"	f	file:
 change_status_to_quote	srcs/delete_quotes.c	/^static void	change_status_to_quote(t_lexer **token_node, int *i, int *status)$/;"	f	file:
@@ -108,7 +108,6 @@ clear_cmd_head	srcs/free.c	/^void	clear_cmd_head(t_cmd **cmd_head)$/;"	f
 clear_lexer_head	srcs/free.c	/^void	clear_lexer_head(t_lexer **lexer_head)$/;"	f
 close_fds	srcs/srcs_utils.c	/^void	close_fds(t_cmd *cmds, bool close_backups)$/;"	f
 close_pipe_fds	redirections/pipe.c	/^void	close_pipe_fds(t_cmd *cmds, t_cmd *skip_cmd)$/;"	f
-closed_quotes	lexer/quotes.c	/^bool	closed_quotes(char *line)$/;"	f
 cmd_head	includes/minishell.h	/^	t_cmd		*cmd_head;$/;"	m	struct:s_data
 cmd_is_dir	execution/execute_utils.c	/^bool	cmd_is_dir(char *cmd)$/;"	f
 cmd_lst_addback	command/lst_cmd.c	/^void	cmd_lst_addback(t_cmd **cmd_head, t_cmd *new_node)$/;"	f
@@ -116,8 +115,8 @@ command	includes/minishell.h	/^	char		*command;$/;"	m	struct:s_cmd
 connect_node	env/chained.c	/^void	connect_node(t_var *curr_node, t_var *next_node)$/;"	f
 content	includes/libft.h	/^	void			*content;$/;"	m	struct:s_list
 content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
-copy_to_new_tab	command/echo_args.c	/^char	**copy_to_new_tab(int len, char **new_tab, t_cmd *last_cmd, t_lexer *tmp)$/;"	f
-count_args	command/echo_args.c	/^static int	count_args(t_lexer *tmp)$/;"	f	file:
+copy_to_new_tab	command/echo_args2.c	/^char	**copy_to_new_tab(int len, char **new_tab,$/;"	f
+count_args	command/echo_args.c	/^int	count_args(t_lexer *tmp)$/;"	f
 count_cmd_args	command/fill_cmd_args.c	/^int	count_cmd_args(t_lexer *lexer_lst)$/;"	f
 count_len	srcs/handle_quotes.c	/^int	count_len(char *str, int count, int i)$/;"	f
 create_args	command/fill_cmd_args.c	/^int	create_args(t_cmd *last_cmd, t_lexer **lexer_lst)$/;"	f
@@ -133,10 +132,10 @@ debugger_cmds	srcs/debuggers.c	/^void	debugger_cmds(t_data *data)$/;"	f
 debugger_lexer	srcs/debuggers.c	/^void	debugger_lexer(t_data *data)$/;"	f
 delete_empty_var_args	command/echo_args.c	/^void	delete_empty_var_args(t_lexer **lexer_lst)$/;"	f
 delete_quotes	srcs/delete_quotes.c	/^int	delete_quotes(t_lexer **token_node)$/;"	f
-delete_token	command/echo_args.c	/^static void	delete_token(t_lexer *node, void (*del)(void *))$/;"	f	file:
+delete_token	command/echo_args.c	/^void	delete_token(t_lexer *node, void (*del)(void *))$/;"	f
 delete_var_name	expander/var_replace.c	/^int	delete_var_name(t_lexer *node, int index)$/;"	f
 delete_var_name_and_replace	expander/var_replace.c	/^char	*delete_var_name_and_replace(t_lexer *node, char *var_value, int index)$/;"	f
-delete_var_name_and_replace_heredoc	expander/heredoc_expander.c	/^char	*delete_var_name_and_replace_heredoc(char **line, char *var_value, int index)$/;"	f
+delete_var_name_and_replace_heredoc	expander/heredoc_expander.c	/^char	*delete_var_name_and_replace_heredoc(char **line,$/;"	f
 delete_var_name_heredoc	expander/heredoc_expander.c	/^int	delete_var_name_heredoc(char **line, int index)$/;"	f
 digit_count	libft/ft_itoa.c	/^static int	digit_count(long n)$/;"	f	file:
 e_quoting_status	includes/minishell.h	/^enum e_quoting_status$/;"	g
@@ -158,7 +157,6 @@ extract_var_from_string	expander/var_expander.c	/^static char	*extract_var_from_
 fill_args_tab	command/fill_cmd_args.c	/^char	**fill_args_tab(t_cmd *last_cmd, t_lexer **lexer_lst$/;"	f
 fill_cmd_args	command/fill_cmd_args.c	/^int	fill_cmd_args(t_lexer **lexer_lst, t_cmd *last_cmd)$/;"	f
 fill_heredoc	command/heredoc_utils.c	/^bool	fill_heredoc(t_data *data, t_io_data *io, int temp_fd)$/;"	f
-find_matching_quote	lexer/quotes.c	/^int	find_matching_quote(char *line, int i, int *num_del, int del)$/;"	f
 find_matching_var	expander/var_expander.c	/^char	*find_matching_var(t_data *data, char *word, t_lexer *node)$/;"	f
 find_valid_cmd_path	execution/parse_path.c	/^static char	*find_valid_cmd_path(char *cmd, char **paths)$/;"	f	file:
 flag_variables	expander/variables_check.c	/^static void	flag_variables(t_lexer *node)$/;"	f	file:
@@ -250,7 +248,6 @@ get_paths_from_env	execution/parse_path.c	/^static char	**get_paths_from_env(t_d
 get_status	lexer/token_parse.c	/^static int	get_status(int status, char c)$/;"	f	file:
 get_var_value	expander/var_expander_utils.c	/^char	*get_var_value(t_data *data, char *var_name)$/;"	f
 handle_quotes	srcs/handle_quotes.c	/^int	handle_quotes(t_data *data)$/;"	f
-have_spaces	command/parse_word.c	/^static bool	have_spaces(char *str)$/;"	f	file:
 heredoc_eof	includes/minishell.h	/^	char	*heredoc_eof;$/;"	m	struct:s_io
 heredoc_quotes	includes/minishell.h	/^	bool	heredoc_quotes;$/;"	m	struct:s_io
 id	includes/minishell.h	/^	int				id;$/;"	m	struct:s_var
@@ -278,12 +275,14 @@ is_valid_var_key	env/is.c	/^bool	is_valid_var_key(char *var)$/;"	f
 is_value_null	env/is.c	/^int	is_value_null(char *str)$/;"	f
 join	includes/minishell.h	/^	bool		join;$/;"	m	struct:s_lexer
 join_strs	srcs/srcs_utils.c	/^char *join_strs(char *str, char *add)$/;"	f
-join_variables	command/echo_args.c	/^static char	*join_variables(t_lexer **lexer_lst)$/;"	f	file:
+join_variables	command/echo_args.c	/^char	*join_variables(t_lexer **lexer_lst)$/;"	f
 lexer_head	includes/minishell.h	/^	t_lexer		*lexer_head;$/;"	m	struct:s_data
 line	includes/minishell.h	/^	char		*line;$/;"	m	struct:s_data
 line_count	srcs/srcs_utils.c	/^int	line_count(char **envp)$/;"	f
 main	srcs/main.c	/^int	main(int argc, char **argv, char **envp)$/;"	f
 malloc_each_line	env/init.c	/^char	*malloc_each_line(char *line)$/;"	f
+malloc_new_string	expander/var_replace.c	/^char	*malloc_new_string(t_lexer *node, int var_name_len, char *var_value)$/;"	f
+malloc_new_string_heredoc	expander/heredoc_expander.c	/^char	*malloc_new_string_heredoc(char **line, int var_name_len,$/;"	f
 mute	builtin/pwd.c	/^static void	mute(char **dont_need)$/;"	f	file:
 name	includes/minishell.h	/^	char			*name;$/;"	m	struct:s_var
 name	includes/minishell.h	/^	char	*name;$/;"	m	struct:s_builtin
@@ -300,6 +299,7 @@ open_outfile_append	command/parse_output_append.c	/^static void	open_outfile_app
 open_output_trunc	command/parse_output.c	/^static void	open_output_trunc(t_io_data *io, char *output_name, char *og_name)$/;"	f	file:
 outfile	includes/minishell.h	/^	char	*outfile;$/;"	m	struct:s_io
 output_fd	includes/minishell.h	/^	int		output_fd;$/;"	m	struct:s_io
+overwrite_exit_code	includes/minishell.h	/^	bool		overwrite_exit_code; \/\/ ?$/;"	m	struct:s_data
 parse_heredoc	command/parse_heredoc.c	/^void	parse_heredoc(t_data *data, t_cmd **cmd_head, t_lexer **lexer_head)$/;"	f
 parse_input	srcs/main.c	/^bool	parse_input(t_data *data)$/;"	f
 parse_input_cmd	command/parse_input.c	/^void	parse_input_cmd(t_cmd **cmd_head, t_lexer **lexer_head)$/;"	f
@@ -316,7 +316,6 @@ prev	includes/minishell.h	/^	struct s_var	*prev;$/;"	m	struct:s_var	typeref:stru
 previous	includes/minishell.h	/^	t_cmd		*previous;$/;"	m	struct:s_cmd
 previous	includes/minishell.h	/^	t_lexer		*previous;$/;"	m	struct:s_lexer
 quotes_check	expander/var_expander.c	/^void	quotes_check(int *single_quote, char c)$/;"	f
-quotes_handling	lexer/quotes.c	/^int	quotes_handling(char *str, int start, char quote) \/\/ PEUT ETRE DELETE.$/;"	f
 realloc_env_vars	env/env.c	/^char	**realloc_env_vars(t_data *data, int size)$/;"	f
 redirect_io	redirections/file_io.c	/^bool	redirect_io(t_io_data *io)$/;"	f
 replace_value	expander/var_replace.c	/^int	replace_value(t_lexer *node, char *var_value, int index)$/;"	f
@@ -336,6 +335,8 @@ save_input	lexer/token_parse.c	/^static int	save_input(t_data *data, int start, 
 set_env_var	env/init.c	/^bool	set_env_var(t_data *data, char *key, char *value)$/;"	f
 set_pipe_fds	redirections/pipe.c	/^bool	set_pipe_fds(t_cmd *cmds, t_cmd *cmd)$/;"	f
 sigint_handling	srcs/signals.c	/^void	sigint_handling(int signal)$/;"	f
+sigint_hd_handle	command/heredoc_utils.c	/^void	sigint_hd_handle(int signal)$/;"	f
+sigint_process	srcs/signals.c	/^void	sigint_process(int signal)$/;"	f
 signals_handling	srcs/signals.c	/^void	signals_handling(void)$/;"	f
 split_var_cmd	command/split_var_cmd.c	/^void	split_var_cmd(char *var_str, t_cmd *last_cmd)$/;"	f
 stack_add_bottom	lexer/token_parse_utils.c	/^void	stack_add_bottom(t_lexer **head, t_lexer *new)$/;"	f
@@ -369,4 +370,6 @@ word	includes/minishell.h	/^	char		*word;$/;"	m	struct:s_lexer
 word_backup	includes/minishell.h	/^	char		*word_backup;$/;"	m	struct:s_lexer
 words_count	libft/ft_split.c	/^static size_t	words_count(char const *str, char c)$/;"	f	file:
 words_lenght	libft/ft_split.c	/^static size_t	words_lenght(char const *str, char c)$/;"	f	file:
+write_new_string	expander/var_replace.c	/^void	write_new_string(t_lexer *node, int index,$/;"	f
+write_new_string_heredoc	expander/heredoc_expander.c	/^void	write_new_string_heredoc(char **line, int index,$/;"	f
 ws	srcs/srcs_utils.c	/^int	ws(char c)$/;"	f
