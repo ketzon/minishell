@@ -248,7 +248,6 @@ get_paths_from_env	execution/parse_path.c	/^static char	**get_paths_from_env(t_d
 get_status	lexer/token_parse.c	/^static int	get_status(int status, char c)$/;"	f	file:
 get_var_value	expander/var_expander_utils.c	/^char	*get_var_value(t_data *data, char *var_name)$/;"	f
 handle_quotes	srcs/handle_quotes.c	/^int	handle_quotes(t_data *data)$/;"	f
-have_spaces	command/parse_word.c	/^static bool	have_spaces(char *str)$/;"	f	file:
 heredoc_eof	includes/minishell.h	/^	char	*heredoc_eof;$/;"	m	struct:s_io
 heredoc_quotes	includes/minishell.h	/^	bool	heredoc_quotes;$/;"	m	struct:s_io
 id	includes/minishell.h	/^	int				id;$/;"	m	struct:s_var
@@ -336,6 +335,8 @@ save_input	lexer/token_parse.c	/^static int	save_input(t_data *data, int start, 
 set_env_var	env/init.c	/^bool	set_env_var(t_data *data, char *key, char *value)$/;"	f
 set_pipe_fds	redirections/pipe.c	/^bool	set_pipe_fds(t_cmd *cmds, t_cmd *cmd)$/;"	f
 sigint_handling	srcs/signals.c	/^void	sigint_handling(int signal)$/;"	f
+sigint_hd_handle	command/heredoc_utils.c	/^void	sigint_hd_handle(int signal)$/;"	f
+sigint_process	srcs/signals.c	/^void	sigint_process(int signal)$/;"	f
 signals_handling	srcs/signals.c	/^void	signals_handling(void)$/;"	f
 split_var_cmd	command/split_var_cmd.c	/^void	split_var_cmd(char *var_str, t_cmd *last_cmd)$/;"	f
 stack_add_bottom	lexer/token_parse_utils.c	/^void	stack_add_bottom(t_lexer **head, t_lexer *new)$/;"	f

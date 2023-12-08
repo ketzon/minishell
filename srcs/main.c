@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/08 19:56:08 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/08 19:59:50 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,7 @@ int	g_exit_code = 0;
 bool	parse_input(t_data *data)
 {
 	if (data->line == NULL)
-	{
-		free_data(data, true);
-		exit(0);
-	}
-	// Verifier que la chaine n'est pas simplement vide.
-	// Si que des espaces return 'true'.
+		builtin_exit(data, NULL);
 	add_history(data->line);
 	if (token_parse(data) == 1)
 		return (false);
@@ -37,6 +32,8 @@ bool	parse_input(t_data *data)
 	delete_empty_var_args(&data->lexer_head); // ?
 	handle_quotes(data);
 	create_commands(data);
+	if (data->overwrite_exit_code == false) // ?
+		return (false); 
 	if (data->cmd_head == NULL) // ?
 	{
 		g_exit_code = 0;
@@ -131,7 +128,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		signals_handling();
 		data.line = readline(PROMPT);
-		//ajouter signals_handling_noninteractive;
 		if (parse_input(&data) == true)
 			g_exit_code = execute(&data);
 		else

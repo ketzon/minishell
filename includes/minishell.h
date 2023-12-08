@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:41:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/08 03:44:23 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:13:53 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void	initialise_io(t_cmd *cmd_node);
 
 void	signals_handling(void);
 void	sigint_handling(int signal);
+void	sigint_process(int signal);
 
 /* BUILTIN */
 

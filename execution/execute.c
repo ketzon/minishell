@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:41:45 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/06 22:15:59 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/08 17:18:53 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	get_children(t_data *data)
 	int		save_status;
 
 	close_fds(data->cmd_head, false);
+	signal(SIGINT, &sigint_process); // ?
+	signal(SIGQUIT, SIG_IGN); // ?
 	save_status = 0;
 	wpid = 0;
 	while (wpid != -1 || errno != ECHILD)
@@ -58,6 +60,7 @@ static int	init_exec(t_data *data)
 {
 	int	io_val;
 
+	signal(SIGQUIT, SIG_DFL); // ?
 	io_val = check_infile_outfile(data->cmd_head->io_struct);
 	if (!data || !data->cmd_head)
 		return (EXIT_SUCCESS);

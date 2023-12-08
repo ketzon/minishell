@@ -6,11 +6,17 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:22:16 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/08 04:53:12 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:13:42 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	sigint_process(int signal)
+{
+	(void)signal;
+	ft_putchar('\n');
+}
 
 void	signals_handling(void)
 {

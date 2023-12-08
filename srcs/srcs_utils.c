@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/07 22:25:34 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:26:38 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int ft_skip_white_spaces(char *str)
 {
     int i;
 
+	if (!str)
+		return (1);
     i = 0;
     while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\t' || str[i] == '\r'))
         i++;
