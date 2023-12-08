@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/07 22:34:36 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/08 04:16:34 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,22 @@ bool	parse_input(t_data *data)
 	if (token_parse(data) == 1)
 		return (false);
 	if (data->lexer_head->token == END)
+	{
+		data->overwrite_exit_code = false; // ?
 		return (false);
+	}
 	if (variable_check(data) == 1)
 		return (false);
 	variable_expander(data);
+	delete_empty_var_args(&data->lexer_head); // ?
 	handle_quotes(data);
-	//debugger_lexer(data);
-	//delete_empty_var_args(&data->lexer_head);
 	create_commands(data);
-	//debugger_cmds(data);
+	if (data->cmd_head == NULL) // ?
+	{
+		g_exit_code = 0;
+		data->overwrite_exit_code = false;
+		return (false);
+	}
 	return (true);
 }
 
@@ -43,6 +50,7 @@ void	reset_loop(t_data *data)
 {
 	if (data)
 	{
+		data->overwrite_exit_code = true; // ?
 		if (data->line)
 		{
 			free_reset_ptr(data->line);
@@ -107,6 +115,7 @@ static bool	init_data(t_data *data, char **envp)
 	data->lexer_head = NULL;
 	data->cmd_head = NULL;
 	data->pid = -1;
+	data->overwrite_exit_code = true; // ?
 	return (true);
 }
 
@@ -126,7 +135,12 @@ int	main(int argc, char **argv, char **envp)
 		if (parse_input(&data) == true)
 			g_exit_code = execute(&data);
 		else
-			g_exit_code = 1;
+		{
+			if (data.overwrite_exit_code == false)
+				g_exit_code = g_exit_code;
+			else
+				g_exit_code = 1;
+		}
 		reset_loop(&data);
 	}
 	return (0);
