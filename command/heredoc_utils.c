@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:04:45 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 18:12:22 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/08 19:44:32 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ static void	check_expand_var_line(t_data *data, char **line)
 static bool	check_line(t_data *data, char **line
 	, t_io_data *io, bool *return_value)
 {
+	if (g_exit_code == 130)
+	{
+		data->overwrite_exit_code = false;
+		return (false);
+	}
 	if (*line == NULL)
 	{
 		errmsg_cmd("warning", "heredoc delimited by EOF: wanted",
@@ -58,22 +63,34 @@ static bool	check_line(t_data *data, char **line
 	return (true);
 }
 
+void	sigint_hd_handle(int signal)
+{
+	(void)signal;
+	g_exit_code = 130;
+	ft_putchar('\n');
+	close(STDIN_FILENO);
+}
+
 bool	fill_heredoc(t_data *data, t_io_data *io, int temp_fd)
 {
 	char	*line;
 	bool	return_value;
+	int		temp_stdin;
 
 	return_value = false;
 	line = NULL;
+	g_exit_code = 0;
+	temp_stdin = dup(STDIN_FILENO);
+	signal(SIGINT, &sigint_hd_handle);
 	while (1)
 	{
-		//gere signaux dans le heredoc.
 		line = readline("> ");
 		if (check_line(data, &line, io, &return_value) == false)
 			break ;
 		ft_putendl_fd(line, temp_fd);
 		free_reset_ptr(line);
 	}
+	dup2(temp_stdin, STDIN_FILENO);
 	free_reset_ptr(line);
 	return (return_value);
 }
