@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 21:53:52 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/09 17:06:46 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:48:08 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,14 @@ void	init_builtins(t_data *data)
 bool	init_data(t_data *data, char **envp)
 {
 	data->env = create_env_arr(envp);
+	data->env_head = init_env(data->env);
 	if (init_wds(data) == false)
 	{
 		errmsg_cmd("Fatal", NULL,
 			"Could not initialize working directories", 1);
 		return (false);
 	}
+	free_env_struct(data->env_head);
 	init_builtins(data);
 	data->line = NULL;
 	data->lexer_head = NULL;

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:44:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/09 16:59:36 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 21:08:21 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	line_count(char **envp)
 	int	len;
 
 	len = 0;
+	if (envp == NULL)
+		return (0);
 	while (envp[len])
 		len++;
 	return (len);

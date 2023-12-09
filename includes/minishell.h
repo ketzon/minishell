@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:41:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/09 18:59:50 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:22:00 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ void	debugger_lexer(t_data *data);
 int		token_parse(t_data *data);
 char	*token_word(t_token token);
 int		is_sep(char *str, int i);
-int		add_token(char *input, int i, t_lexer **head);
+void	add_token(char *input, int i, t_lexer **head);
 int		get_status(int status, char c);
 
 /* VARIABLE CHECK*/
