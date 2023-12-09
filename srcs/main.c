@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/09 16:42:42 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 17:06:30 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,6 @@ void	reset_loop(t_data *data)
 			data->env_head = NULL;
 		}
 	}
-}
-
-static bool	init_wds(t_data *data)
-{
-	char	buff[PATH_MAX];
-	char	*wd;
-
-	wd = getcwd(buff, PATH_MAX);
-	data->wd = ft_strdup(wd);
-	if (data->wd == NULL)
-		return (false);
-	if (is_index(data->env, "OLDPWD") != -1)
-		data->old_wd = get_var_value(data, "OLDPWD");
-	else
-	{
-		data->old_wd = ft_strdup(wd);
-		if (data->old_wd == NULL)
-			return (false);
-	}
-	return (true);
 }
 
 int	main(int argc, char **argv, char **envp)

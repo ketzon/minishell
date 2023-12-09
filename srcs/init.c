@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 21:53:52 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/09 16:42:58 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 17:06:46 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,25 @@ bool	init_data(t_data *data, char **envp)
 	data->env_head = NULL;
 	data->pid = -1;
 	data->overwrite_exit_code = true;
+	return (true);
+}
+
+bool	init_wds(t_data *data)
+{
+	char	buff[PATH_MAX];
+	char	*wd;
+
+	wd = getcwd(buff, PATH_MAX);
+	data->wd = ft_strdup(wd);
+	if (data->wd == NULL)
+		return (false);
+	if (is_index(data->env, "OLDPWD") != -1)
+		data->old_wd = get_var_value(data, "OLDPWD");
+	else
+	{
+		data->old_wd = ft_strdup(wd);
+		if (data->old_wd == NULL)
+			return (false);
+	}
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:41:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/09 16:42:49 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 17:21:37 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void	reset_loop(t_data *data);
 void	initialise_io(t_cmd *cmd_node);
 bool	init_data(t_data *data, char **envp);
 void	init_builtins(t_data *data);
+bool	init_wds(t_data *data);
 
 /* SIGNALS */
 
@@ -320,5 +321,7 @@ int		errmsg_cmd(char *command, char *detail,
 			char *error_message, int error_nb);
 void	exit_shell(t_data *data, int exit_number);
 void	errmsg(char *errmsg, char *detail, int quotes);
+bool	add_detail_quotes(char *command);
+char	*join_strs(char *str, char *add);
 
 #endif

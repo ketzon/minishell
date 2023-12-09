@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:57:40 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/09 17:00:41 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 17:12:32 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ws(char c)
 	return (0);
 }
 
-static bool	add_detail_quotes(char *command)
+bool	add_detail_quotes(char *command)
 {
 	if (ft_strncmp(command, "export", 7) == 0
 		|| ft_strncmp(command, "unset", 6) == 0)
