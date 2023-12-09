@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:41:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/09 17:21:37 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 18:59:50 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,7 @@ int		token_parse(t_data *data);
 char	*token_word(t_token token);
 int		is_sep(char *str, int i);
 int		add_token(char *input, int i, t_lexer **head);
+int		get_status(int status, char c);
 
 /* VARIABLE CHECK*/
 
@@ -235,7 +236,6 @@ void	variable_expander(t_data *data);
 
 /* EXPANDER UTILS */
 
-void	quotes_check(int *single_quote, char c);
 bool	var_in_quotes(char *word, int i);
 int		var_word_len(char *str);
 bool	var_exist(t_data *data, char *var_name);

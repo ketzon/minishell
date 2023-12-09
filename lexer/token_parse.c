@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:29:16 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 17:57:27 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 18:53:44 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	save_input(t_data *data, int start, int *i)
 	return (start);
 }
 
-static int	get_status(int status, char c)
+int	get_status(int status, char c)
 {
 	if (c == '\'' && status == DEFAULT)
 		status = SQUOTE;
