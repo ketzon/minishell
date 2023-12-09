@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:17:45 by fbesson           #+#    #+#             */
-/*   Updated: 2023/11/17 16:35:45 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 22:37:15 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ int	delete_quotes(t_lexer **token_node)
 		new_line[j++] = (*token_node)->word[i++];
 	}
 	new_line[j] = '\0';
+	return (delete_quotes_2(token_node, new_line));
+}
+
+int	delete_quotes_2(t_lexer **token_node, char *new_line)
+{
 	free_reset_ptr((*token_node)->word);
 	(*token_node)->word = new_line;
 	(*token_node)->join = true;

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:41:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/09 19:22:00 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 22:28:27 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,7 @@ int		count_len(char *str, int count, int i);
 
 int		handle_quotes(t_data *data);
 int		delete_quotes(t_lexer **node);
+int		delete_quotes_2(t_lexer **token_node, char *new_line);
 
 /* IS */
 
