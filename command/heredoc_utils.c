@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:04:45 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/08 19:44:32 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:36:50 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,21 @@ static void	check_expand_var_line(t_data *data, char **line)
 	}
 }
 
-static bool	check_line(t_data *data, char **line
-	, t_io_data *io, bool *return_value)
+static bool	signal_exit(t_data *data)
 {
 	if (g_exit_code == 130)
 	{
 		data->overwrite_exit_code = false;
-		return (false);
+		return (true);
 	}
+	return (false);
+}
+
+static bool	check_line(t_data *data, char **line
+	, t_io_data *io, bool *return_value)
+{
+	if (signal_exit(data) == true)
+		return (false);
 	if (*line == NULL)
 	{
 		errmsg_cmd("warning", "heredoc delimited by EOF: wanted",

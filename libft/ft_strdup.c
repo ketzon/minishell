@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 20:09:28 by fbesson@stu       #+#    #+#             */
-/*   Updated: 2023/12/06 23:38:32 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 17:02:32 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strdup(const char *src)
 
 	i = 0;
 	if (!src)
-		return (ft_strdup("")); // CHANGER PEUT ETRE,
+		return (ft_strdup(""));
 	tab = malloc(sizeof(char) * (ft_strlen(src) + 1));
 	if (!tab)
 		return (NULL);

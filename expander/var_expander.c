@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:36:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/08 21:10:15 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:39:54 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	*find_matching_var(t_data *data, char *word, t_lexer *node)
 		var_value = ft_itoa(g_exit_code);
 	else
 		var_value = NULL;
-    //printf("OG INPUT = %s | VAR NAME = %s | VAR_VALUE = %s\n", word, var_extracted, var_value);
 	free(var_extracted);
 	return (var_value);
 }

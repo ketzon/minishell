@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:41:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/08 17:13:53 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:42:49 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct s_var
 
 typedef struct s_data
 {
-	bool		overwrite_exit_code; // ?
+	bool		overwrite_exit_code;
 	char		*line;
 	char		**env;
 	char		*wd;
@@ -137,6 +137,8 @@ void	reset_loop(t_data *data);
 /* INIT */
 
 void	initialise_io(t_cmd *cmd_node);
+bool	init_data(t_data *data, char **envp);
+void	init_builtins(t_data *data);
 
 /* SIGNALS */
 

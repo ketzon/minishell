@@ -12,7 +12,7 @@ SRCS_DIR = srcs/
 CMD_DIR = command/
 CC = clang
 
-SRCS = main.c signals.c srcs_utils.c error.c free.c handle_quotes.c delete_quotes.c debuggers.c init.c \
+SRCS = main.c signals.c srcs_utils.c srcs_utils2.c error.c free.c free2.c handle_quotes.c delete_quotes.c debuggers.c init.c \
 
 EXPANDER = var_expander.c var_expander_utils.c variables_check.c var_replace.c heredoc_expander.c \
 

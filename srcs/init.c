@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 21:53:52 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/26 00:52:28 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:42:58 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,35 @@ void	initialise_io(t_cmd *cmd_node)
 	cmd_node->io_struct->output_fd = -1;
 	cmd_node->io_struct->stdin_backup = -1;
 	cmd_node->io_struct->stdout_backup = -1;
+}
+
+void	init_builtins(t_data *data)
+{
+	data->builtins[0] = (t_builtin){"echo", &builtin_echo};
+	data->builtins[1] = (t_builtin){"env", &builtin_env};
+	data->builtins[2] = (t_builtin){"pwd", &builtin_pwd};
+	data->builtins[3] = (t_builtin){"unset", &builtin_unset};
+	data->builtins[4] = (t_builtin){"export", &builtin_export};
+	data->builtins[5] = (t_builtin){"cd", &builtin_cd};
+	data->builtins[6] = (t_builtin){"exit", &builtin_exit};
+	data->builtins[7] = (t_builtin){NULL, NULL};
+}
+
+bool	init_data(t_data *data, char **envp)
+{
+	data->env = create_env_arr(envp);
+	if (init_wds(data) == false)
+	{
+		errmsg_cmd("Fatal", NULL,
+			"Could not initialize working directories", 1);
+		return (false);
+	}
+	init_builtins(data);
+	data->line = NULL;
+	data->lexer_head = NULL;
+	data->cmd_head = NULL;
+	data->env_head = NULL;
+	data->pid = -1;
+	data->overwrite_exit_code = true;
+	return (true);
 }
