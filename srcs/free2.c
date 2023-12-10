@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:54:26 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/09 16:57:12 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:38:30 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,13 @@ void	clear_cmd_head(t_cmd **cmd_head)
 	{
 		temp = (*cmd_head)->next;
 		if ((*cmd_head)->command)
-		{
 			free_reset_ptr((*cmd_head)->command);
-			(*cmd_head)->command = NULL;
-		}
 		if ((*cmd_head)->args)
-		{
 			free_str_tab((*cmd_head)->args);
-			(*cmd_head)->args = NULL;
-		}
 		if ((*cmd_head)->pipe_fd)
-		{
 			free((*cmd_head)->pipe_fd);
-			(*cmd_head)->pipe_fd = NULL;
-		}
 		if ((*cmd_head)->io_struct)
-		{
 			free_io_struct((*cmd_head)->io_struct);
-			(*cmd_head)->io_struct = NULL;
-		}
 		free(*cmd_head);
 		*cmd_head = temp;
 	}
