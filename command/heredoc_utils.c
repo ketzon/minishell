@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:04:45 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/10 15:57:38 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/10 18:31:46 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	check_expand_var_line(t_data *data, char **line)
 	int		i;
 	char	*var_value;
 
+	var_value = NULL;
 	i = 0;
 	while ((*line)[i])
 	{
