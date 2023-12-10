@@ -138,9 +138,9 @@ delete_var_name_and_replace	expander/var_replace.c	/^char	*delete_var_name_and_r
 delete_var_name_and_replace_heredoc	expander/heredoc_expander.c	/^char	*delete_var_name_and_replace_heredoc(char **line,$/;"	f
 delete_var_name_heredoc	expander/heredoc_expander.c	/^int	delete_var_name_heredoc(char **line, int index)$/;"	f
 digit_count	libft/ft_itoa.c	/^static int	digit_count(long n)$/;"	f	file:
+disable_env_variable	builtin/unset.c	/^static void	disable_env_variable(t_data *data, int *val)$/;"	f	file:
 e_quoting_status	includes/minishell.h	/^enum e_quoting_status$/;"	g
 e_token	includes/minishell.h	/^typedef enum e_token$/;"	g
-echo	builtin/echo.c	/^static void	echo(char **args, bool n_flag, int i)$/;"	f	file:
 env	includes/minishell.h	/^	char		**env;$/;"	m	struct:s_data
 env_head	includes/minishell.h	/^	t_var		*env_head;$/;"	m	struct:s_data
 erase_previous_file	command/parse_input.c	/^bool	erase_previous_file(t_io_data *io, bool infile)$/;"	f
@@ -265,12 +265,14 @@ initialise_io	srcs/init.c	/^void	initialise_io(t_cmd *cmd_node)$/;"	f
 input_fd	includes/minishell.h	/^	int		input_fd;$/;"	m	struct:s_io
 invalid_next_char	expander/var_expander_utils.c	/^bool	invalid_next_char(char c)$/;"	f
 io_struct	includes/minishell.h	/^	t_io_data	*io_struct;$/;"	m	struct:s_cmd
+is_env_variable_match	builtin/unset.c	/^static int	is_env_variable_match(char *env_var, char *current_word)$/;"	f	file:
 is_index	env/is.c	/^int	is_index(char **env, char *var)$/;"	f
-is_n	builtin/echo.c	/^static bool	is_n(char *str)$/;"	f	file:
 is_null	env/is.c	/^int	is_null(char *str)$/;"	f
+is_option	builtin/echo.c	/^static int	is_option(char *str)$/;"	f	file:
 is_quiet_mode	builtin/exit.c	/^static bool	is_quiet_mode(t_data *data)$/;"	f	file:
 is_quotes	env/is.c	/^bool	is_quotes(char *str)$/;"	f
 is_sep	lexer/token_parse.c	/^int	is_sep(char *str, int i)$/;"	f
+is_valid_option	builtin/echo.c	/^static int	is_valid_option(char *str)$/;"	f	file:
 is_valid_var_key	env/is.c	/^bool	is_valid_var_key(char *var)$/;"	f
 is_value_null	env/is.c	/^int	is_value_null(char *str)$/;"	f
 join	includes/minishell.h	/^	bool		join;$/;"	m	struct:s_lexer
@@ -318,6 +320,7 @@ previous	includes/minishell.h	/^	t_lexer		*previous;$/;"	m	struct:s_lexer
 quotes_check	expander/var_expander.c	/^void	quotes_check(int *single_quote, char c)$/;"	f
 realloc_env_vars	env/env.c	/^char	**realloc_env_vars(t_data *data, int size)$/;"	f
 redirect_io	redirections/file_io.c	/^bool	redirect_io(t_io_data *io)$/;"	f
+remove_env_variable	builtin/unset.c	/^static void	remove_env_variable(t_data *data, int index)$/;"	f	file:
 replace_value	expander/var_replace.c	/^int	replace_value(t_lexer *node, char *var_value, int index)$/;"	f
 replace_value_heredoc	expander/heredoc_expander.c	/^int	replace_value_heredoc(char **line, char *var_value, int index)$/;"	f
 replace_var	expander/var_expander.c	/^static void	replace_var(t_data *data, t_lexer *node)$/;"	f	file:

@@ -6,61 +6,61 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:06:29 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/06 22:48:45 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/10 18:02:17 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static bool	is_n(char *str)
+static int	is_option(char *str)
 {
-	int		i;
-	bool	n_flag;
-
-	n_flag = false;
-	i = 0;
-	if (str[i] != '-')
-		return (n_flag);
-	i++;
-	while (str[i] && str[i] == 'n')
-		i++;
-	if (str[i] == '\0')
-		n_flag = true;
-	return (n_flag);
+	if (str == NULL)
+		return (0);
+	if (*str == '-')
+		str++;
+	else
+		return (0);
+	if (*str == '-')
+		str++;
+	if (*str)
+		return (1);
+	return (0);
 }
 
-static void	echo(char **args, bool n_flag, int i)
+static int	is_valid_option(char *str)
 {
-	if (args[i] == NULL)
+	if (!is_option(str))
+		return (0);
+	str++;
+	while (*str)
 	{
-		if (n_flag == false)
-			ft_putchar_fd('\n', STDOUT_FILENO);
-		return ;
+		if (*str != 'n')
+			return (0);
+		str++;
 	}
-	while (args[i])
-	{
-		ft_putstr_fd(args[i], STDOUT_FILENO);
-		if (args[i + 1])
-			ft_putchar_fd(' ', STDOUT_FILENO);
-		else if (!args[i + 1] && n_flag == false)
-			ft_putchar_fd('\n', STDOUT_FILENO);
-		i++;
-	}
+	return (1);
 }
 
 int	builtin_echo(t_data *data, char **args)
 {
-	int		i;
-	bool	n_flag;
+	int	i;
+	int	n;
 
+	n = 0;
+	i = 0;
 	(void)data;
-	i = 1;
-	n_flag = false;
-	while (args[i] && is_n(args[i]))
+	if (is_valid_option(args[1]))
 	{
-		n_flag = true;
-		i++;
+		n = 1;
+		i = 1;
 	}
-	echo(args, n_flag, i);
+	while (args[++i])
+	{
+		ft_putstr_fd(args[i], STDOUT_FILENO);
+		if (args[i + 1] != NULL)
+			ft_putstr_fd(" ", STDOUT_FILENO);
+	}
+	if (n == 0)
+		ft_putstr_fd("\n", STDOUT_FILENO);
 	return (EXIT_SUCCESS);
 }

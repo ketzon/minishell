@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:37:39 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/07 23:06:01 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/08 23:59:01 by fbesson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	free_data(t_data *data, bool clear_history)
 {
 	if (data)
 	{
+		(void)data;
 		if (data->line)
 			free_reset_ptr(data->line);
 		if (data->env && *data->env)
