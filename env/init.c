@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:55:07 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/07 19:52:38 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/09 21:09:12 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ char	**create_env_arr(char **envp)
 	index = 0;
 	len = line_count(envp);
 	arr = malloc(sizeof(char *) * (len + 1));
-	while (envp[index])
+	if (!arr)
+		return (NULL);
+	while (envp && envp[index])
 	{
 		arr[index] = malloc_each_line(envp[index]);
 		index++;

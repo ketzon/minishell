@@ -6,56 +6,65 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:55:08 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 18:19:58 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:12:30 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	add_token(char *input, int i, t_lexer **head)
+void	add_token_part1(char *input, t_lexer **head, t_token *token, char **str)
 {
-	t_token	token;
-	char	*str;
-	int		j;
+	int	i;
 
+	(void)head;
+	i = 0;
 	if (input[i] == '\0')
 	{
-		j = 0;
-		str = "\0";
-		token = END;
+		*str = "\0";
+		*token = END;
 	}
 	if (input[i] == '>' && input[i + 1] == '>')
 	{
-		j = 2;
-		str = ">>";
-		token = OUTAPPEND;
+		*str = ">>";
+		*token = OUTAPPEND;
 	}
 	else if (input[i] == '>')
 	{
-		j = 1;
-		str = ">";
-		token = OUTPUT;
+		*str = ">";
+		*token = OUTPUT;
 	}
-	else if (input[i] == '<' && input[i + 1] == '<')
+}
+
+void	add_token_part2(char *input, t_lexer **head, t_token *token, char **str)
+{
+	int	i;
+
+	i = 0;
+	if (input[i] == '<' && input[i + 1] == '<')
 	{
-		j = 2;
-		str = "<<";
-		token = HEREDOC;
+		*str = "<<";
+		*token = HEREDOC;
 	}
 	else if (input[i] == '<')
 	{
-		j = 1;
-		str = "<";
-		token = INPUT;
+		*str = "<";
+		*token = INPUT;
 	}
 	else if (input[i] == '|')
 	{
-		j = 1;
-		str = "|";
-		token = PIPE;
+		*str = "|";
+		*token = PIPE;
 	}
-	stack_add_bottom(head, new_node(str, NULL, token));
-	return (j);
+	stack_add_bottom(head, new_node(*str, NULL, *token));
+}
+
+void	add_token(char *input, int i, t_lexer **head)
+{
+	t_token	token;
+	char	*str;
+
+	add_token_part1(&input[i], head, &token, &str);
+	add_token_part2(&input[i], head, &token, &str);
 }
 
 void	stack_add_bottom(t_lexer **head, t_lexer *new)

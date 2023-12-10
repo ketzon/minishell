@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 15:26:40 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 23:07:23 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/08 21:09:31 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*get_var_value(t_data *data, char *var_name)
 	env_tmp = data->env_head;
 	while (env_tmp)
 	{
-		if (ft_strncmp(env_tmp->name, var_name, var_word_len(var_name)) == 0)
+		if (ft_strcmp(env_tmp->name, var_name) == 0)
 			return (ft_strdup(env_tmp->infos));
 		env_tmp = env_tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 03:49:05 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/07 21:04:48 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/10 18:53:05 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ char	*malloc_new_string_heredoc(char **line, int var_name_len,
 			- var_name_len + ft_strlen(var_value);
 	else
 		new_string_len = ft_strlen(*line) - var_name_len;
-	new_string = malloc(sizeof(char) * new_string_len + 1);
+	new_string = ft_calloc(new_string_len + 1, sizeof(char));
+	if (!new_string)
+		return (NULL);
 	return (new_string);
 }
 

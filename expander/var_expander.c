@@ -6,17 +6,11 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:36:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/06 21:30:07 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/09 18:59:36 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	quotes_check(int *single_quote, char c)
-{
-	if (c == '\'')
-		*single_quote = 1;
-}
 
 static char	*extract_var_from_string(char *word)
 {
@@ -52,7 +46,6 @@ char	*find_matching_var(t_data *data, char *word, t_lexer *node)
 		var_value = ft_itoa(g_exit_code);
 	else
 		var_value = NULL;
-    //printf("OG INPUT = %s | VAR NAME = %s | VAR_VALUE = %s\n", word, var_extracted, var_value);
 	free(var_extracted);
 	return (var_value);
 }
@@ -61,14 +54,14 @@ static void	replace_var(t_data *data, t_lexer *node)
 {
 	int		i;
 	char	*var_value;
-	int		single_quote;
+	int		status;
 
-	single_quote = 0;
+	status = DEFAULT;
 	i = 0;
 	while (node->word[i])
 	{
-		quotes_check(&single_quote, node->word[i]);
-		if (node->word[i] == '$' && single_quote == 0
+		status = get_status(status, node->word[i]);
+		if (node->word[i] == '$' && (status == DEFAULT || status == DQUOTE)
 			&& invalid_next_char(node->word[i + 1]) == false
 			&& var_in_quotes(node->word, i) == false)
 		{

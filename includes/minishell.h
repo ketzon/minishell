@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:41:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/08 17:13:53 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:15:56 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct s_var
 
 typedef struct s_data
 {
-	bool		overwrite_exit_code; // ?
+	bool		overwrite_exit_code;
 	char		*line;
 	char		**env;
 	char		*wd;
@@ -137,6 +137,9 @@ void	reset_loop(t_data *data);
 /* INIT */
 
 void	initialise_io(t_cmd *cmd_node);
+bool	init_data(t_data *data, char **envp);
+void	init_builtins(t_data *data);
+bool	init_wds(t_data *data);
 
 /* SIGNALS */
 
@@ -207,6 +210,7 @@ int		count_len(char *str, int count, int i);
 
 int		handle_quotes(t_data *data);
 int		delete_quotes(t_lexer **node);
+int		delete_quotes_2(t_lexer **token_node, char *new_line);
 
 /* IS */
 
@@ -223,7 +227,12 @@ void	debugger_lexer(t_data *data);
 int		token_parse(t_data *data);
 char	*token_word(t_token token);
 int		is_sep(char *str, int i);
-int		add_token(char *input, int i, t_lexer **head);
+void	add_token(char *input, int i, t_lexer **head);
+int		get_status(int status, char c);
+void	add_token_part1(char *input, t_lexer **head,
+			t_token *token, char **str);
+void	add_token_part2(char *input, t_lexer **head,
+			t_token *token, char **str);
 
 /* VARIABLE CHECK*/
 
@@ -232,7 +241,6 @@ void	variable_expander(t_data *data);
 
 /* EXPANDER UTILS */
 
-void	quotes_check(int *single_quote, char c);
 bool	var_in_quotes(char *word, int i);
 int		var_word_len(char *str);
 bool	var_exist(t_data *data, char *var_name);
@@ -318,5 +326,7 @@ int		errmsg_cmd(char *command, char *detail,
 			char *error_message, int error_nb);
 void	exit_shell(t_data *data, int exit_number);
 void	errmsg(char *errmsg, char *detail, int quotes);
+bool	add_detail_quotes(char *command);
+char	*join_strs(char *str, char *add);
 
 #endif
