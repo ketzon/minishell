@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:41:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/09 22:28:27 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:15:56 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,10 @@ char	*token_word(t_token token);
 int		is_sep(char *str, int i);
 void	add_token(char *input, int i, t_lexer **head);
 int		get_status(int status, char c);
+void	add_token_part1(char *input, t_lexer **head,
+			t_token *token, char **str);
+void	add_token_part2(char *input, t_lexer **head,
+			t_token *token, char **str);
 
 /* VARIABLE CHECK*/
 

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 21:53:52 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/09 19:48:08 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:25:03 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	init_builtins(t_data *data)
 
 bool	init_data(t_data *data, char **envp)
 {
+	g_exit_code = 0;
 	data->env = create_env_arr(envp);
 	data->env_head = init_env(data->env);
 	if (init_wds(data) == false)
