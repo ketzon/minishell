@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:52:53 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/10 18:35:37 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/10 19:35:14 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	remove_env_variable(t_data *data, int index)
 	}
 }
 
-static void	disable_env_variable(t_data *data, int *val)
+static void	disable_env_variable(t_data *data)
 {
 	t_lexer	*current;
 	int		i;
@@ -48,17 +48,11 @@ static void	disable_env_variable(t_data *data, int *val)
 		}
 		current = current->next;
 	}
-	*val = EXIT_FAILURE;
 }
 
 int	builtin_unset(t_data *data, char **args)
 {
-	int	val;
-
 	(void)args;
-	val = EXIT_SUCCESS;
-	disable_env_variable(data, &val);
-	if (val)
-		return (val);
-	return (EXIT_FAILURE);
+	disable_env_variable(data);
+	return (EXIT_SUCCESS);
 }

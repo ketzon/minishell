@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:37:39 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/10 18:41:09 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/10 21:52:32 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	free_data(t_data *data, bool clear_history)
 		(void)data;
 		if (data->line)
 			free_reset_ptr(data->line);
+		if (data->old_wd)
+			free_reset_ptr(data->old_wd);
+		if (data->wd)
+			free_reset_ptr(data->wd);
 		if (data->env && *data->env)
 			free_env_array(data->env);
 		if (data->env_head)
