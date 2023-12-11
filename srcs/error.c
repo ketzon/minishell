@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:40:40 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/09 16:53:20 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/11 01:17:13 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	errmsg_cmd(char *command, char *detail,
 		msg = join_strs(msg, ": ");
 	}
 	msg = join_strs(msg, error_message);
-	ft_putendl_fd(msg, STDERR_FILENO);
+	msg = join_strs(msg, "\n");
+	write(STDERR_FILENO, msg, ft_strlen(msg));
 	free_ptr(msg);
 	return (error_nb);
 }
