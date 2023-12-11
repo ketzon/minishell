@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:30:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/12/10 21:42:31 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/12/11 02:55:10 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	g_exit_code;
 
 bool	parse_input(t_data *data)
 {
-	if (data->line == NULL)
-		builtin_exit(data, NULL);
 	add_history(data->line);
 	if (token_parse(data) == 1)
 		return (false);
@@ -71,6 +69,27 @@ void	reset_loop(t_data *data)
 	}
 }
 
+static bool	is_blank_input(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (data->line == NULL)
+		builtin_exit(data, NULL);
+	if (data->line[i] == '\0')
+		return (true);
+	if (data->line)
+	{
+		while (data->line[i])
+		{
+			if (data->line[i] != ' ')
+				return (false);
+			i++;
+		}
+	}
+	return (true);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
@@ -84,7 +103,9 @@ int	main(int argc, char **argv, char **envp)
 		signals_handling();
 		data.env_head = init_env(data.env);
 		data.line = readline(PROMPT);
-		if (parse_input(&data) == true)
+		if (is_blank_input(&data) == true)
+			g_exit_code = g_exit_code;
+		else if (parse_input(&data) == true)
 			g_exit_code = execute(&data);
 		else
 		{
