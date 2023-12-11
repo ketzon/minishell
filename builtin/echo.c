@@ -6,37 +6,30 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:06:29 by fbesson           #+#    #+#             */
-/*   Updated: 2023/12/10 18:02:17 by fbesson          ###   ########.fr       */
+/*   Updated: 2023/12/11 02:35:34 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int	is_option(char *str)
+static int	is_valid_option_n(char *str)
 {
-	if (str == NULL)
+	int	i;
+
+	i = 0;
+	if (!str)
 		return (0);
-	if (*str == '-')
-		str++;
+	if (str[i] == '-' && str[i + 1] != 'n')
+		return (0);
+	if (str[i] == '-')
+		i++;
 	else
 		return (0);
-	if (*str == '-')
-		str++;
-	if (*str)
-		return (1);
-	return (0);
-}
-
-static int	is_valid_option(char *str)
-{
-	if (!is_option(str))
-		return (0);
-	str++;
-	while (*str)
+	while (str[i])
 	{
-		if (*str != 'n')
+		if (str[i] != 'n')
 			return (0);
-		str++;
+		i++;
 	}
 	return (1);
 }
@@ -49,10 +42,10 @@ int	builtin_echo(t_data *data, char **args)
 	n = 0;
 	i = 0;
 	(void)data;
-	if (is_valid_option(args[1]))
+	while (args && is_valid_option_n(args[i + 1]))
 	{
 		n = 1;
-		i = 1;
+		i++;
 	}
 	while (args[++i])
 	{
